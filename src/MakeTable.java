@@ -25,7 +25,7 @@ public class MakeTable extends HttpServlet {
     for (int i = 1; i < 26; i++) {
       out.print("<tr>");
       for (int j = 1; j < 4; j++) {
-        out.print("<th> Row " + i + ", Column " + j + "</th>");
+        out.print("<th> Row " + i + ", Column 2" + j + "</th>");
       }
       out.println("</tr>");
     }
