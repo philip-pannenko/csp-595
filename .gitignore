@@ -3,7 +3,9 @@
 
 # But not these files...
 !.gitignore
+!.README.md
 
 # ...even if they are in subdirectories
-!*/src
-!*/WebContent
+!/src
+!/test
+!/WebContent
