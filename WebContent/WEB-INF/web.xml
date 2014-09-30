@@ -2,13 +2,10 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <servlet>
     <servlet-name>MakeTable</servlet-name>
-    <servlet-class>MakeTable</servlet-class>
+    <servlet-class>iit.csp595.MakeTable</servlet-class>
   </servlet>
   <servlet-mapping>
 	<servlet-name>MakeTable</servlet-name>
 	<url-pattern>/MakeTable</url-pattern>
   </servlet-mapping>
-  
-  
-    
 </web-app>

@@ -1,4 +1,4 @@
-
+package iit.csp595.servlet;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class MakeTable extends HttpServlet {
 
-  private static final long serialVersionUID = 2653008225156340138L;
+  private static final long serialVersionUID = 1L;
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     response.setContentType("text/html");
@@ -20,7 +20,7 @@ public class MakeTable extends HttpServlet {
     out.println("</head>");
     out.println("<body>");
     out.println("<h1>Make Table</h1>");
-    
+
     out.println("<table cellspacing='5' cellpadding='5' border='1px'>");
     for (int i = 1; i < 26; i++) {
       out.print("<tr>");

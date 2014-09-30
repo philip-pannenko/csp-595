@@ -2,16 +2,22 @@
 <project name="csp-595" default="clean-build" basedir="../">
 	<property environment="env" />
 
+	<target name="clean-build" depends="clean, compile" />
+
+	<echo>Java Home - ${env.JAVA_HOME}</echo>
+	<echo>Ant Home - ${env.ANT_HOME}</echo>
+	<echo>Tomcat Home - ${env.TOMCAT_HOME}</echo>
+
+	<target name="debug">
+		<echoproperties />
+	</target>
+
 	<target name="clean">
 		<delete dir="build" />
+		<delete dir="reports" />
 	</target>
 
 	<target name="compile">
-
-		<echo>Java Home - ${env.JAVA_HOME}</echo>
-		<echo>Ant Home - ${env.ANT_HOME}</echo>
-		<echo>Tomcat Home - ${env.TOMCAT_HOME}</echo>
-
 		<fail message="Tomcat home is not.">
 			<condition>
 				<not>
@@ -63,6 +69,26 @@
 		</jar>
 	</target>
 
-	<target name="clean-build" depends="clean, compile" />
+	<target name="unit-test">
+
+		<mkdir dir="reports\test" />
+
+		<junit printsummary="yes" haltonfailure="yes">
+			<classpath>
+				<fileset dir="test\lib">
+					<include name="*.jar" />
+				</fileset>
+			</classpath>
+
+			<formatter type="plain" />
+			<formatter type="xml" />
+
+			<batchtest fork="yes" todir="reports\test">
+				<fileset dir="test\src">
+					<include name="**/*Test*.java" />
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
 
 </project>
