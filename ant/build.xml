@@ -31,7 +31,7 @@
 	</target>
 
 	<target name="compile">
-		<fail message="Tomcat home is not.">
+		<fail message="Tomcat home is not set.">
 			<condition>
 				<not>
 					<isset property="env.TOMCAT_HOME" />
