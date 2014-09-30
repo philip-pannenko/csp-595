@@ -1,22 +1,68 @@
-<!DOCTYPE project> 
+<!DOCTYPE project>
 <project name="csp-595" default="clean-build" basedir="../">
+	<property environment="env" />
 
-    <target name="clean">
-        <delete dir="build"/>
-    </target>
+	<target name="clean">
+		<delete dir="build" />
+	</target>
 
-    <target name="compile">
-        <mkdir dir="build/classes"/>
-        <javac srcdir="src" destdir="build/classes"/>
-    </target>
+	<target name="compile">
 
-    <target name="jar" depends="compile">
-        <mkdir dir="build/jar"/>
-        <jar destfile="build/jar/csp-595.jar" basedir="build/classes">
-           
-        </jar>
-    </target>
-	
-	<target name="clean-build" depends="clean,jar"/>
+		<echo>Java Home - ${env.JAVA_HOME}</echo>
+		<echo>Ant Home - ${env.ANT_HOME}</echo>
+		<echo>Tomcat Home - ${env.TOMCAT_HOME}</echo>
+
+		<fail message="Tomcat home is not.">
+			<condition>
+				<not>
+					<isset property="env.TOMCAT_HOME" />
+				</not>
+			</condition>
+		</fail>
+
+		<fail message="Java home is not set.">
+			<condition>
+				<not>
+					<isset property="env.JAVA_HOME" />
+				</not>
+			</condition>
+		</fail>
+
+		<fail message="Ant home is not set.">
+			<condition>
+				<not>
+					<isset property="env.ANT_HOME" />
+				</not>
+			</condition>
+		</fail>
+
+		<mkdir dir="build/classes" />
+		<javac srcdir="src" destdir="build/classes">
+			<classpath>
+				<fileset dir="C:\servers\apache-tomcat-7.0.34\lib\">
+					<include name="servlet-api.jar" />
+					<include name="jsp-api.jar" />
+					<include name="el-api.jar" />
+					<include name="commons-beanutils-1.8.3.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+
+		<copy todir="build/classes">
+			<fileset dir="src">
+				<include name="**/*.java" />
+			</fileset>
+		</copy>
+
+	</target>
+
+	<target name="jar" depends="compile">
+		<mkdir dir="build/jar" />
+		<jar destfile="build/jar/csp-595.jar" basedir="build/classes">
+
+		</jar>
+	</target>
+
+	<target name="clean-build" depends="clean, compile" />
 
 </project>
