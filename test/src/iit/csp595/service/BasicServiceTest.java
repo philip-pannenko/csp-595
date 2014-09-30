@@ -11,7 +11,7 @@ public class BasicServiceTest {
     
     assert(true);
     
-    assertTrue(1+1==2);
+    assertTrue(true);
     
   }
 
