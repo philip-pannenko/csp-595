@@ -11,6 +11,9 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * not used yet
+ */
 public class AuthFilter implements Filter {
 
   public void init(FilterConfig fConfig) throws ServletException {

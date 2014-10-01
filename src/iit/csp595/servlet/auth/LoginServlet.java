@@ -1,5 +1,7 @@
 package iit.csp595.servlet.auth;
 
+import iit.csp595.bean.auth.LoginPageBean;
+import iit.csp595.domain.Message;
 import iit.csp595.domain.User;
 import iit.csp595.domain.dao.UserDao;
 
@@ -15,7 +17,8 @@ public class LoginServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    request.getRequestDispatcher("WEB-INF/pages/login.jsp").forward(request, response);
+    request.setAttribute("bean", new LoginPageBean());
+    request.getRequestDispatcher("WEB-INF/template.jsp").forward(request, response);
   }
 
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -25,14 +28,12 @@ public class LoginServlet extends HttpServlet {
     UserDao dao = new UserDao();
     User user = dao.login(username, password.toCharArray());
     
-    request.removeAttribute("error");
-    
     if(user != null) {
       request.getSession().setAttribute("user", user);
       response.sendRedirect("product");
     } else {
-      request.setAttribute("error", "Invalid Credentials!");
-      request.getRequestDispatcher("WEB-INF/pages/login.jsp").forward(request, response);
+      request.setAttribute("bean", new LoginPageBean(new Message("error", "Invalid Credentials")));
+      request.getRequestDispatcher("WEB-INF/template.jsp").forward(request, response);
     }
   }
 

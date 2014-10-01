@@ -1,46 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-<%@include file="/WEB-INF/global/head.jsp"%>
-</head>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<body>
+<div class="col-md-offset-1 col-xs-9">
 
-  <%@include file="/WEB-INF/global/header.jsp"%>
+  <img src="images/product/${requestScope.bean.item.id}.jpg">
+  <h3>${requestScope.bean.item.name}</h3>
+  <h6>Genre - ${requestScope.bean.item.genre}</h6>
+  <p>${requestScope.bean.item.description}</p>
+  <p>Price - ${requestScope.bean.item.price}</p>
+</div>
 
-  <div class="container">
-
-    <div class="row">
-
-      <ol class="breadcrumb">
-        <li><a href="\csp-595">Home</a></li>
-        <li><a href="\csp-595\product">Products</a></li>
-        <li class="active">${product.name}</li>
-      </ol>
-
-      <div class="col-md-offset-1 col-xs-9">
-
-        <img src="images/product/${product.id}.jpg">
-        <h3>${product.name}</h3>
-        <h6>Genre - ${product.genre}</h6>
-        <p>${product.description}</p>
-        <p>Price - ${product.price}</p>
-      </div>
-
-      <div class="col-xs-2">
-        <div>
-          <h4>Item Actions</h4>
-          <ol class="list-unstyled">
-            <li><a href="#">Add to cart</a></li>
-            <li><a href="#">Add to wishlist</a></li>
-          </ol>
-        </div>
-      </div>
-
-    </div>
+<div class="col-xs-2">
+  <div>
+    <h4>Item Actions</h4>
+    <ol class="list-unstyled">
+      <li><a href="#">Add to cart</a></li>
+      <li><a href="#">Add to wishlist</a></li>
+    </ol>
   </div>
+</div>
 
-  <%@include file="/WEB-INF/global/footer.jsp"%>
-
-</body>
-</html>
