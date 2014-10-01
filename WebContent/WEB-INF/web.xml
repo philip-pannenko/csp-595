@@ -5,16 +5,44 @@
   id="WebApp_ID" version="3.0">
 
   <servlet>
-    <servlet-name>ProductServlet</servlet-name>
+    <servlet-name>productServlet</servlet-name>
     <servlet-class>iit.csp595.servlet.ProductServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ProductServlet</servlet-name>
+    <servlet-name>productServlet</servlet-name>
     <url-pattern>/product</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>loginServlet</servlet-name>
+    <servlet-class>iit.csp595.servlet.auth.LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>loginServlet</servlet-name>
+    <url-pattern>/login</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>logoutServlet</servlet-name>
+    <servlet-class>iit.csp595.servlet.auth.LogoutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>logoutServlet</servlet-name>
+    <url-pattern>/logout</url-pattern>
   </servlet-mapping>
 
   <listener>
     <listener-class>iit.csp595.listener.DBInitializer</listener-class>
   </listener>
+
+  <!-- <filter> -->
+  <!-- <filter-name>authFilter</filter-name> -->
+  <!-- <filter-class>iit.csp595.filter.AuthFilter</filter-class> -->
+  <!-- </filter> -->
+
+  <!-- <filter-mapping> -->
+  <!-- <filter-name>authFilter</filter-name> -->
+  <!-- <url-pattern>/*</url-pattern> -->
+  <!-- </filter-mapping> -->
 
 </web-app>

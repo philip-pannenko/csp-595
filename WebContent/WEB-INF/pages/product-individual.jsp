@@ -14,7 +14,7 @@
 
       <ol class="breadcrumb">
         <li><a href="\csp-595">Home</a></li>
-        <li><a href="\csp-595">Products</a></li>
+        <li><a href="\csp-595\product">Products</a></li>
         <li class="active">${product.name}</li>
       </ol>
 
