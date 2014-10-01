@@ -1,0 +1,45 @@
+@CHARSET "ISO-8859-1";
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.header {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.header h3 {
+  line-height: 50px;
+}
+
+.header h3 a {
+  text-decoration: none;
+}
+
+.container {
+  width: 970px !important;
+}
+
+.product-listing {
+  padding-bottom: 25px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  color: #999;
+  border-top: 1px solid #e5e5e5;
+  height: 60px;
+  background-color: #f9f9f9;
+}
+
+.breadcrumb {
+  background-color: transparent;
+}
