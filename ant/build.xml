@@ -27,7 +27,7 @@
 
 	<echo>Java Home - ${env.JAVA_HOME}</echo>
 	<echo>Ant Home - ${env.ANT_HOME}</echo>
-	<echo>Tomcat Home - </echo>
+	<echo>Tomcat Home -${env.TOMCAT_HOME} </echo>
 
 	<target name="debug">
 		<echoproperties />
@@ -76,7 +76,7 @@
 		</fail>
 
 		<mkdir dir="bin/${ant.project.name}/WEB-INF/classes" />
-		<javac srcdir="src" destdir="bin/${ant.project.name}/WEB-INF/classes">
+		<javac includeantruntime="false" srcdir="src" destdir="bin/${ant.project.name}/WEB-INF/classes">
 			<classpath refid="classpath" />
 		</javac>
 
@@ -99,7 +99,7 @@
 		<mkdir dir="reports\test" />
 		<mkdir dir="bin\test" />
 
-		<javac srcdir="test\src" destdir="bin/test">
+		<javac includeantruntime="false" srcdir="test\src" destdir="bin/test">
 			<classpath refid="classpath-test-cases" />
 		</javac>
 
