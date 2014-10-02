@@ -11,12 +11,12 @@
 
     <mkdir dir="reports\checkstyle" />
 
-    <checkstyle config="sun_checks.xml" failureProperty="checkstyle.failure" failOnViolation="true">
+    <checkstyle config="ant/sun_checks.xml" failureProperty="checkstyle.failure" failOnViolation="true">
       <fileset dir="src/" includes="**/*.java" />
       <formatter type="xml" toFile="reports\checkstyle\java_errors.xml" />
     </checkstyle>
 
-    <checkstyle config="sun_checks.xml">
+    <checkstyle config="ant/sun_checks.xml">
       <fileset dir="WebContent/WEB-INF/" includes="**/*.jsp" />
       <formatter type="xml" toFile="reports\checkstyle\jsp_errors.xml" />
     </checkstyle>
