@@ -24,11 +24,11 @@ public class LoginServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     String username = request.getParameter("username");
     String password = request.getParameter("password");
-    
+
     UserDao dao = new UserDao();
     User user = dao.login(username, password.toCharArray());
-    
-    if(user != null) {
+
+    if (user != null) {
       request.getSession().setAttribute("user", user);
       response.sendRedirect("product");
     } else {

@@ -9,7 +9,7 @@ public class LoginPageBean extends GenericPageBean<User> {
   public LoginPageBean() {
     super("pages/login.jsp", null);
   }
-  
+
   public LoginPageBean(Message message) {
     super("pages/login.jsp", message);
   }

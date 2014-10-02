@@ -12,13 +12,8 @@ public abstract class GenericListingPageBean<T> extends GenericPageBean<T> imple
   private int totalPages = 0;
   private int itemsPerPage = 2;
 
-  /**
-   * Created to force the compile to remind us to need a bean for these pages
-   * 
-   * @param bean
-   */
   protected GenericListingPageBean(List<T> items, int totalItems, String pageFileName) {
-    super(pageFileName);
+   super(pageFileName);
     this.items = items;
     this.totalPages = (int) Math.ceil(totalItems / itemsPerPage);
   }

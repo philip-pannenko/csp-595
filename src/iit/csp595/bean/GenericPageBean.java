@@ -9,16 +9,16 @@ import java.util.TreeMap;
 public abstract class GenericPageBean<T> implements Serializable {
 
   private static final long serialVersionUID = 1L;
-  protected String browserPageTitle = "CSP-595 Store";
-  protected final String pageDirFileName;
-  protected SortedMap<String, String> breadcrumb = new TreeMap<String, String>();
-  protected String activeNavName;
-  protected Message message;
+  private String browserPageTitle = "CSP-595 Store";
+  private final String pageDirFileName;
+  private SortedMap<String, String> breadcrumb = new TreeMap<String, String>();
+  private String activeNavName;
+  private Message message;
 
   protected GenericPageBean(String pageDirFileName) {
     this.pageDirFileName = pageDirFileName;
   }
-  
+
   protected GenericPageBean(String pageDirFileName, Message message) {
     this.pageDirFileName = pageDirFileName;
     this.message = message;

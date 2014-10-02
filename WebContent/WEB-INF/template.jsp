@@ -8,7 +8,6 @@
 </head>
 
 <body>
-
   <jsp:include page="/WEB-INF/global/header.jsp" />
 
   <div class="container">

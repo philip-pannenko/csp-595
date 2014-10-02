@@ -5,9 +5,9 @@ csp-595
 * Add sort filter + button to sort items
 * Add multiple genre
 * Filter by genre
-* All of these will be url params.
 * Add error pages.
 * Learn how to output clean logging
+* Noticed a bug with ProductIndividual on page two where all the breadcrumbs are wonky...
 
 ## Examples pages
 * http://www.amazon.com/ref=nav_logo

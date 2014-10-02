@@ -9,9 +9,7 @@
 
     <form class="navbar-form navbar-left">
       <div class="input-group">
-        <input type="text" class="form-control"
-          placeholder="Search our store!"> <span
-          class="input-group-btn">
+        <input type="text" class="form-control" placeholder="Search our store!"> <span class="input-group-btn">
           <button class="btn btn-default" type="button">Go!</button>
         </span>
       </div>
@@ -21,8 +19,7 @@
       <ul class="nav navbar-nav navbar-right">
         <c:choose>
           <c:when test="${sessionScope.user != null}">
-            <li><a href="logout">Logout
-                ${sessionScope.user.fname}</a></li>
+            <li><a href="logout">Logout ${sessionScope.user.fname}</a></li>
           </c:when>
           <c:when test="${sessionScope.user == null}">
             <li><a href="login">Login</a></li>

@@ -10,12 +10,6 @@ public abstract class GenericIndividualPageBean<T> extends GenericPageBean<T> im
 
   private T item;
 
-  /**
-   * Created to force the compile to remind us to need a bean for these pages
-   * 
-   * @param bean
-   */
-  
   protected GenericIndividualPageBean(T item, String pageFileName, Message message) {
     super(pageFileName, message);
     this.item = item;

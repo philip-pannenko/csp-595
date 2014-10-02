@@ -1,146 +1,168 @@
 <!DOCTYPE project>
-<project name="csp-595" default="clean-compile-deploy" basedir="../">
-	<property environment="env" />
+<project name="csp-595" default="compile-deploy" basedir="../">
+  <property environment="env" />
 
-	<target name="clean-compile-deploy" depends="clean, compile, deploy" />
+  <target name="compile-deploy" depends="compile, deploy" />
+  <target name="clean-compile-deploy" depends="clean, compile, deploy" />
 
-	<path id="classpath">
-		<fileset dir="${env.TOMCAT_HOME}\lib\">
-			<include name="servlet-api.jar" />
-			<include name="jsp-api.jar" />
-			<include name="el-api.jar" />
-			<include name="commons-beanutils-1.8.3.jar" />
-		</fileset>
-		<fileset dir="WebContent\WEB-INF\lib">
-			<include name="*.jar" />
-		</fileset>
-	</path>
+  <taskdef resource="checkstyletask.properties" classpath="ant/lib/checkstyle-5.7-all.jar" />
 
-	<path id="classpath-test-cases">
-		<path refid="classpath" />
-		<fileset dir="test\lib">
-			<include name="*.jar" />
-		</fileset>
-		<pathelement path="bin\test" />
-		<pathelement path="bin\csp595\WEB-INF\classes\" />
-	</path>
+  <target name="checkstyle">
 
-	<echo>Java Home - ${env.JAVA_HOME}</echo>
-	<echo>Ant Home - ${env.ANT_HOME}</echo>
-	<echo>Tomcat Home -${env.TOMCAT_HOME} </echo>
+    <mkdir dir="reports\checkstyle" />
 
-	<target name="debug">
-		<echoproperties />
-	</target>
+    <checkstyle config="sun_checks.xml" failureProperty="checkstyle.failure" failOnViolation="true">
+      <fileset dir="src/" includes="**/*.java" />
+      <formatter type="xml" toFile="reports\checkstyle\java_errors.xml" />
+    </checkstyle>
 
-	<target name="testing">
-	</target>
+    <checkstyle config="sun_checks.xml">
+      <fileset dir="WebContent/WEB-INF/" includes="**/*.jsp" />
+      <formatter type="xml" toFile="reports\checkstyle\jsp_errors.xml" />
+    </checkstyle>
 
-	<target name="clean">
-		<delete dir="bin" />
-		<delete dir="reports" />
-	</target>
+  </target>
 
-	<target name="deploy">
-		<delete dir="${env.TOMCAT_HOME}/webapps/${ant.project.name}" />
-		<copy todir="${env.TOMCAT_HOME}/webapps/${ant.project.name}">
-			<fileset dir="bin/${ant.project.name}">
-				<include name="**/*.*" />
-			</fileset>
-		</copy>
-	</target>
 
-	<target name="compile">
-		<fail message="Tomcat home is not set.">
-			<condition>
-				<not>
-					<isset property="env.TOMCAT_HOME" />
-				</not>
-			</condition>
-		</fail>
+  <path id="classpath">
+    <fileset dir="${env.TOMCAT_HOME}\lib\">
+      <include name="servlet-api.jar" />
+      <include name="jsp-api.jar" />
+      <include name="el-api.jar" />
+      <include name="commons-beanutils-1.8.3.jar" />
+    </fileset>
+    <fileset dir="WebContent\WEB-INF\lib">
+      <include name="*.jar" />
+    </fileset>
+  </path>
 
-		<fail message="Java home is not set.">
-			<condition>
-				<not>
-					<isset property="env.JAVA_HOME" />
-				</not>
-			</condition>
-		</fail>
+  <path id="classpath-test-cases">
+    <path refid="classpath" />
 
-		<fail message="Ant home is not set.">
-			<condition>
-				<not>
-					<isset property="env.ANT_HOME" />
-				</not>
-			</condition>
-		</fail>
+    <fileset dir="test\lib">
+      <include name="*.jar" />
+    </fileset>
 
-		<mkdir dir="bin/${ant.project.name}/WEB-INF/classes" />
-		<javac includeantruntime="false" srcdir="src" destdir="bin/${ant.project.name}/WEB-INF/classes">
-			<classpath refid="classpath" />
-		</javac>
+    <pathelement path="bin\test" />
+    <pathelement path="bin\csp595\WEB-INF\classes\" />
+  </path>
 
-		<copy todir="bin/${ant.project.name}/WEB-INF/classes">
-			<fileset dir="src">
-				<include name="**/*.java" />
-			</fileset>
-		</copy>
+  <echo>Java Home - ${env.JAVA_HOME}</echo>
+  <echo>Ant Home - ${env.ANT_HOME}</echo>
+  <echo>Tomcat Home - ${env.TOMCAT_HOME} </echo>
 
-		<copy todir="bin/${ant.project.name}/">
-			<fileset dir="WebContent">
-				<include name="**/*.*" />
-			</fileset>
-		</copy>
+  <target name="debug">
+    <echoproperties />
+  </target>
 
-	</target>
+  <target name="testing">
+  </target>
 
-	<target name="unit-test" depends="clean, compile">
+  <target name="clean">
+    <delete dir="bin" />
+    <delete dir="reports" />
+  </target>
 
-		<mkdir dir="reports\test" />
-		<mkdir dir="bin\test" />
+  <target name="deploy" depends="checkstyle" if="checkstyle.failure" description="Checkstyle violation, check reports \\{path}/reports/checkstyle">
+    <delete dir="${env.TOMCAT_HOME}/webapps/${ant.project.name}" />
+    <copy todir="${env.TOMCAT_HOME}/webapps/${ant.project.name}">
+      <fileset dir="bin/${ant.project.name}">
+        <include name="**/*.*" />
+      </fileset>
+    </copy>
+  </target>
 
-		<javac includeantruntime="false" srcdir="test\src" destdir="bin/test">
-			<classpath refid="classpath-test-cases" />
-		</javac>
+  <target name="compile">
+    <fail message="Tomcat home is not set.">
+      <condition>
+        <not>
+          <isset property="env.TOMCAT_HOME" />
+        </not>
+      </condition>
+    </fail>
 
-		<junit printsummary="yes" showoutput="true" haltonfailure="yes">
-			<classpath refid="classpath-test-cases" />
+    <fail message="Java home is not set.">
+      <condition>
+        <not>
+          <isset property="env.JAVA_HOME" />
+        </not>
+      </condition>
+    </fail>
 
-			<formatter type="plain" />
-			<formatter type="xml" />
+    <fail message="Ant home is not set.">
+      <condition>
+        <not>
+          <isset property="env.ANT_HOME" />
+        </not>
+      </condition>
+    </fail>
 
-			<batchtest fork="yes" todir="reports\test">
-				<fileset dir="test\src">
-					<include name="**/*Test*.java" />
-				</fileset>
-			</batchtest>
+    <mkdir dir="bin/${ant.project.name}/WEB-INF/classes" />
+    <javac includeantruntime="false" srcdir="src" destdir="bin/${ant.project.name}/WEB-INF/classes">
+      <classpath refid="classpath" />
+    </javac>
 
-		</junit>
-	</target>
+    <copy todir="bin/${ant.project.name}/WEB-INF/classes">
+      <fileset dir="src">
+        <include name="**/*.java" />
+      </fileset>
+    </copy>
 
-	<target name="tomcat-restart">
-		<antcall target="tomcat-stop" />
-		<antcall target="tomcat-start" />
-	</target>
+    <copy todir="bin/${ant.project.name}/">
+      <fileset dir="WebContent">
+        <include name="**/*.*" />
+      </fileset>
+    </copy>
 
-	<target name="tomcat-start">
-		<java classname="org.apache.catalina.startup.Bootstrap" fork="true">
-			<classpath path="${env.TOMCAT_HOME}/bin/bootstrap.jar:${env.TOMCAT_HOME}/bin/tomcat-juli.jar" />
-			<jvmarg value="-Dcatalina.home=${env.TOMCAT_HOME}" />
-		</java>
-	</target>
+  </target>
 
-	<target name="tomcat-stop">
-		<java classname="org.apache.catalina.startup.Bootstrap" fork="true">
-			<classpath path="${env.TOMCAT_HOME}/bin/bootstrap.jar:${env.TOMCAT_HOME}/bin/tomcat-juli.jar" />
-			<jvmarg value="-Dcatalina.home=${env.TOMCAT_HOME}" />
-			<arg line="stop" />
-		</java>
-	</target>
+  <target name="unit-test" depends="clean, compile">
 
-	<!-- DOES NOT WORK YET -->
-	<!-- Doesn't really matter because Tomcat seems to auto-deploy after each 'deploy' target above -->
-	<!--
+    <mkdir dir="reports\test" />
+    <mkdir dir="bin\test" />
+
+    <javac includeantruntime="false" srcdir="test\src" destdir="bin/test">
+      <classpath refid="classpath-test-cases" />
+    </javac>
+
+    <junit printsummary="yes" showoutput="true" haltonfailure="yes">
+      <classpath refid="classpath-test-cases" />
+
+      <formatter type="plain" />
+      <formatter type="xml" />
+
+      <batchtest fork="yes" todir="reports\test">
+        <fileset dir="test\src">
+          <include name="**/*Test*.java" />
+        </fileset>
+      </batchtest>
+
+    </junit>
+  </target>
+
+  <target name="tomcat-restart">
+    <antcall target="tomcat-stop" />
+    <antcall target="tomcat-start" />
+  </target>
+
+  <target name="tomcat-start">
+    <java classname="org.apache.catalina.startup.Bootstrap" fork="true">
+      <classpath path="${env.TOMCAT_HOME}/bin/bootstrap.jar:${env.TOMCAT_HOME}/bin/tomcat-juli.jar" />
+      <jvmarg value="-Dcatalina.home=${env.TOMCAT_HOME}" />
+    </java>
+  </target>
+
+  <target name="tomcat-stop">
+    <java classname="org.apache.catalina.startup.Bootstrap" fork="true">
+      <classpath path="${env.TOMCAT_HOME}/bin/bootstrap.jar:${env.TOMCAT_HOME}/bin/tomcat-juli.jar" />
+      <jvmarg value="-Dcatalina.home=${env.TOMCAT_HOME}" />
+      <arg line="stop" />
+    </java>
+  </target>
+
+  <!-- DOES NOT WORK YET -->
+  <!-- Doesn't really matter because Tomcat seems to auto-deploy after each 'deploy' target above -->
+  <!--
 	<path id="catalina-ant-classpath">
 		<fileset dir="${env.TOMCAT_HOME}\bin">
 			<include name="tomcat-juli.jar" />

@@ -25,8 +25,9 @@ public class ProductDao {
       if (i >= offset) {
         result.add(TempDB.productsList.get(i));
       }
-      if (result.size() == max)
+      if (result.size() == max) {
         break;
+      }
     }
     return result;
   }
