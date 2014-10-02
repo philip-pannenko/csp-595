@@ -11,11 +11,11 @@ public class ProductListingBean extends GenericListingPageBean<Product> implemen
 
   private static final long serialVersionUID = 1L;
 
-  public ProductListingBean(List<Product> beans) {
-    super(beans, "pages/product-listing.jsp", null);
+  public ProductListingBean(List<Product> products, int totalProducts) {
+    super(products, totalProducts, "pages/product-listing.jsp");
     this.browserPageTitle = "Product Listing";
     this.breadcrumb = new TreeMap<String, String>();
-    this.breadcrumb.put("Home", "/csp-595");
+    this.breadcrumb.put("Home", "");
     this.breadcrumb.put("Products", null);
   }
 

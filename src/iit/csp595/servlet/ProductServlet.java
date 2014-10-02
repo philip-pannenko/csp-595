@@ -3,7 +3,7 @@ package iit.csp595.servlet;
 import iit.csp595.bean.product.ProductIndividualBean;
 import iit.csp595.bean.product.ProductListingBean;
 import iit.csp595.domain.Product;
-import iit.csp595.domain.dao.TempDB;
+import iit.csp595.domain.dao.ProductDao;
 
 import java.io.IOException;
 import java.util.List;
@@ -22,11 +22,31 @@ public class ProductServlet extends HttpServlet {
     String productId = request.getParameter("id");
 
     if (productId == null) {
-      List<Product> products = TempDB.productsList;
-      request.setAttribute("bean", new ProductListingBean(products));
+
+      ProductDao dao = new ProductDao();
+      List<Product> products;
+      String nextPage = request.getParameter("page");
+      ProductListingBean bean;
+      if (nextPage != null) {
+        int offset = Integer.parseInt(nextPage) - 1; // which index to start at
+        offset *= 2; // multiple offset by page size
+        int max = 2; // how many results per page
+        products = dao.getAll(offset, max);
+        int totalProductsCount = dao.getCount();
+        bean = new ProductListingBean(products, totalProductsCount);
+
+        bean.setCurrentPage(Integer.parseInt(nextPage));
+      } else {
+        products = dao.getAll(0, 2);
+        int totalProductsCount = dao.getCount();
+        bean = new ProductListingBean(products, totalProductsCount);
+      }
+
+      request.setAttribute("bean", bean);
       request.getRequestDispatcher("WEB-INF/template.jsp").forward(request, response);
     } else {
-      Product product = TempDB.products.get(Long.valueOf(productId));
+      ProductDao dao = new ProductDao();
+      Product product = dao.get(Long.valueOf(productId));
       if (product == null) {
         response.sendRedirect("product");
       } else {

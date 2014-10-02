@@ -10,10 +10,10 @@ import java.util.Map;
 
 public final class TempDB {
 
-  public static Map<Long, Product> products = new HashMap<Long, Product>();
-  public static List<Product> productsList = new ArrayList<Product>();
-  public static Map<Long, User> users = new HashMap<Long, User>();
-  public static Map<String, User> usersUsername = new HashMap<String, User>();
+  protected static Map<Long, Product> products = new HashMap<Long, Product>();
+  protected static List<Product> productsList = new ArrayList<Product>();
+  protected static Map<Long, User> users = new HashMap<Long, User>();
+  protected static Map<String, User> usersUsername = new HashMap<String, User>();
 
   private TempDB() {
 

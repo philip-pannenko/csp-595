@@ -14,8 +14,8 @@ public class ProductIndividualBean extends GenericIndividualPageBean<Product> im
     super(bean, "pages/product-individual.jsp", null);
     this.browserPageTitle = "Product - " + bean.getName();
     this.breadcrumb = new TreeMap<String, String>();
-    this.breadcrumb.put("Home", "/csp-595");
-    this.breadcrumb.put("Products", "/csp-595/product");
+    this.breadcrumb.put("Home", "");
+    this.breadcrumb.put("Products", "product");
     this.breadcrumb.put(bean.getName(), null);
   }
 

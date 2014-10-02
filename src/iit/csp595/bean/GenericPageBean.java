@@ -15,6 +15,10 @@ public abstract class GenericPageBean<T> implements Serializable {
   protected String activeNavName;
   protected Message message;
 
+  protected GenericPageBean(String pageDirFileName) {
+    this.pageDirFileName = pageDirFileName;
+  }
+  
   protected GenericPageBean(String pageDirFileName, Message message) {
     this.pageDirFileName = pageDirFileName;
     this.message = message;
