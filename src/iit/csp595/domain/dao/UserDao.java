@@ -8,15 +8,15 @@ import iit.csp595.domain.User;
 public class UserDao {
 
   public User get(Long id) {
-    return TempDB.users.get(id);
+    return TempDB.USERS.get(id);
   }
 
   public Collection<User> get() {
-    return TempDB.users.values();
+    return TempDB.USERS.values();
   }
 
   public User login(String username, char[] password) {
-    User user = TempDB.usersUsername.get(username);
+    User user = TempDB.USERS_USERNAME.get(username);
     return (user != null && Arrays.equals(password, user.getPassword())) ? user : null;
   }
 

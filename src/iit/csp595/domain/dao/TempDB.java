@@ -1,31 +1,34 @@
 package iit.csp595.domain.dao;
 
+import iit.csp595.domain.Category;
+import iit.csp595.domain.CategoryType;
 import iit.csp595.domain.Product;
 import iit.csp595.domain.User;
+import iit.csp595.domain.product.Accessory;
+import iit.csp595.domain.product.Coffee;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 public final class TempDB {
 
-  protected static Map<Long, Product> products = new HashMap<Long, Product>();
-  protected static List<Product> productsList = new ArrayList<Product>();
-  protected static Map<Long, User> users = new HashMap<Long, User>();
-  protected static Map<String, User> usersUsername = new HashMap<String, User>();
+  protected static final SortedMap<Long, Product> PRODUCTS = new TreeMap<Long, Product>();
+  protected static final SortedMap<Long, User> USERS = new TreeMap<Long, User>();
+  protected static final SortedMap<Long, Category> CATEGORIES = new TreeMap<Long, Category>();
+  protected static final SortedMap<Long, Coffee> COFFEES = new TreeMap<Long, Coffee>();
+  protected static final SortedMap<Long, Accessory> ACCESSORIES = new TreeMap<Long, Accessory>();
 
-  public static void setUsers(Map<Long, User> users) {
-    TempDB.users = users;
-  }
+  protected static final SortedMap<Long, List<Product>> CATEGORY_PRODUCT = new TreeMap<Long, List<Product>>();
 
-  public static Map<String, User> getUsersUsername() {
-    return usersUsername;
-  }
+  // Used for login username lookups
+  protected static final SortedMap<String, User> USERS_USERNAME = new TreeMap<String, User>();
 
-  public static void setUsersUsername(Map<String, User> usersUsername) {
-    TempDB.usersUsername = usersUsername;
-  }
+  private static Category dd, sb, filter, grinder, african, local, blend, decaf;
+
+  // Used as a sequence helper
+  private static Long dbId;
 
   private TempDB() {
 
@@ -33,68 +36,114 @@ public final class TempDB {
 
   public static void initDB() {
     System.out.println("initDB");
-    products.clear();
-    products
-        .put(
-            1L,
-            new Product(
-                1L,
-                "Samsung Galaxy S5 16 GB",
-                "The next big thing for business is here. Beyond the basics, the Samsung Galaxy S5 breaks boundaries with never-before integrated technology that improves productivity, enhances work-life balance and delivers a very secure mobile experience. Collaborate with colleagues more easily and securely than ever with this highly desirable smartphone featuring recently enhanced Samsung Knox compatibility.",
-                "phone", 149.99));
-    products
-        .put(
-            2L,
-            new Product(
-                2L,
-                "Samsung Galaxy S4 16 GB",
-                "The Galaxy S4 does what you want and what you didn't know was even possible. Erase a photo's background distractions with just a touch, catch every part of your son's somersault or capture your view of the city skyline. Skip channel surfing and change the TV channel right from your phone. Preview photos and files or read a news article without ever touching the screen. Use one screen to check Facebook as you catch up on email. The Galaxy S4 does things the way they should be done - your way. The smartphone camera just got a makeover. 13-megapixel meets 5\" 1080p display for a stunning way to take, view and share photos. Custom shooting modes make every moment beautiful, so you can capture the grandness of the Grand Canyon or document your daughter's first cartwheel. Erase the person who walked through your shot with one touch, or apply photo and video filters right from the camera. It\'s all a snap with the Galaxy S4 camera.",
-                "phone", 79.99));
-    products
-        .put(
-            3L,
-            new Product(
-                3L,
-                "HTC One 32 GB",
-                "With a sleek aluminum body, a live home screen that streams all of your favorite content, a photo gallery that comes to life, and dual frontal stereo speakers, HTC One is ready to reshape your smartphone experience.",
-                "phone", 1D));
-    products
-        .put(
-            4L,
-            new Product(
-                4L,
-                "Motorola Droid Razr M 8 GB",
-                "The big 4.3-inch display spans edge-to-edge, yet RAZR M still fits perfectly in the palm of your hand, making this one impossibly compact smartphone. Texting, emailing, reading, watching - it's all much easier to do when you have 40 percent more screen space than the leading competitor. And on a vibrant, high-resolution Super AMOLED Advanced display, everything looks amazing.",
-                "phone", 118.99));
-    products
-        .put(
-            5L,
-            new Product(
-                5L,
-                "Samsung Galaxy Note 2 16 GB",
-                "Looking for the smartphone that can do it all? The Galaxy Note II is a powerhouse of productivity. The S Pen bringsthe simplicity of pen and paper to innovative mobile technology, plus the ability to perform multiple tasks at once. Quickly create and edit documents, and navigate with the precision of a mouse. Use Air View to get an overview of an entire library by hovering the S Pen above the display, or boost your multitasking mileage: S Memo remembers shapes, text searches and even equations. Discover the advantage of lightning-fast load times, the luxury of a generous 5.5\" HD display and the beauty of Android 4.1, Jelly Bean. Featuring a cutting-edge quad-core processor, the Galaxy Note II takes on the hardest tasks - including video and complex graphics - with processing power to spare. Built for 4 G and featuring a 3100 mAh battery designed for extended power and super quick recharge times.",
-                "phone", 49.99));
-    products
-        .put(
-            6L,
-            new Product(
-                6L,
-                "Apple iPhone 4 8 GB",
-                "While everyone else was busy trying to keep up with iPhone, Apple were busy creating amazing new features that make iPhone more powerful, easier to use, and more indispensable than ever. The result is iPhone 4. The biggest thing to happen to iPhone since iPhone. All the breakthrough technology in iPhone 4 is situated between two glossy panels of aluminosilicate glass - the same type of glass used in the windshields of helicopters and high-speed trains. Chemically strengthened to be 20 times stiffer and 30 times harder than plastic, the glass is ultradurable and more scratch resistant than ever. It's also recyclable. The 960-by-640 backlit LCD display boasts a pixel density of 326 pixels per inch, making it the highest-resolution phone screen ever. To achieve this, Apple engineers developed pixels so small - a mere 78 micrometers across - that the human eye can't distinguish individual pixels. That makes text remarkably sharp and graphics incredibly vivid. IPS technology also provides excellent color and contrast from almost any viewing angle. Created from Apple's own alloy, then forged to be five times stronger than standard steel, the CNC-machined band is the mounting point for all the components of iPhone 4. The band provides impressive structural rigidity and allows for its incredibly thin, refined design. It also functions as both iPhone 4 antennas. Apple engineers designed the A4 chip to be a remarkably powerful yet remarkably power-efficient mobile processor. With it, iPhone 4 can easily perform complex jobs such as multitasking, editing video, and placing FaceTime calls. All while maximizing battery life. iPhone 4 includes a built-in three-axis gyroscope. When paired with the accelerometer, it makes iPhone 4 capable of advanced motion sensing such as user acceleration, full 3D attitude, and rotation rate. Translation: More motion gestures and greater precision for an even better gaming experience. The iPhone 4 camera shoots gorgeous 5-megapixel photos and stunning HD video. And with its advanced backside illumination sensor, it captures beautiful images even in low-light settings. The built-in LED flash does double duty. When you're taking pictures, it works as a flash. When you're shooting video it can stay on to light up the scene. And on the front of iPhone 4, the built-in camera is perfect for making FaceTime calls and shooting self-portraits. While most phones have only one microphone, iPhone 4 has two. The main mic, located on the bottom next to the dock connector, is for phone calls, voice commands, and memos. The second mic, built into the top near the headphone jack, is for FaceTime calls and for making your phone calls better. It works with the main mic to suppress unwanted and distracting background sounds, such as music and loud conversations. This dual-mic noise suppression helps make every conversation a quiet one. With its large Multi-Touch display and innovative software, iPhone lets you control everything using just your fingers. How does it work? A panel laminated on the glass senses your touch using electrical fields. It can register multiple touches at once to support advanced gestures such as pinch to zoom, two-finger tap, and more. The panel then transmits the information to the Retina display below it.",
-                "phone", 129.99));
 
-    users.clear();
-    users.put(1L, new User(1L, "Philip", "Pannenko", "ppannenk", "password".toCharArray()));
-    users.put(2L, new User(2L, "Zaharadeen", "Garuba", "zgaruba", "password".toCharArray()));
-    users.put(3L, new User(3L, "James", "Murnane", "jmurnane", "password".toCharArray()));
+    initCategories();
+    initiateUsers();
+    initiateProducts();
 
-    for (User u : users.values()) {
-      usersUsername.put(u.getUsername(), u);
+  }
+
+  private static void initCategories() {
+
+    resetSeq();
+    CATEGORIES.clear();
+    CATEGORIES.put(nextSeq(), new Category(getSeq(), "African", CategoryType.COFFEE_REGION));
+    african = CATEGORIES.get(getSeq());
+    CATEGORIES.put(nextSeq(), new Category(getSeq(), "Local", CategoryType.COFFEE_REGION));
+    local = CATEGORIES.get(getSeq());
+
+    CATEGORIES.put(nextSeq(), new Category(getSeq(), "Starbucks", CategoryType.COFFEE_STORE));
+    sb = CATEGORIES.get(getSeq());
+    CATEGORIES.put(nextSeq(), new Category(getSeq(), "Dunkin", CategoryType.COFFEE_STORE));
+    dd = CATEGORIES.get(getSeq());
+
+    CATEGORIES.put(nextSeq(), new Category(getSeq(), "Blend", CategoryType.COFFEE_BEAN_TYPE));
+    blend = CATEGORIES.get(getSeq());
+    CATEGORIES.put(nextSeq(), new Category(getSeq(), "Decaf", CategoryType.COFFEE_BEAN_TYPE));
+    decaf = CATEGORIES.get(getSeq());
+
+    CATEGORIES.put(nextSeq(), new Category(getSeq(), "Grinder", CategoryType.ACCESSORY_PURPOSE));
+    grinder = CATEGORIES.get(getSeq());
+    CATEGORIES.put(nextSeq(), new Category(getSeq(), "Filter", CategoryType.ACCESSORY_PURPOSE));
+    filter = CATEGORIES.get(getSeq());
+
+  }
+
+  private static void initiateUsers() {
+
+    resetSeq();
+    USERS.clear();
+    USERS.put(nextSeq(), new User(getSeq(), "Philip", "Pannenko", "ppannenk", "password".toCharArray()));
+    USERS.put(nextSeq(), new User(getSeq(), "Zaharadeen", "Garuba", "zgaruba", "password".toCharArray()));
+    USERS.put(nextSeq(), new User(getSeq(), "James", "Murnane", "jmurnane", "password".toCharArray()));
+
+    for (User u : USERS.values()) {
+      USERS_USERNAME.put(u.getUsername(), u);
+    }
+  }
+
+  private static void initiateProducts() {
+
+    resetSeq();
+    COFFEES.clear();
+    ACCESSORIES.clear();
+    PRODUCTS.clear();
+
+    // Dunkin Donuts
+    // Original Blend 8.99 16oz
+    // Dunkin' Decaf 8.99 16oz
+    // French Vanilla 8.99 16oz
+    // Dark Roast 8.99 16oz
+    COFFEES.put(nextSeq(), new Coffee(getSeq(), "Original Blend", "some desc", 8.99D, 16, dd, blend, local));
+    COFFEES.put(nextSeq(), new Coffee(getSeq(), "Dunkin' Decaf", "some desc", 8.99D, 16, dd, decaf, african));
+    COFFEES.put(nextSeq(), new Coffee(getSeq(), "French Vanilla", "some desc", 8.99D, 16, dd, blend, african));
+    COFFEES.put(nextSeq(), new Coffee(getSeq(), "Dark Roast", "some desc", 8.99D, 16, dd, blend, local));
+
+    // Starbucks
+    // Timor Mount Rameleau 11.99 10oz
+    // Guatemala Laguna de Ayarza 11.99 10oz
+    // Starbucks® House Blend 11.95 16oz
+    // Starbucks® Pike Place® Roast, Ground 11.95 16oz
+    COFFEES.put(nextSeq(), new Coffee(getSeq(), "Timor Mount Rameleau", "some desc", 11.99D, 10, sb, decaf, local));
+    COFFEES.put(nextSeq(), new Coffee(getSeq(), "Guatemala Laguna de Ayarza", "some desc", 11.99D, 10, sb, blend, local));
+    COFFEES.put(nextSeq(), new Coffee(getSeq(), "Starbucks® House Blend", "some desc", 11.95D, 16, sb, blend, african));
+    COFFEES.put(nextSeq(), new Coffee(getSeq(), "Starbucks® Pike Place® Roast", "some desc", 11.95D, 16, sb, blend, local));
+
+    ACCESSORIES.put(nextSeq(), new Accessory(getSeq(), "Verve : Ethiopia Aricha", "some desc", 40.00D, grinder));
+    ACCESSORIES.put(nextSeq(), new Accessory(getSeq(), "Able Brewing: Kone Coffee Filter", "some desc", 60.00D, filter));
+
+    for (Coffee p : COFFEES.values()) {
+      PRODUCTS.put(p.getId(), p);
     }
 
-    for (Product p : products.values()) {
-      productsList.add(p);
+    for (Accessory p : ACCESSORIES.values()) {
+      PRODUCTS.put(p.getId(), p);
     }
+
+    // There is a unique pair between product and category
+    // As a result, let's find which products are associated
+    // to which category so that we can perform a filter on them
+    for (Product p : PRODUCTS.values()) {
+      for (Category c : p.getCategories()) {
+        Long id = c.getId();
+        if (!CATEGORY_PRODUCT.containsKey(id)) {
+          CATEGORY_PRODUCT.put(id, new ArrayList<Product>());
+        }
+        CATEGORY_PRODUCT.get(id).add(p);
+      }
+    }
+  }
+
+  private static void resetSeq() {
+    dbId = -1L;
+  }
+
+  private static Long nextSeq() {
+    return ++dbId;
+  }
+
+  private static Long getSeq() {
+    return dbId;
   }
 
 }

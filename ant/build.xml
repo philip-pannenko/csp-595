@@ -13,12 +13,10 @@
 
     <checkstyle config="ant/sun_checks.xml" failureProperty="checkstyle.failure" failOnViolation="true">
       <fileset dir="src/" includes="**/*.java" />
-      <formatter type="xml" toFile="reports\checkstyle\java_errors.xml" />
-    </checkstyle>
-
-    <checkstyle config="ant/sun_checks.xml">
+      <fileset dir="test/src/" includes="**/*.java" />
       <fileset dir="WebContent/WEB-INF/" includes="**/*.jsp" />
-      <formatter type="xml" toFile="reports\checkstyle\jsp_errors.xml" />
+      <formatter type="plain" toFile="reports\checkstyle\report.txt" />
+      <fileset dir="WebContent/" includes="index.jsp" />
     </checkstyle>
 
   </target>
@@ -129,8 +127,7 @@
       <classpath refid="classpath-test-cases" />
 
       <formatter type="plain" />
-      <formatter type="xml" />
-
+      
       <batchtest fork="yes" todir="reports\test">
         <fileset dir="test\src">
           <include name="**/*Test*.java" />

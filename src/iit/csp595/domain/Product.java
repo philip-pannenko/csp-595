@@ -1,28 +1,26 @@
 package iit.csp595.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
-public class Product implements Serializable {
+public abstract class Product implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
   private Long id;
+  private String imageName;
   private String name;
   private String description;
-  private String genre;
   private Double price;
+  private List<Category> categories;
 
-  public Product(Long id, String name, String description, String genre, Double price) {
+  public Product(Long id, String name, String description, Double price, List<Category> categories) {
     super();
     this.id = id;
     this.name = name;
     this.description = description;
-    this.genre = genre;
     this.price = price;
-  }
-
-  public Product() {
-    super();
+    this.categories = categories;
   }
 
   public Long getId() {
@@ -49,20 +47,28 @@ public class Product implements Serializable {
     this.description = description;
   }
 
-  public String getGenre() {
-    return genre;
-  }
-
-  public void setGenre(String genre) {
-    this.genre = genre;
-  }
-
   public Double getPrice() {
     return price;
   }
 
   public void setPrice(Double price) {
     this.price = price;
+  }
+
+  public String getImageName() {
+    return imageName;
+  }
+
+  public void setImageName(String imageName) {
+    this.imageName = imageName;
+  }
+
+  public List<Category> getCategories() {
+    return categories;
+  }
+
+  public void setCategories(List<Category> categories) {
+    this.categories = categories;
   }
 
 }

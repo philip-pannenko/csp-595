@@ -4,7 +4,6 @@
 
   <img src="images/product/${requestScope.bean.item.id}.jpg">
   <h3>${requestScope.bean.item.name}</h3>
-  <h6>Genre - ${requestScope.bean.item.genre}</h6>
   <p>${requestScope.bean.item.description}</p>
   <p>Price - ${requestScope.bean.item.price}</p>
 </div>

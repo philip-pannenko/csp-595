@@ -2,7 +2,7 @@
 <div style="text-align: center;">
   <ul class="pagination">
     <c:forEach begin="1" end="${requestScope.bean.totalPages}" var="item">
-      <li class="${item == requestScope.bean.currentPage ? 'active' : ''}"><a href="product?page=${item}">${item} </a></li>
+      <li class="${item == requestScope.bean.currentPage ? 'active' : ''}"><a href="product?page=${item}&c=${requestScope.bean.parsedCurrentCategories}">${item} </a></li>
     </c:forEach>
   </ul>
 </div>

@@ -19,34 +19,29 @@ public class ProductServlet extends HttpServlet {
 
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    String productId = request.getParameter("id");
+    long productId = ServletUtils.toLong(request.getParameter("id"), -1);
 
-    if (productId == null) {
+    ProductDao dao = new ProductDao();
 
-      ProductDao dao = new ProductDao();
-      List<Product> products;
-      String nextPage = request.getParameter("page");
-      ProductListingBean bean;
-      if (nextPage != null) {
-        int offset = Integer.parseInt(nextPage) - 1; // which index to start at
-        offset *= 2; // multiple offset by page size
-        int max = 2; // how many results per page
-        products = dao.getAll(offset, max);
-        int totalProductsCount = dao.getCount();
-        bean = new ProductListingBean(products, totalProductsCount);
+    if (productId == -1) {
 
-        bean.setCurrentPage(Integer.parseInt(nextPage));
-      } else {
-        products = dao.getAll(0, 2);
-        int totalProductsCount = dao.getCount();
-        bean = new ProductListingBean(products, totalProductsCount);
-      }
+      long[] categoryTypeId = ServletUtils.toLong(request.getParameter("c"));
+
+      int nextPage = ServletUtils.toInt(request.getParameter("page"), 1);
+
+      int offset = nextPage - 1;
+      int totalProductsCount = dao.getCount(categoryTypeId);
+      List<Product> products = dao.getAll(offset * 2, 2, categoryTypeId);
+      ProductListingBean bean = new ProductListingBean(products, null, totalProductsCount);
+
+      bean.setCurrentPage(nextPage);
+      bean.setCurrentCategories(categoryTypeId);
 
       request.setAttribute("bean", bean);
       request.getRequestDispatcher("WEB-INF/template.jsp").forward(request, response);
     } else {
-      ProductDao dao = new ProductDao();
-      Product product = dao.get(Long.valueOf(productId));
+
+      Product product = dao.get(productId);
       if (product == null) {
         response.sendRedirect("product");
       } else {

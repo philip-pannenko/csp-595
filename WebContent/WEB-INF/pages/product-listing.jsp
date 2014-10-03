@@ -17,7 +17,6 @@
           <td><img src="images/product/${item.id}.jpg"></td>
           <td><a href="product?id=${item.id}"> ${item.name}</a></td>
           <td><p>${fn:substring(item.description, 0, 500)}...</p></td>
-          <td><p>genre: ${item.genre}</p></td>
           <td><p>price: ${item.price}</p></td>
         </tr>
       </c:forEach>

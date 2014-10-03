@@ -1,15 +1,34 @@
-<div class="col-xs-2">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<div class="col-xs-2 left-nav">
   <div>
-    <h4>Navigation</h4>
-    <p>Choose some navigational helps.</p>
-  </div>
-  <div>
-    <h4>Genres</h4>
+    <h4><a href="product">Shop</a></h4>
     <ol class="list-unstyled">
-      <li><a href="#">Genre-1</a></li>
-      <li><a href="#">Genre-2</a></li>
-      <li><a href="#">Genre-3</a></li>
-      <li><a href="#">Genre-4</a></li>
+
+      <li>
+        <h5>
+          <a href="product?c=0,1,2,3,4,5">Coffee</a>
+        </h5>
+      </li>
+
+      <li><a href="product?c=2,3">-- Store</a></li>
+      <li><a href="product?c=2">---- Starbucks</a></li>
+      <li><a href="product?c=3">---- Dunkin Donuts</a></li>
+      <li><a href="product?c=0,1">-- Region</a></li>
+      <li><a href="product?c=0">---- African</a></li>
+      <li><a href="product?c=1">---- Local</a></li>
+      <li><a href="product?c=4,5">-- Bean Type</a></li>
+      <li><a href="product?c=4">---- Blend</a></li>
+      <li><a href="product?c=5">---- Decaf</a></li>
+
+      <li>
+        <h5>
+          <a href="product?c=6,7">Accessories</a>
+        </h5>
+      </li>
+      <li><a href="product?c=6">-- Grinder</a></li>
+      <li><a href="product?c=7">-- Filter</a></li>
+
     </ol>
   </div>
 </div>
