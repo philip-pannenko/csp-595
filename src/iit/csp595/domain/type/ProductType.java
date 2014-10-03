@@ -1,4 +1,4 @@
-package iit.csp595.domain;
+package iit.csp595.domain.type;
 
 public enum ProductType {
   COFFEE(1, "Coffee"),

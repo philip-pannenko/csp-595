@@ -1,11 +1,11 @@
 package iit.csp595.domain.dao;
 
 import iit.csp595.domain.Category;
-import iit.csp595.domain.CategoryType;
 import iit.csp595.domain.Product;
-import iit.csp595.domain.User;
+import iit.csp595.domain.account.User;
 import iit.csp595.domain.product.Accessory;
 import iit.csp595.domain.product.Coffee;
+import iit.csp595.domain.type.CategoryType;
 
 import java.util.ArrayList;
 import java.util.List;

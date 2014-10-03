@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import iit.csp595.bean.GenericPageBean;
 import iit.csp595.domain.Message;
-import iit.csp595.domain.User;
+import iit.csp595.domain.account.User;
 
 public class LoginPageBean extends GenericPageBean<User> implements Serializable {
 

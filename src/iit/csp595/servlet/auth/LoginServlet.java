@@ -2,7 +2,7 @@ package iit.csp595.servlet.auth;
 
 import iit.csp595.bean.auth.LoginPageBean;
 import iit.csp595.domain.Message;
-import iit.csp595.domain.User;
+import iit.csp595.domain.account.User;
 import iit.csp595.domain.dao.UserDao;
 
 import java.io.IOException;

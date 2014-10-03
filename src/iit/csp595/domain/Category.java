@@ -1,5 +1,7 @@
 package iit.csp595.domain;
 
+import iit.csp595.domain.type.CategoryType;
+
 import java.io.Serializable;
 
 public class Category implements Serializable {

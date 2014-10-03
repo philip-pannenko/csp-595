@@ -5,12 +5,16 @@
   <target name="compile-deploy" depends="compile, deploy" />
   <target name="clean-compile-deploy" depends="clean, compile, deploy" />
 
-  <taskdef resource="checkstyletask.properties" classpath="ant/lib/checkstyle-5.7-all.jar" />
+  <path id="classpath-ant">
+    <fileset dir="ant\lib\">
+      <include name="*.jar" />
+    </fileset>
+  </path>
+  
+  <taskdef resource="checkstyletask.properties" classpathref="classpath-ant" />
 
   <target name="checkstyle">
-
     <mkdir dir="reports\checkstyle" />
-
     <checkstyle config="ant/sun_checks.xml" failureProperty="checkstyle.failure" failOnViolation="true">
       <fileset dir="src/" includes="**/*.java" />
       <fileset dir="test/src/" includes="**/*.java" />
@@ -24,13 +28,19 @@
 
   <path id="classpath">
     <fileset dir="${env.TOMCAT_HOME}\lib\">
-      <include name="servlet-api.jar" />
-      <include name="jsp-api.jar" />
-      <include name="el-api.jar" />
-      <include name="commons-beanutils-1.8.3.jar" />
+      <include name="*.jar" />
     </fileset>
     <fileset dir="WebContent\WEB-INF\lib">
       <include name="*.jar" />
+    </fileset>
+  </path>
+
+ 
+
+  <path id="classpath-tomcat">
+    <fileset dir="${env.TOMCAT_HOME}/bin/">
+      <include name="tomcat-juli.jar" />
+      <include name="bootstrap.jar" />
     </fileset>
   </path>
 
@@ -127,7 +137,7 @@
       <classpath refid="classpath-test-cases" />
 
       <formatter type="plain" />
-      
+
       <batchtest fork="yes" todir="reports\test">
         <fileset dir="test\src">
           <include name="**/*Test*.java" />
@@ -144,14 +154,14 @@
 
   <target name="tomcat-start">
     <java classname="org.apache.catalina.startup.Bootstrap" fork="true">
-      <classpath path="${env.TOMCAT_HOME}/bin/bootstrap.jar:${env.TOMCAT_HOME}/bin/tomcat-juli.jar" />
+      <classpath refid="classpath-tomcat" />
       <jvmarg value="-Dcatalina.home=${env.TOMCAT_HOME}" />
     </java>
   </target>
 
   <target name="tomcat-stop">
     <java classname="org.apache.catalina.startup.Bootstrap" fork="true">
-      <classpath path="${env.TOMCAT_HOME}/bin/bootstrap.jar:${env.TOMCAT_HOME}/bin/tomcat-juli.jar" />
+      <classpath refid="classpath-tomcat" />
       <jvmarg value="-Dcatalina.home=${env.TOMCAT_HOME}" />
       <arg line="stop" />
     </java>

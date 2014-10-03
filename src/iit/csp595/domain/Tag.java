@@ -2,13 +2,13 @@ package iit.csp595.domain;
 
 import java.io.Serializable;
 
-public class Flavor implements Serializable {
+public class Tag implements Serializable {
 
   private static final long serialVersionUID = 1L;
   private Long id;
   private String description;
 
-  public Flavor(Long id, String description) {
+  public Tag(Long id, String description) {
     super();
     this.id = id;
     this.description = description;

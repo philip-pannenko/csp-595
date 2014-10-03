@@ -13,6 +13,7 @@ public abstract class Product implements Serializable {
   private String description;
   private Double price;
   private List<Category> categories;
+  private List<Tag> tags;
 
   public Product(Long id, String name, String description, Double price, List<Category> categories) {
     super();
@@ -69,6 +70,14 @@ public abstract class Product implements Serializable {
 
   public void setCategories(List<Category> categories) {
     this.categories = categories;
+  }
+
+  public List<Tag> getTags() {
+    return tags;
+  }
+
+  public void setTags(List<Tag> tags) {
+    this.tags = tags;
   }
 
 }

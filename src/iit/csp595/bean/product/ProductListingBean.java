@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 
 import iit.csp595.bean.GenericListingPageBean;
-import iit.csp595.domain.CategoryType;
 import iit.csp595.domain.Product;
+import iit.csp595.domain.type.CategoryType;
 
 public class ProductListingBean extends GenericListingPageBean<Product> implements Serializable {
 

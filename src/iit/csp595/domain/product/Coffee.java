@@ -1,7 +1,7 @@
 package iit.csp595.domain.product;
 
 import iit.csp595.domain.Category;
-import iit.csp595.domain.Flavor;
+import iit.csp595.domain.Tag;
 import iit.csp595.domain.Product;
 
 import java.io.Serializable;
@@ -11,7 +11,7 @@ import java.util.List;
 public class Coffee extends Product implements Serializable {
 
   private static final long serialVersionUID = 1L;
-  private List<Flavor> flavors;
+  private List<Tag> flavors;
   private Integer ounces;
 
   // private Category coffeeType;
@@ -23,11 +23,11 @@ public class Coffee extends Product implements Serializable {
     this.ounces = ounces;
   }
 
-  public List<Flavor> getFlavors() {
+  public List<Tag> getFlavors() {
     return flavors;
   }
 
-  public void setFlavors(List<Flavor> flavors) {
+  public void setFlavors(List<Tag> flavors) {
     this.flavors = flavors;
   }
 

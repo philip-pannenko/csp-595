@@ -1,4 +1,4 @@
-package iit.csp595.domain;
+package iit.csp595.domain.type;
 
 public enum CategoryType {
   COFFEE_STORE(1, "Store"),
