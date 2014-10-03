@@ -1,3 +1,4 @@
+@echo off
 REM #############################################################################################
 REM #                                                                                           #
 REM #   All of the current formatters suck. Calling an IDE Formatter from bat                   #
@@ -7,7 +8,7 @@ REM #   Will try this to remove IDE program requirement                         
 REM #     http://liviutudor.com/2012/03/02/batch-source-formatting-in-eclipse-indigo/           #
 REM #     http://www.franke.ms/#/eclipse-formatter-commandline.wiki                             #
 REM #                                                                                           #
-REM #   This is a free nor so recently updated formatter that may be an option...               #
+REM #   This is a free not so recently updated formatter that may be an option...               #
 REM #     https://github.com/notzippy/JALOPY2-MAIN                                              #
 REM #                                                                                           #
 REM #############################################################################################
