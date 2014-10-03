@@ -1,6 +1,7 @@
 package iit.csp595.domain.type;
 
 public enum CategoryType {
+  NOT_APPLICABLE(-1, "N/A"),
   COFFEE_STORE(1, "Store"),
   COFFEE_REGION(2, "Region"),
   COFFEE_BEAN_TYPE(3, "Bean Type"),

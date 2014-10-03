@@ -1,6 +1,7 @@
 package iit.csp595.domain.type;
 
 public enum ProductType {
+  NOT_APPLICABLE(-1, "N/A"),
   COFFEE(1, "Coffee"),
   ACCESSORY(2, "Accessory");
 

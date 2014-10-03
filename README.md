@@ -5,6 +5,7 @@ csp-595
 * Add sort button
 * Add multiple flavors
 * Add error pages.
+* Replace comparable ints/doubles/longs with BigDecimal
 * Learn how to output clean logging convention into some generic beans
 * Noticed a bug with ProductIndividual on page two where all the breadcrumbs are wonky... (something to do with the map ordering or lack thereof...)
 

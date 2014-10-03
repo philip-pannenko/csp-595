@@ -1,12 +1,10 @@
 package iit.csp595.servlet;
 
-import iit.csp595.bean.product.ProductIndividualBean;
-import iit.csp595.bean.product.ProductListingBean;
+import iit.csp595.bean.GenericPageBean;
 import iit.csp595.domain.Product;
-import iit.csp595.domain.dao.ProductDao;
+import iit.csp595.service.ProductService;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,35 +18,24 @@ public class ProductServlet extends HttpServlet {
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     long productId = ServletUtils.toLong(request.getParameter("id"), -1);
+    long[] categoryTypeId = ServletUtils.toLong(request.getParameter("c"));
+    int nextPage = ServletUtils.toInt(request.getParameter("page"), 1);
+    int sortTypeId = ServletUtils.toInt(request.getParameter("s"));
 
-    ProductDao dao = new ProductDao();
+    GenericPageBean<Product> bean = new ProductService(nextPage, categoryTypeId, sortTypeId).createBean();
 
     if (productId == -1) {
-
-      long[] categoryTypeId = ServletUtils.toLong(request.getParameter("c"));
-
-      int nextPage = ServletUtils.toInt(request.getParameter("page"), 1);
-
-      int offset = nextPage - 1;
-      int totalProductsCount = dao.getCount(categoryTypeId);
-      List<Product> products = dao.getAll(offset * 2, 2, categoryTypeId);
-      ProductListingBean bean = new ProductListingBean(products, null, totalProductsCount);
-
-      bean.setCurrentPage(nextPage);
-      bean.setCurrentCategories(categoryTypeId);
-
       request.setAttribute("bean", bean);
       request.getRequestDispatcher("WEB-INF/template.jsp").forward(request, response);
     } else {
 
-      Product product = dao.get(productId);
-      if (product == null) {
+      // For now lets assume that all message are bad and if there is one then it must be an error message
+      if (bean.getMessage() != null) {
         response.sendRedirect("product");
       } else {
-        request.setAttribute("bean", new ProductIndividualBean(product));
+        request.setAttribute("bean", bean);
         request.getRequestDispatcher("WEB-INF/template.jsp").forward(request, response);
       }
     }
   }
-
 }
