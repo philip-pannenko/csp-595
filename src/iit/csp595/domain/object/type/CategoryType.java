@@ -1,4 +1,4 @@
-package iit.csp595.domain.type;
+package iit.csp595.domain.object.type;
 
 public enum CategoryType {
   NOT_APPLICABLE(-1, "N/A"),

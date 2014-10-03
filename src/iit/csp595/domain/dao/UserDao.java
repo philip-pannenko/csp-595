@@ -3,7 +3,7 @@ package iit.csp595.domain.dao;
 import java.util.Arrays;
 import java.util.Collection;
 
-import iit.csp595.domain.account.User;
+import iit.csp595.domain.object.User;
 
 public class UserDao {
 

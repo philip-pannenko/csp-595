@@ -1,4 +1,4 @@
-package iit.csp595.domain.account;
+package iit.csp595.domain.object;
 
 import java.io.Serializable;
 

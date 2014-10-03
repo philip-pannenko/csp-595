@@ -1,11 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
-<!-- <div class="jumbotron"> -->
-<!--   <h1>Welcome to our shop!</h1> -->
-<!--   <h3>Take a look around.</h3> -->
-<!-- </div> -->
-
 <%@include file="/WEB-INF/global/left-nav.jsp"%>
 
 <div class="col-xs-10">

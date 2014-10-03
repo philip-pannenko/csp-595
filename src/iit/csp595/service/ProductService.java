@@ -1,11 +1,11 @@
 package iit.csp595.service;
 
 import iit.csp595.bean.GenericPageBean;
+import iit.csp595.bean.Message;
 import iit.csp595.bean.product.ProductIndividualBean;
 import iit.csp595.bean.product.ProductListingBean;
-import iit.csp595.domain.Message;
-import iit.csp595.domain.Product;
 import iit.csp595.domain.dao.ProductDao;
+import iit.csp595.domain.object.Product;
 
 import java.util.List;
 

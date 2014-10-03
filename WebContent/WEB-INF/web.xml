@@ -35,14 +35,4 @@
     <listener-class>iit.csp595.listener.DBInitializer</listener-class>
   </listener>
 
-  <!-- <filter> -->
-  <!-- <filter-name>authFilter</filter-name> -->
-  <!-- <filter-class>iit.csp595.filter.AuthFilter</filter-class> -->
-  <!-- </filter> -->
-
-  <!-- <filter-mapping> -->
-  <!-- <filter-name>authFilter</filter-name> -->
-  <!-- <url-pattern>/*</url-pattern> -->
-  <!-- </filter-mapping> -->
-
 </web-app>

@@ -1,7 +1,7 @@
 package iit.csp595.domain.dao;
 
-import iit.csp595.domain.Product;
-import iit.csp595.domain.type.SortType;
+import iit.csp595.domain.object.Product;
+import iit.csp595.domain.object.type.SortType;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

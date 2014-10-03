@@ -1,7 +1,7 @@
 package iit.csp595.servlet;
 
 import iit.csp595.bean.GenericPageBean;
-import iit.csp595.domain.Product;
+import iit.csp595.domain.object.Product;
 import iit.csp595.service.ProductService;
 
 import java.io.IOException;

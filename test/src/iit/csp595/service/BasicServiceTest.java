@@ -4,10 +4,10 @@ package iit.csp595.service;
 
 import java.util.Collection;
 
-import iit.csp595.domain.Product;
 import iit.csp595.domain.dao.ProductDao;
 import iit.csp595.domain.dao.TempDB;
-import iit.csp595.domain.type.SortType;
+import iit.csp595.domain.object.Product;
+import iit.csp595.domain.object.type.SortType;
 
 import org.junit.Test;
 

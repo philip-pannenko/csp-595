@@ -3,7 +3,7 @@ package iit.csp595.bean.product;
 import java.io.Serializable;
 
 import iit.csp595.bean.GenericIndividualPageBean;
-import iit.csp595.domain.Product;
+import iit.csp595.domain.object.Product;
 
 public class ProductIndividualBean extends GenericIndividualPageBean<Product> implements Serializable {
 

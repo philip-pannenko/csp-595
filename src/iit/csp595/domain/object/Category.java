@@ -1,6 +1,6 @@
-package iit.csp595.domain;
+package iit.csp595.domain.object;
 
-import iit.csp595.domain.type.CategoryType;
+import iit.csp595.domain.object.type.CategoryType;
 
 import java.io.Serializable;
 

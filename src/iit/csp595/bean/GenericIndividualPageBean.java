@@ -1,7 +1,5 @@
 package iit.csp595.bean;
 
-import iit.csp595.domain.Message;
-
 import java.io.Serializable;
 
 public abstract class GenericIndividualPageBean<T> extends GenericPageBean<T> implements Serializable {
