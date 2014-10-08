@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
-<div class="col-2 left-nav">
+<div class="col-2 sidebar">
   <nav >
     <h4><a href="product">Shop</a></h4>
     <ol>

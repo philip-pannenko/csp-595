@@ -35,8 +35,6 @@
     </fileset>
   </path>
 
- 
-
   <path id="classpath-tomcat">
     <fileset dir="${env.TOMCAT_HOME}/bin/">
       <include name="tomcat-juli.jar" />
@@ -71,7 +69,8 @@
     <delete dir="reports" />
   </target>
 
-  <target name="deploy" depends="checkstyle" if="checkstyle.failure" description="Checkstyle violation, check reports \\{path}/reports/checkstyle">
+  <target name="deploy" depends="checkstyle" > <!--if="checkstyle.failure" description="Checkstyle violation, check reports \\{path}/reports/checkstyle">-->
+    <echo message="Copying to ${env.TOMCAT_HOME}/webapps/${ant.project.name}, files that are located in bin/${ant.project.name}"/>
     <delete dir="${env.TOMCAT_HOME}/webapps/${ant.project.name}" />
     <copy todir="${env.TOMCAT_HOME}/webapps/${ant.project.name}">
       <fileset dir="bin/${ant.project.name}">

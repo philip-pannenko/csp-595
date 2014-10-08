@@ -8,7 +8,7 @@
   <p>Price - ${requestScope.bean.item.price}</p>
 </div>
 
-<div class="col-2 left-nav">
+<div class="col-2 sidebar">
   <div>
     <h4>Item Actions</h4>
     <ol class="list-unstyled">
