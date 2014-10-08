@@ -17,9 +17,11 @@
       <jsp:include page="/WEB-INF/global/breadcrumb.jsp" />
 
       <jsp:include page="${requestScope.bean.pageDirFileName}" />
+
     </div>
 
     <jsp:include page="/WEB-INF/global/footer.jsp" />
+
   </div>
 </body>
 </html>

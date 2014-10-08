@@ -4,8 +4,8 @@
 
 body { background-color: #fff; color: #333;	font: 14px/20px "HelveticaNeue-Light", "HelveticaNeue", Helvetica, Arial, sans-serif; }
 
-header { width: 100%; margin: 0 auto; position: relative; padding: 20px 0; border-bottom: 1px solid #ddd; margin-bottom: 20px; }
-.logo { font-size: 28px; color: #333; }
+header { width: 100%; margin: 0 auto; position: relative; padding: 20px 0; border-bottom: 1px solid #ddd; margin-bottom: 20px; height:60px; }
+.logo { font-size: 28px; float:left; color: #333; }
 
 nav ul { margin: 0; }
 nav ul li { display: inline; margin-right: 20px; font-size: 16px; line-height: 28px; color: #333; }
@@ -110,6 +110,7 @@ tfoot { font-style: italic; }
 
 .pagination ul li { margin-right:10px; }
 .pagination ul li a { text-decoration: underline; }
+/* .pagination .active ul li a { text-decoration: underline; } */
 
 .breadcrumb ul li { margin-right: 0px; }
 .breadcrumb ul li a { text-decoration: underline; }

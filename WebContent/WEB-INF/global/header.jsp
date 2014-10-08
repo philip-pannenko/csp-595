@@ -1,6 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-
 <header>
   <a class="logo" href="">CSP-595 Shop</a>
   <nav class="float-right">
