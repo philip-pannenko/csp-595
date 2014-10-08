@@ -1,26 +1,10 @@
 @CHARSET "ISO-8859-1";
 
-html {
-  position: relative;
-  min-height: 100%;
+.left-nav { 
+  border: 1px solid #e5e5e5;
+  padding:5px;
+  background-color: #f9f9f9;
 }
-
-body {
-  margin-bottom: 60px;
-}
-
-.header {
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.header h3 {
-  line-height: 50px;
-}
-
-.header h3 a {
-  text-decoration: none;
-}
-
 .left-nav a {
   text-decoration: none;
 }
@@ -29,25 +13,19 @@ body {
   color: #333;
 }
 
-.container {
-  width: 970px !important;
+.left-nav ol{
+  list-style:none;
 }
 
-.product-listing {
-  padding-bottom: 25px;
-}
-
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
+footer { 
   color: #999;
   border-top: 1px solid #e5e5e5;
   height: 60px;
-  background-color: #f9f9f9;
 }
 
-.breadcrumb {
-  background-color: transparent;
-}
+.pagination ul li { margin-right:10px; }
+.pagination ul li a { text-decoration: underline; }
+
+.breadcrumb ul li { margin-right: 0px; }
+.breadcrumb ul li a { text-decoration: underline; }
+

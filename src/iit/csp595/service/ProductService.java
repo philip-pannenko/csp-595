@@ -17,18 +17,13 @@ public class ProductService implements Service<Product> {
   private ProductDao dao;
   private long productId = -1L;
 
-  public ProductService(int nextPage, long[] categoryTypeId, int sortTypeId) {
-    super();
-    this.dao = new ProductDao();
-    this.nextPage = nextPage;
-    this.categoryTypeId = categoryTypeId;
-    this.sortTypeId = sortTypeId;
-  }
-
-  public ProductService(long productId) {
+  public ProductService(long productId, int nextPage, long[] categoryTypeId, int sortTypeId) {
     super();
     this.dao = new ProductDao();
     this.productId = productId;
+    this.nextPage = nextPage;
+    this.categoryTypeId = categoryTypeId;
+    this.sortTypeId = sortTypeId;
   }
 
   @Override

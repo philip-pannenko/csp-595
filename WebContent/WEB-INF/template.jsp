@@ -7,19 +7,22 @@
 <jsp:include page="/WEB-INF/global/head.jsp" />
 </head>
 
-<body>
-  <jsp:include page="/WEB-INF/global/header.jsp" />
+<body style="background-color: #f9f9f9">
+  <div style="background-color: white;">
+    <div class="container">
 
-  <div class="container">
+      <jsp:include page="/WEB-INF/global/header.jsp" />
 
-    <div class="row">
+      <div class="row">
 
-      <jsp:include page="/WEB-INF/global/breadcrumb.jsp" />
-      <jsp:include page="${requestScope.bean.pageDirFileName}" />
+        <jsp:include page="/WEB-INF/global/breadcrumb.jsp" />
 
+        <jsp:include page="${requestScope.bean.pageDirFileName}" />
+      </div>
     </div>
   </div>
 
   <jsp:include page="/WEB-INF/global/footer.jsp" />
+
 </body>
 </html>

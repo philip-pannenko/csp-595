@@ -22,7 +22,7 @@ public class ProductServlet extends HttpServlet {
     int nextPage = ServletUtils.toInt(request.getParameter("page"), 1);
     int sortTypeId = ServletUtils.toInt(request.getParameter("s"));
 
-    GenericPageBean<Product> bean = new ProductService(nextPage, categoryTypeId, sortTypeId).createBean();
+    GenericPageBean<Product> bean = new ProductService(productId, nextPage, categoryTypeId, sortTypeId).createBean();
 
     if (productId == -1) {
       request.setAttribute("bean", bean);

@@ -7,5 +7,5 @@
 <c:set var="url">${pageContext.request.requestURL}</c:set>
 <base href="${fn:substring(url, 0, fn:length(url) - fn:length(pageContext.request.requestURI))}${pageContext.request.contextPath}/" />
 
-<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/minimal.css" rel="stylesheet">
 <link href="css/csp595.css" rel="stylesheet">

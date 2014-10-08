@@ -1,9 +1,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<div class="col-xs-2 left-nav">
-  <div>
+
+<div class="col-2 left-nav">
+  <nav >
     <h4><a href="product">Shop</a></h4>
-    <ol class="list-unstyled">
+    <ol>
 
       <li>
         <h5>
@@ -30,5 +31,5 @@
       <li><a href="product?c=7">-- Filter</a></li>
 
     </ol>
-  </div>
+  </nav>
 </div>
