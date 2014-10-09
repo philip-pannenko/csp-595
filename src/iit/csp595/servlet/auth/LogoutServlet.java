@@ -11,7 +11,7 @@ public class LogoutServlet extends HttpServlet {
 
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     request.getSession().removeAttribute("user");
-    response.sendRedirect("product");
+    response.sendRedirect("");
   }
 
 }

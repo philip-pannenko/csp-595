@@ -25,7 +25,9 @@ public class ProductDao {
     } else {
       Set<Product> unique = new HashSet<Product>();
       for (long categoryTypeId : categoryTypeIds) {
-        unique.addAll(TempDB.CATEGORY_PRODUCT.get(categoryTypeId));
+        if (categoryTypeId != -1) {
+          unique.addAll(TempDB.CATEGORY_PRODUCT.get(categoryTypeId));
+        }
       }
       result = new ArrayList<Product>(unique);
     }

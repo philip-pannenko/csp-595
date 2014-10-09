@@ -13,11 +13,19 @@ public final class ServletUtils {
   }
 
   public static int toInt(String s, int def) {
-    return (s != null ? Integer.parseInt(s) : def);
+    try {
+      return (s != null ? Integer.parseInt(s) : def);
+    } catch (NumberFormatException e) {
+      return def;
+    }
   }
 
   public static long toLong(String s, long def) {
-    return (s != null ? Long.parseLong(s) : def);
+    try {
+      return (s != null ? Long.parseLong(s) : def);
+    } catch (NumberFormatException e) {
+      return def;
+    }
   }
 
   public static long[] toLong(String s) {
