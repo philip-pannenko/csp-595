@@ -14,6 +14,33 @@
   </servlet-mapping>
 
   <servlet>
+    <servlet-name>accountServlet</servlet-name>
+    <servlet-class>iit.csp595.servlet.AccountServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>accountServlet</servlet-name>
+    <url-pattern>/account</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>orderServlet</servlet-name>
+    <servlet-class>iit.csp595.servlet.OrderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>orderServlet</servlet-name>
+    <url-pattern>/account/order</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>settingsServlet</servlet-name>
+    <servlet-class>iit.csp595.servlet.SettingsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>settingsServlet</servlet-name>
+    <url-pattern>/account/settings</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
     <servlet-name>loginServlet</servlet-name>
     <servlet-class>iit.csp595.servlet.auth.LoginServlet</servlet-class>
   </servlet>
@@ -34,5 +61,10 @@
   <listener>
     <listener-class>iit.csp595.listener.DBInitializer</listener-class>
   </listener>
+
+  <error-page>
+    <error-code>404</error-code>
+    <location>/error-404.jsp</location>
+  </error-page>
 
 </web-app>

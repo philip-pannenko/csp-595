@@ -7,6 +7,7 @@
       <li><a href="">Home</a></li>
       <c:choose>
         <c:when test="${sessionScope.user != null}">
+          <li><a href="account">Account</a>
           <li><a href="logout">Logout ${sessionScope.user.fname}</a></li>
         </c:when>
         <c:when test="${sessionScope.user == null}">

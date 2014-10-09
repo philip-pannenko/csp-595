@@ -1,9 +1,9 @@
 package iit.csp595.bean.product;
 
-import java.io.Serializable;
-
 import iit.csp595.bean.GenericIndividualPageBean;
 import iit.csp595.domain.object.Product;
+
+import java.io.Serializable;
 
 public class ProductIndividualBean extends GenericIndividualPageBean<Product> implements Serializable {
 

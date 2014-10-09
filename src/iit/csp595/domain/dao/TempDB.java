@@ -1,13 +1,16 @@
 package iit.csp595.domain.dao;
 
 import iit.csp595.domain.object.Category;
+import iit.csp595.domain.object.Order;
 import iit.csp595.domain.object.Product;
 import iit.csp595.domain.object.User;
 import iit.csp595.domain.object.product.Accessory;
 import iit.csp595.domain.object.product.Coffee;
 import iit.csp595.domain.object.type.CategoryType;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.SortedMap;
 import java.util.TreeMap;
@@ -15,6 +18,7 @@ import java.util.TreeMap;
 public final class TempDB {
 
   protected static final SortedMap<Long, Product> PRODUCTS = new TreeMap<Long, Product>();
+  protected static final SortedMap<Long, Order> ORDERS = new TreeMap<Long, Order>();
   protected static final SortedMap<Long, User> USERS = new TreeMap<Long, User>();
   protected static final SortedMap<Long, Category> CATEGORIES = new TreeMap<Long, Category>();
   protected static final SortedMap<Long, Coffee> COFFEES = new TreeMap<Long, Coffee>();
@@ -37,13 +41,14 @@ public final class TempDB {
   public static void initDB() {
     System.out.println("initDB");
 
-    initCategories();
+    initiateCategories();
     initiateUsers();
     initiateProducts();
+    initiateOrders();
 
   }
 
-  private static void initCategories() {
+  private static void initiateCategories() {
 
     resetSeq();
     CATEGORIES.clear();
@@ -132,6 +137,18 @@ public final class TempDB {
         CATEGORY_PRODUCT.get(id).add(p);
       }
     }
+  }
+
+  private static void initiateOrders() {
+    resetSeq();
+    ORDERS.clear();
+
+    ORDERS.put(nextSeq(), new Order(getSeq(), "Some type of purchase " + getSeq(), Calendar.getInstance().getTime(), new BigDecimal(4.10)));
+    ORDERS.put(nextSeq(), new Order(getSeq(), "Some type of purchase " + getSeq(), Calendar.getInstance().getTime(), new BigDecimal(44.12)));
+    ORDERS.put(nextSeq(), new Order(getSeq(), "Some type of purchase " + getSeq(), Calendar.getInstance().getTime(), new BigDecimal(67.59)));
+    ORDERS.put(nextSeq(), new Order(getSeq(), "Some type of purchase " + getSeq(), Calendar.getInstance().getTime(), new BigDecimal(61.32)));
+    ORDERS.put(nextSeq(), new Order(getSeq(), "Some type of purchase " + getSeq(), Calendar.getInstance().getTime(), new BigDecimal(178.76)));
+
   }
 
   private static void resetSeq() {

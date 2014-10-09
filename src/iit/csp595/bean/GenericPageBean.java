@@ -1,15 +1,15 @@
 package iit.csp595.bean;
 
 import java.io.Serializable;
-import java.util.SortedMap;
-import java.util.TreeMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public abstract class GenericPageBean<T> implements Serializable {
 
   private static final long serialVersionUID = 1L;
   private String browserPageTitle = "CSP-595 Store";
   private final String pageDirFileName;
-  private SortedMap<String, String> breadcrumb = new TreeMap<String, String>();
+  private Map<String, String> breadcrumb = new LinkedHashMap<String, String>();
   private String activeNavName;
   private Message message;
 
@@ -22,11 +22,11 @@ public abstract class GenericPageBean<T> implements Serializable {
     this.message = message;
   }
 
-  public SortedMap<String, String> getBreadcrumb() {
+  public Map<String, String> getBreadcrumb() {
     return breadcrumb;
   }
 
-  public void setBreadcrumb(SortedMap<String, String> breadcrumb) {
+  public void setBreadcrumb(Map<String, String> breadcrumb) {
     this.breadcrumb = breadcrumb;
   }
 
