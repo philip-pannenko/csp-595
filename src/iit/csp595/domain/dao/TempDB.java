@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
@@ -143,11 +144,11 @@ public final class TempDB {
     resetSeq();
     ORDERS.clear();
 
-    ORDERS.put(nextSeq(), new Order(getSeq(), "Some type of purchase " + getSeq(), Calendar.getInstance().getTime(), new BigDecimal(4.10)));
-    ORDERS.put(nextSeq(), new Order(getSeq(), "Some type of purchase " + getSeq(), Calendar.getInstance().getTime(), new BigDecimal(44.12)));
-    ORDERS.put(nextSeq(), new Order(getSeq(), "Some type of purchase " + getSeq(), Calendar.getInstance().getTime(), new BigDecimal(67.59)));
-    ORDERS.put(nextSeq(), new Order(getSeq(), "Some type of purchase " + getSeq(), Calendar.getInstance().getTime(), new BigDecimal(61.32)));
-    ORDERS.put(nextSeq(), new Order(getSeq(), "Some type of purchase " + getSeq(), Calendar.getInstance().getTime(), new BigDecimal(178.76)));
+    ORDERS.put(nextSeq(), new Order(getSeq(), "Some type of purchase " + getSeq(), Calendar.getInstance().getTime(), new BigDecimal(4.10), getRandomListOfProducts()));
+    ORDERS.put(nextSeq(), new Order(getSeq(), "Some type of purchase " + getSeq(), Calendar.getInstance().getTime(), new BigDecimal(44.12), getRandomListOfProducts()));
+    ORDERS.put(nextSeq(), new Order(getSeq(), "Some type of purchase " + getSeq(), Calendar.getInstance().getTime(), new BigDecimal(67.59), getRandomListOfProducts()));
+    ORDERS.put(nextSeq(), new Order(getSeq(), "Some type of purchase " + getSeq(), Calendar.getInstance().getTime(), new BigDecimal(61.32), getRandomListOfProducts()));
+    ORDERS.put(nextSeq(), new Order(getSeq(), "Some type of purchase " + getSeq(), Calendar.getInstance().getTime(), new BigDecimal(178.76), getRandomListOfProducts()));
 
   }
 
@@ -161,6 +162,17 @@ public final class TempDB {
 
   private static Long getSeq() {
     return dbId;
+  }
+
+  private static List<Product> getRandomListOfProducts() {
+    Random r = new Random();
+    int i = r.nextInt(PRODUCTS.size());
+    List<Product> result = new ArrayList<Product>(i);
+    for (int j = 0; j < i; j++) {
+      long id = r.nextInt(PRODUCTS.size());
+      result.add(PRODUCTS.get(id));
+    }
+    return result;
   }
 
 }

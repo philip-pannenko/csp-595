@@ -6,7 +6,6 @@ import java.util.Map;
 
 public abstract class GenericPageBean<T> implements Serializable {
 
-  private static final long serialVersionUID = 1L;
   private String browserPageTitle = "CSP-595 Store";
   private final String pageDirFileName;
   private Map<String, String> breadcrumb = new LinkedHashMap<String, String>();

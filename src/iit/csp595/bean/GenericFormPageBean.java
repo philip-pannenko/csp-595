@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 public abstract class GenericFormPageBean<T> extends GenericPageBean<T> implements Serializable {
 
-  private static final long serialVersionUID = 1L;
   private T item;
 
   protected GenericFormPageBean(String pageFileName, T item) {

@@ -1,7 +1,6 @@
 package iit.csp595.servlet;
 
 import iit.csp595.bean.GenericPageBean;
-import iit.csp595.bean.account.OrderListingBean;
 import iit.csp595.domain.object.Order;
 import iit.csp595.service.OrderService;
 
@@ -14,12 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 
 public class OrderServlet extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
-
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     long productId = ServletUtils.toLong(request.getParameter("id"), -1);
-    int nextPage = ServletUtils.toInt(request.getParameter("page"), 1);
+    int nextPage = ServletUtils.toInt(request.getParameter("p"), 1);
     int sortTypeId = ServletUtils.toInt(request.getParameter("s"));
 
     GenericPageBean<Order> bean = new OrderService(productId, nextPage, sortTypeId).createBean();

@@ -9,8 +9,6 @@ import iit.csp595.domain.object.type.CategoryType;
 
 public class ProductListingBean extends GenericListingPageBean<Product> implements Serializable {
 
-  private static final long serialVersionUID = 1L;
-
   public ProductListingBean(List<Product> products, List<CategoryType> categorieTypes, int totalProducts) {
     super(products, categorieTypes, totalProducts, "pages/product-listing.jsp");
     super.setBrowserPageTitle("Product Listing");

@@ -13,13 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 
 public class ProductServlet extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
-
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     long productId = ServletUtils.toLong(request.getParameter("id"), -1);
     long[] categoryTypeId = ServletUtils.toLong(request.getParameter("c"));
-    int nextPage = ServletUtils.toInt(request.getParameter("page"), 1);
+    int nextPage = ServletUtils.toInt(request.getParameter("p"), 1);
     int sortTypeId = ServletUtils.toInt(request.getParameter("s"));
 
     GenericPageBean<Product> bean = new ProductService(productId, nextPage, categoryTypeId, sortTypeId).createBean();

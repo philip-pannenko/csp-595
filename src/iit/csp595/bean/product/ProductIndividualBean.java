@@ -7,8 +7,6 @@ import java.io.Serializable;
 
 public class ProductIndividualBean extends GenericIndividualPageBean<Product> implements Serializable {
 
-  private static final long serialVersionUID = 1L;
-
   public ProductIndividualBean(Product bean) {
     super(bean, "pages/product-individual.jsp", null);
     super.setBrowserPageTitle("Product - " + bean.getName());

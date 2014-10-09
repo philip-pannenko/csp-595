@@ -3,7 +3,7 @@
   <nav >
     <ul>
       <c:forEach begin="1" end="${requestScope.bean.totalPages}" var="item">
-        <li class="${item == requestScope.bean.currentPage ? 'active' : ''}"><a href="${param.url}?page=${item}&c=${requestScope.bean.parsedCurrentCategories}">${item} </a></li>
+        <li class="${item == requestScope.bean.currentPage ? 'active' : ''}"><a href="${param.url}?p=${item}&c=${requestScope.bean.parsedCurrentCategories}">${item} </a></li>
       </c:forEach>
     </ul>
   </nav>

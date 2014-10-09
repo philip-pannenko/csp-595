@@ -7,8 +7,6 @@ import java.io.Serializable;
 
 public class SettingsFormBean extends GenericFormPageBean<User> implements Serializable {
 
-  private static final long serialVersionUID = 1L;
-
   public SettingsFormBean(User bean) {
     super("pages/account/settings-form.jsp", bean);
     super.setBrowserPageTitle("Settings Page");

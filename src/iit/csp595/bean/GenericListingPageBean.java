@@ -8,8 +8,6 @@ import java.util.List;
 
 public abstract class GenericListingPageBean<T> extends GenericPageBean<T> implements Serializable {
 
-  private static final long serialVersionUID = 1L;
-
   private List<T> items;
   private List<CategoryType> categoryTypes = new ArrayList<CategoryType>();
   private int currentPage = 1;

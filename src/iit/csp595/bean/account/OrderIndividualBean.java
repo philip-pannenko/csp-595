@@ -7,8 +7,6 @@ import java.io.Serializable;
 
 public class OrderIndividualBean extends GenericIndividualPageBean<Order> implements Serializable {
 
-  private static final long serialVersionUID = 1L;
-
   public OrderIndividualBean(Order bean) {
     super(bean, "pages/account/order-individual.jsp", null);
     super.setBrowserPageTitle("Order - " + bean.getId());

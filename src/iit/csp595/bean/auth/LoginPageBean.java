@@ -8,8 +8,6 @@ import iit.csp595.domain.object.User;
 
 public class LoginPageBean extends GenericPageBean<User> implements Serializable {
 
-  private static final long serialVersionUID = 1L;
-
   public LoginPageBean() {
     super("pages/login.jsp", null);
   }

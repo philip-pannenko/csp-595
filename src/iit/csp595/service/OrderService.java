@@ -4,12 +4,8 @@ import iit.csp595.bean.GenericPageBean;
 import iit.csp595.bean.Message;
 import iit.csp595.bean.account.OrderIndividualBean;
 import iit.csp595.bean.account.OrderListingBean;
-import iit.csp595.bean.product.ProductIndividualBean;
-import iit.csp595.bean.product.ProductListingBean;
 import iit.csp595.domain.dao.OrderDao;
-import iit.csp595.domain.dao.ProductDao;
 import iit.csp595.domain.object.Order;
-import iit.csp595.domain.object.Product;
 
 import java.util.List;
 

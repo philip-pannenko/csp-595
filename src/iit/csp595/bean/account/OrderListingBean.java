@@ -5,11 +5,8 @@ import java.util.List;
 
 import iit.csp595.bean.GenericListingPageBean;
 import iit.csp595.domain.object.Order;
-import iit.csp595.domain.object.type.CategoryType;
 
 public class OrderListingBean extends GenericListingPageBean<Order> implements Serializable {
-
-  private static final long serialVersionUID = 1L;
 
   public OrderListingBean(List<Order> products, int totalProducts) {
     super(products, null, totalProducts, "pages/account/order-listing.jsp");

@@ -8,8 +8,6 @@ import java.util.Arrays;
 
 public class Accessory extends Product implements Serializable {
 
-  private static final long serialVersionUID = 1L;
-
   // private Category purpose;
 
   public Accessory(Long id, String name, String description, Double price, Category... categories) {

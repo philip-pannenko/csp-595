@@ -15,6 +15,26 @@
     <fmt:formatNumber value="${requestScope.bean.item.totalPrice}" type="currency" />
   </p>
 
+  <h4>Products Associated w/ Order</h4>
+  <table class="table">
+    <tbody>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Order Date</th>
+        <th scope="col">Items Purchased</th>
+        <th scope="col">Price</th>
+      </tr>
+      <c:forEach items="${requestScope.bean.item.products}" var="product">
+        <tr>
+          <td><img src="images/product/${product.id}.jpg"></td>
+          <td><a href="product?id=${product.id}"> ${product.name}</a></td>
+          <td><p>${product.description}</p></td>
+          <td><p>${product.price}</p></td>
+        </tr>
+      </c:forEach>
+    </tbody>
+  </table>
+
 </div>
 
 <div class="col-2 sidebar">
