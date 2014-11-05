@@ -1,7 +1,8 @@
 package iit.csp595.domain.dao;
 
-import iit.csp595.domain.object.Product;
-import iit.csp595.domain.object.type.SortType;
+import iit.csp595.domain.Database;
+import iit.csp595.domain.model.Product;
+import iit.csp595.domain.model.type.SortType;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -15,18 +16,18 @@ import java.util.Set;
 public class ProductDao {
 
   public Product get(Long id) {
-    return TempDB.PRODUCTS.get(id);
+    return Database.PRODUCTS.get(id);
   }
 
   public List<Product> getProductsForCategory(long[] categoryTypeIds, final int sortTypeId) {
     List<Product> result;
     if (categoryTypeIds[0] == -1L) {
-      result = new ArrayList<Product>(TempDB.PRODUCTS.values());
+      result = new ArrayList<Product>(Database.PRODUCTS.values());
     } else {
       Set<Product> unique = new HashSet<Product>();
       for (long categoryTypeId : categoryTypeIds) {
         if (categoryTypeId != -1) {
-          unique.addAll(TempDB.CATEGORY_PRODUCT.get(categoryTypeId));
+          unique.addAll(Database.CATEGORY_PRODUCT.get(categoryTypeId));
         }
       }
       result = new ArrayList<Product>(unique);

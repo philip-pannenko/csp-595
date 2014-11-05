@@ -1,7 +1,7 @@
-package iit.csp595.bean.account;
+package iit.csp595.bean.order;
 
 import iit.csp595.bean.GenericIndividualPageBean;
-import iit.csp595.domain.object.Order;
+import iit.csp595.domain.model.Order;
 
 import java.io.Serializable;
 

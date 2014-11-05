@@ -1,4 +1,4 @@
-package iit.csp595.domain.object;
+package iit.csp595.domain.model;
 
 import java.io.Serializable;
 
@@ -10,12 +10,14 @@ public class User implements Serializable {
   private String username;
   private char[] password;
 
+  private Address billingAddress;
+  private Address shippingAddress;
+  private CreditCard paymentMethod;
+
   public User() {
-    super();
   }
 
   public User(Long id, String fname, String lname, String username, char[] password) {
-    super();
     this.id = id;
     this.fname = fname;
     this.lname = lname;
@@ -61,6 +63,30 @@ public class User implements Serializable {
 
   public void setPassword(char[] password) {
     this.password = password;
+  }
+
+  public Address getBillingAddress() {
+    return billingAddress;
+  }
+
+  public void setBillingAddress(Address billingAddress) {
+    this.billingAddress = billingAddress;
+  }
+
+  public Address getShippingAddress() {
+    return shippingAddress;
+  }
+
+  public void setShippingAddress(Address shippingAddress) {
+    this.shippingAddress = shippingAddress;
+  }
+
+  public CreditCard getPaymentMethod() {
+    return paymentMethod;
+  }
+
+  public void setPaymentMethod(CreditCard paymentMethod) {
+    this.paymentMethod = paymentMethod;
   }
 
 }

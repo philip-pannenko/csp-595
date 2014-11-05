@@ -1,4 +1,4 @@
-package iit.csp595.domain.object.type;
+package iit.csp595.domain.model.type;
 
 public enum ProductType {
   NOT_APPLICABLE(-1, "N/A"),

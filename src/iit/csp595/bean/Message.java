@@ -4,26 +4,26 @@ import java.io.Serializable;
 
 public class Message implements Serializable {
 
-  private String type;
+  private boolean error = false;
   private String content;
 
-  public Message(String type, String content) {
+  public Message(boolean error, String content) {
     super();
-    this.type = type;
+    this.error = error;
     this.content = content;
   }
 
-  public String getType() {
-    return type;
+  public boolean isError() {
+    return error;
   }
 
-  public void setType(String type) {
-    this.type = type;
+  public void setError(boolean error) {
+    this.error = error;
   }
 
   public String getContent() {
     return content;
-  }
+  } 
 
   public void setContent(String content) {
     this.content = content;

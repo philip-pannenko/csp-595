@@ -2,7 +2,6 @@
 
 <div class="col-12">
 
-  <jsp:include page="/WEB-INF/global/errors.jsp" />
   <div class="col-4">&nbsp;</div>
   <div class="col-4">
     <form method="POST">

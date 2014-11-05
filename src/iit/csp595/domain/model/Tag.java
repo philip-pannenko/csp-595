@@ -1,4 +1,4 @@
-package iit.csp595.domain.object;
+package iit.csp595.domain.model;
 
 import java.io.Serializable;
 
@@ -6,6 +6,9 @@ public class Tag implements Serializable {
 
   private Long id;
   private String description;
+
+  public Tag() {
+  }
 
   public Tag(Long id, String description) {
     super();

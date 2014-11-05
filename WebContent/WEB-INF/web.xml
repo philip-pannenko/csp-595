@@ -61,9 +61,10 @@
   <listener>
     <listener-class>iit.csp595.listener.DBInitializer</listener-class>
   </listener>
-
+  
+<!--
   <error-page>
     <location>/error.jsp</location>
-  </error-page>
+  </error-page>-->
 
 </web-app>

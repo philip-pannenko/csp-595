@@ -1,6 +1,6 @@
-package iit.csp595.domain.object;
+package iit.csp595.domain.model;
 
-import iit.csp595.domain.object.type.CategoryType;
+import iit.csp595.domain.model.type.CategoryType;
 
 import java.io.Serializable;
 
@@ -10,8 +10,10 @@ public class Category implements Serializable {
   private String name;
   private CategoryType categoryType;
 
+  public Category() {
+  }
+
   public Category(Long id, String name, CategoryType categoryType) {
-    super();
     this.id = id;
     this.name = name;
     this.categoryType = categoryType;

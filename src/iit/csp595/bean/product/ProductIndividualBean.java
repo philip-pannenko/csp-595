@@ -1,7 +1,7 @@
 package iit.csp595.bean.product;
 
 import iit.csp595.bean.GenericIndividualPageBean;
-import iit.csp595.domain.object.Product;
+import iit.csp595.domain.model.Product;
 
 import java.io.Serializable;
 

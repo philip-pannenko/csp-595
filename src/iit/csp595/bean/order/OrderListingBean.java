@@ -1,10 +1,10 @@
-package iit.csp595.bean.account;
+package iit.csp595.bean.order;
 
 import java.io.Serializable;
 import java.util.List;
 
 import iit.csp595.bean.GenericListingPageBean;
-import iit.csp595.domain.object.Order;
+import iit.csp595.domain.model.Order;
 
 public class OrderListingBean extends GenericListingPageBean<Order> implements Serializable {
 

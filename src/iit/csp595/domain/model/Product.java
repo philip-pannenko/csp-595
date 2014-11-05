@@ -1,4 +1,4 @@
-package iit.csp595.domain.object;
+package iit.csp595.domain.model;
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,8 +13,10 @@ public abstract class Product implements Serializable {
   private List<Category> categories;
   private List<Tag> tags;
 
+  public Product() {
+  }
+
   public Product(Long id, String name, String description, Double price, List<Category> categories) {
-    super();
     this.id = id;
     this.name = name;
     this.description = description;

@@ -1,9 +1,10 @@
 package iit.csp595.servlet.auth;
 
+import iit.csp595.Constants;
 import iit.csp595.bean.Message;
 import iit.csp595.bean.auth.LoginPageBean;
 import iit.csp595.domain.dao.UserDao;
-import iit.csp595.domain.object.User;
+import iit.csp595.domain.model.User;
 
 import java.io.IOException;
 
@@ -30,7 +31,7 @@ public class LoginServlet extends HttpServlet {
       request.getSession().setAttribute("user", user);
       response.sendRedirect("product");
     } else {
-      request.setAttribute("bean", new LoginPageBean(new Message("error", "Invalid Credentials")));
+      request.setAttribute("bean", new LoginPageBean(new Message(true, Constants.ERROR_INVALID_CREDENTIALS)));
       request.getRequestDispatcher("WEB-INF/template.jsp").forward(request, response);
     }
   }

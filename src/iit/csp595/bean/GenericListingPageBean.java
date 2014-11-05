@@ -1,6 +1,6 @@
 package iit.csp595.bean;
 
-import iit.csp595.domain.object.type.CategoryType;
+import iit.csp595.domain.model.type.CategoryType;
 
 import java.io.Serializable;
 import java.util.ArrayList;

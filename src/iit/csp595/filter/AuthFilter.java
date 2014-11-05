@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * not used yet
+ * not used yet but will be used to authenticate request.
  */
 public class AuthFilter implements Filter {
 

@@ -1,13 +1,13 @@
 package iit.csp595.bean.account;
 
 import iit.csp595.bean.GenericFormPageBean;
-import iit.csp595.domain.object.User;
+import iit.csp595.domain.model.User;
 
 import java.io.Serializable;
 
-public class SettingsFormBean extends GenericFormPageBean<User> implements Serializable {
+public class AccountFormBean extends GenericFormPageBean<User> implements Serializable {
 
-  public SettingsFormBean(User bean) {
+  public AccountFormBean(User bean) {
     super("pages/account/settings-form.jsp", bean);
     super.setBrowserPageTitle("Settings Page");
     super.getBreadcrumb().put("Home", "");

@@ -1,4 +1,4 @@
-package iit.csp595.domain.object;
+package iit.csp595.domain.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -13,8 +13,10 @@ public class Order implements Serializable {
   private BigDecimal totalPrice;
   private List<Product> products;
 
+  public Order() {
+  }
+
   public Order(Long id, String description, Date orderDate, BigDecimal totalPrice, List<Product> products) {
-    super();
     this.id = id;
     this.description = description;
     this.orderDate = orderDate;

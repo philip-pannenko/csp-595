@@ -1,7 +1,8 @@
 package iit.csp595.domain.dao;
 
-import iit.csp595.domain.object.Order;
-import iit.csp595.domain.object.type.SortType;
+import iit.csp595.domain.Database;
+import iit.csp595.domain.model.Order;
+import iit.csp595.domain.model.type.SortType;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,12 +13,12 @@ import java.util.List;
 public class OrderDao {
 
   public Order get(Long id) {
-    return TempDB.ORDERS.get(id);
+    return Database.ORDERS.get(id);
   }
 
   public List<Order> getSortedOrders(final int sortTypeId) {
     List<Order> result;
-    result = new ArrayList<Order>(TempDB.ORDERS.values());
+    result = new ArrayList<Order>(Database.ORDERS.values());
 
     Collections.sort(result, new Comparator<Order>() {
 

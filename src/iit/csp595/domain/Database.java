@@ -1,41 +1,43 @@
-package iit.csp595.domain.dao;
+package iit.csp595.domain;
 
-import iit.csp595.domain.object.Category;
-import iit.csp595.domain.object.Order;
-import iit.csp595.domain.object.Product;
-import iit.csp595.domain.object.User;
-import iit.csp595.domain.object.product.Accessory;
-import iit.csp595.domain.object.product.Coffee;
-import iit.csp595.domain.object.type.CategoryType;
+//import homework.Utils;
+import iit.csp595.Utils;
+import iit.csp595.domain.model.Category;
+import iit.csp595.domain.model.Order;
+import iit.csp595.domain.model.Product;
+import iit.csp595.domain.model.User;
+import iit.csp595.domain.model.product.Accessory;
+import iit.csp595.domain.model.product.Coffee;
+import iit.csp595.domain.model.type.CategoryType;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-public final class TempDB {
+public final class Database {
 
-  protected static final SortedMap<Long, Product> PRODUCTS = new TreeMap<Long, Product>();
-  protected static final SortedMap<Long, Order> ORDERS = new TreeMap<Long, Order>();
-  protected static final SortedMap<Long, User> USERS = new TreeMap<Long, User>();
-  protected static final SortedMap<Long, Category> CATEGORIES = new TreeMap<Long, Category>();
-  protected static final SortedMap<Long, Coffee> COFFEES = new TreeMap<Long, Coffee>();
-  protected static final SortedMap<Long, Accessory> ACCESSORIES = new TreeMap<Long, Accessory>();
-
-  protected static final SortedMap<Long, List<Product>> CATEGORY_PRODUCT = new TreeMap<Long, List<Product>>();
-
-  // Used for login username lookups
-  protected static final SortedMap<String, User> USERS_USERNAME = new TreeMap<String, User>();
+  public static final SortedMap<Long, Product> PRODUCTS = new TreeMap<Long, Product>();
+  public static final SortedMap<Long, Order> ORDERS = new TreeMap<Long, Order>();
+  public static final SortedMap<Long, User> USERS = new TreeMap<Long, User>();
+  public static final SortedMap<Long, Category> CATEGORIES = new TreeMap<Long, Category>();
+  public static final SortedMap<Long, Coffee> COFFEES = new TreeMap<Long, Coffee>();
+  public static final SortedMap<Long, Accessory> ACCESSORIES = new TreeMap<Long, Accessory>();
+  public static final SortedMap<Long, List<Product>> CATEGORY_PRODUCT = new TreeMap<Long, List<Product>>();
+  public static final SortedMap<String, User> USERS_USERNAME = new TreeMap<String, User>();
 
   private static Category dd, sb, filter, grinder, african, local, blend, decaf;
 
   // Used as a sequence helper
   private static Long dbId;
+  public static long ORDER_SEQ_ID;
 
-  private TempDB() {
+  private Database() {
 
   }
 
@@ -140,16 +142,31 @@ public final class TempDB {
     }
   }
 
-  private static void initiateOrders() {
-    resetSeq();
-    ORDERS.clear();
-
-    ORDERS.put(nextSeq(), new Order(getSeq(), "Some type of purchase " + getSeq(), Calendar.getInstance().getTime(), new BigDecimal(4.10), getRandomListOfProducts()));
-    ORDERS.put(nextSeq(), new Order(getSeq(), "Some type of purchase " + getSeq(), Calendar.getInstance().getTime(), new BigDecimal(44.12), getRandomListOfProducts()));
-    ORDERS.put(nextSeq(), new Order(getSeq(), "Some type of purchase " + getSeq(), Calendar.getInstance().getTime(), new BigDecimal(67.59), getRandomListOfProducts()));
-    ORDERS.put(nextSeq(), new Order(getSeq(), "Some type of purchase " + getSeq(), Calendar.getInstance().getTime(), new BigDecimal(61.32), getRandomListOfProducts()));
-    ORDERS.put(nextSeq(), new Order(getSeq(), "Some type of purchase " + getSeq(), Calendar.getInstance().getTime(), new BigDecimal(178.76), getRandomListOfProducts()));
-
+  private static Map<Long, Order> initiateOrders() {
+    ORDER_SEQ_ID = -1L;
+    List<Order> orders = Utils.readOrdersFromFile();
+    if (orders != null && !orders.isEmpty()) {
+      Map<Long, Order> result = new HashMap<Long, Order>(orders.size());
+      for (Order order : orders) {
+        System.out.println("Loading Orders");
+        result.put(order.getId(), order);
+        if (order.getId() > ORDER_SEQ_ID) {
+          ORDER_SEQ_ID = order.getId();
+        }
+      }
+      return result;
+    } else {
+      System.out.println("Initializing Orders");
+      Map<Long, Order> result = new TreeMap<Long, Order>();
+      resetSeq();
+      result.clear();
+      result.put(nextSeq(), new Order(getSeq(), "Some type of purchase " + getSeq(), Calendar.getInstance().getTime(), new BigDecimal(4.10), getRandomListOfProducts()));
+      result.put(nextSeq(), new Order(getSeq(), "Some type of purchase " + getSeq(), Calendar.getInstance().getTime(), new BigDecimal(44.12), getRandomListOfProducts()));
+      result.put(nextSeq(), new Order(getSeq(), "Some type of purchase " + getSeq(), Calendar.getInstance().getTime(), new BigDecimal(67.59), getRandomListOfProducts()));
+      result.put(nextSeq(), new Order(getSeq(), "Some type of purchase " + getSeq(), Calendar.getInstance().getTime(), new BigDecimal(61.32), getRandomListOfProducts()));
+      result.put(nextSeq(), new Order(getSeq(), "Some type of purchase " + getSeq(), Calendar.getInstance().getTime(), new BigDecimal(178.76), getRandomListOfProducts()));
+      return result;
+    }
   }
 
   private static void resetSeq() {
