@@ -2,10 +2,10 @@ package iit.csp595.service;
 
 import java.util.Collection;
 
+import iit.csp595.SortType;
 import iit.csp595.domain.Database;
 import iit.csp595.domain.dao.ProductDao;
 import iit.csp595.domain.model.Product;
-import iit.csp595.domain.model.type.SortType;
 
 import org.junit.Test;
 

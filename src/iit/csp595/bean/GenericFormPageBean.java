@@ -2,7 +2,10 @@ package iit.csp595.bean;
 
 import java.io.Serializable;
 
-public abstract class GenericFormPageBean<T> extends GenericPageBean<T> implements Serializable {
+/**
+ * Used as a guideline for form based pages of a certain type
+ */
+public abstract class GenericFormPageBean<T> extends GenericPageBean implements Serializable {
 
   private T item;
 

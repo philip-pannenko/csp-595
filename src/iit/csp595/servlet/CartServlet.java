@@ -3,7 +3,7 @@ package iit.csp595.servlet;
 import iit.csp595.Actions;
 import iit.csp595.Constants;
 import iit.csp595.Utils;
-import iit.csp595.bean.cart.CartIndividualBean;
+import iit.csp595.bean.CartIndividualBean;
 import iit.csp595.domain.model.Cart;
 
 import java.io.IOException;
@@ -16,10 +16,20 @@ import javax.servlet.http.HttpServletResponse;
 public class CartServlet extends HttpServlet {
 
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    Cart cart = Utils.getCart(request);
-    CartIndividualBean bean = new CartIndividualBean(cart);
-    request.setAttribute("bean", bean);
-    request.getRequestDispatcher("/WEB-INF/template.jsp").forward(request, response);
+
+    int action = Utils.toInt(request.getParameter("a"));
+    switch (Actions.getAction(action)) {
+    case CONFIRM_ORDER:
+      Utils.setAuthUser(request, null);
+      response.sendRedirect("?" + Utils.generateInfoMsg(Constants.MSG_LOGGED_OUT));
+      break;
+    default:
+      Cart cart = Utils.getCart(request);
+      CartIndividualBean bean = new CartIndividualBean(cart);
+      request.setAttribute("bean", bean);
+      request.getRequestDispatcher("/WEB-INF/template.jsp").forward(request, response);
+      break;
+    }
   }
 
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

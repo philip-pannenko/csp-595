@@ -1,6 +1,5 @@
-package iit.csp595.bean.cart;
+package iit.csp595.bean;
 
-import iit.csp595.bean.GenericIndividualPageBean;
 import iit.csp595.domain.dao.ProductDao;
 import iit.csp595.domain.model.Cart;
 import iit.csp595.domain.model.Product;

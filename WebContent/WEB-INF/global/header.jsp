@@ -9,10 +9,10 @@
       <c:choose>
         <c:when test="${sessionScope.user != null}">
           <li><a href="account">Account</a>
-          <li><a href="logout">Logout ${sessionScope.user.fname}</a></li>
+          <li><a href="auth?a=6">Logout ${sessionScope.user.fname}</a></li>
         </c:when>
         <c:when test="${sessionScope.user == null}">
-          <li><a href="login">Login</a></li>
+          <li><a href="auth">Login</a></li>
         </c:when>
       </c:choose>
     </ul>

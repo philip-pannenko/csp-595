@@ -1,7 +1,4 @@
-package iit.csp595.domain.model.product;
-
-import iit.csp595.domain.model.Category;
-import iit.csp595.domain.model.Product;
+package iit.csp595.domain.model;
 
 import java.io.Serializable;
 import java.util.Arrays;

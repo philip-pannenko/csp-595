@@ -6,7 +6,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class GenericListingPageBean<T> extends GenericPageBean<T> implements Serializable {
+/**
+ * Used as a guideline for pages that will have multiple pages of a certain type
+ */
+public abstract class GenericListingPageBean<T> extends GenericPageBean implements Serializable {
 
   private List<T> items;
   private List<CategoryType> categoryTypes = new ArrayList<CategoryType>();

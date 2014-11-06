@@ -1,8 +1,8 @@
 package iit.csp595.domain.dao;
 
+import iit.csp595.SortType;
 import iit.csp595.domain.Database;
 import iit.csp595.domain.model.Order;
-import iit.csp595.domain.model.type.SortType;
 
 import java.util.ArrayList;
 import java.util.Collection;

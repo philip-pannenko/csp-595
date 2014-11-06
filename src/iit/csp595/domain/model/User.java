@@ -17,13 +17,18 @@ public class User implements Serializable {
   public User() {
   }
 
-  public User(Long id, String fname, String lname, String username, char[] password) {
+  public User(Long id, String fname, String lname, String username, char[] password, Address billingAddress, Address shippingAddress, CreditCard paymentMethod) {
+    super();
     this.id = id;
     this.fname = fname;
     this.lname = lname;
     this.username = username;
     this.password = password;
+    this.billingAddress = billingAddress;
+    this.shippingAddress = shippingAddress;
+    this.paymentMethod = paymentMethod;
   }
+
 
   public Long getId() {
     return id;

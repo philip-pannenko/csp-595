@@ -20,7 +20,4 @@
   <h3>Settings</h3>
   <p>Click here to view your account settings</p>
 
-  <h3>Account</h3>
-  <p>Click here to delete your account</p>
-
 </div>

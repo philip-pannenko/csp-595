@@ -1,4 +1,4 @@
-package iit.csp595.domain.model.type;
+package iit.csp595;
 
 public enum SortType {
   NOT_APPLICABLE(-1, "N/A"),

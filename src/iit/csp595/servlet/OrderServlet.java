@@ -3,8 +3,8 @@ package iit.csp595.servlet;
 import iit.csp595.Constants;
 import iit.csp595.Utils;
 import iit.csp595.bean.Message;
-import iit.csp595.bean.order.OrderIndividualBean;
-import iit.csp595.bean.order.OrderListingBean;
+import iit.csp595.bean.OrderIndividualBean;
+import iit.csp595.bean.OrderListingBean;
 import iit.csp595.domain.dao.OrderDao;
 import iit.csp595.domain.model.Order;
 

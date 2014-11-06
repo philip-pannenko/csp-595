@@ -2,12 +2,14 @@ package iit.csp595.domain;
 
 //import homework.Utils;
 import iit.csp595.Utils;
+import iit.csp595.domain.model.Accessory;
+import iit.csp595.domain.model.Address;
 import iit.csp595.domain.model.Category;
+import iit.csp595.domain.model.Coffee;
+import iit.csp595.domain.model.CreditCard;
 import iit.csp595.domain.model.Order;
 import iit.csp595.domain.model.Product;
 import iit.csp595.domain.model.User;
-import iit.csp595.domain.model.product.Accessory;
-import iit.csp595.domain.model.product.Coffee;
 import iit.csp595.domain.model.type.CategoryType;
 
 import java.math.BigDecimal;
@@ -81,9 +83,25 @@ public final class Database {
 
     resetSeq();
     USERS.clear();
-    USERS.put(nextSeq(), new User(getSeq(), "Philip", "Pannenko", "ppannenk", "password".toCharArray()));
-    USERS.put(nextSeq(), new User(getSeq(), "Zaharadeen", "Garuba", "zgaruba", "password".toCharArray()));
-    USERS.put(nextSeq(), new User(getSeq(), "James", "Murnane", "jmurnane", "password".toCharArray()));
+    
+    Address shippingAddress;
+    Address billingAddress;
+    CreditCard paymentMethod;
+    
+    shippingAddress = new Address("1st Main St.","Mystic",06355,"CT");
+    billingAddress = new Address("1st Main St.","Mystic",06355,"CT");
+    paymentMethod = new CreditCard("1234123412341234","Philip Pannenko","01/20","VISA");
+    USERS.put(nextSeq(), new User(getSeq(), "Philip", "Pannenko", "ppannenk", "password".toCharArray(), billingAddress, shippingAddress, paymentMethod));
+    
+    shippingAddress = new Address("1st Main St.","Chicago",60616,"IL");
+    billingAddress = new Address("1st Main St.","Chicago",60616,"IL");
+    paymentMethod = new CreditCard("1234123412341234","Zaharadeen Garuba","01/20","VISA");
+    USERS.put(nextSeq(), new User(getSeq(), "Zaharadeen", "Garuba", "zgaruba", "password".toCharArray(), billingAddress, shippingAddress, paymentMethod));
+    
+    shippingAddress = new Address("1st Main St.","Chicago",60616,"IL");
+    billingAddress = new Address("1st Main St.","Chicago",60616,"IL");
+    paymentMethod = new CreditCard("1234123412341234","James Murnane","01/20","VISA");
+    USERS.put(nextSeq(), new User(getSeq(), "James", "Murnane", "jmurnane", "password".toCharArray(), billingAddress, shippingAddress, paymentMethod));
 
     for (User u : USERS.values()) {
       USERS_USERNAME.put(u.getUsername(), u);

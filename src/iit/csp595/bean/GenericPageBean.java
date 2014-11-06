@@ -4,7 +4,10 @@ import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public abstract class GenericPageBean<T> implements Serializable {
+/**
+ * Used as a guideline for pages has no type and simply needs a way to display a page
+ */
+public abstract class GenericPageBean implements Serializable {
 
   private String browserPageTitle = "CSP-595 Store";
   private final String pageDirFileName;

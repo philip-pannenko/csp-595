@@ -43,9 +43,10 @@
 
 <div class="col-2 sidebar">
   <div>
-    <h4>Item Actions</h4>
+    <h4>Cart Actions</h4>
     <ol class="list-unstyled">
       <li><a href="#">Checkout</a></li>
+      <li><a href="#">Clear Cart</a></li>
     </ol>
   </div>
 </div>

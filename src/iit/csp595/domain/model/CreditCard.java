@@ -1,28 +1,29 @@
 package iit.csp595.domain.model;
 
-import java.util.Date;
+import java.io.Serializable;
 
-public class CreditCard {
-  private Integer number;
+public class CreditCard implements Serializable {
+
+  private String number;
   private String name;
-  private Date expirationDate;
+  private String expirationDate;
   private String type = "VISA";
 
   public CreditCard() {
   }
 
-  public CreditCard(Integer number, String name, Date expirationDate, String type) {
+  public CreditCard(String number, String name, String expirationDate, String type) {
     this.number = number;
     this.name = name;
     this.expirationDate = expirationDate;
     this.type = type;
   }
 
-  public Integer getNumber() {
+  public String getNumber() {
     return number;
   }
 
-  public void setNumber(Integer number) {
+  public void setNumber(String number) {
     this.number = number;
   }
 
@@ -34,11 +35,11 @@ public class CreditCard {
     this.name = name;
   }
 
-  public Date getExpirationDate() {
+  public String getExpirationDate() {
     return expirationDate;
   }
 
-  public void setExpirationDate(Date expirationDate) {
+  public void setExpirationDate(String expirationDate) {
     this.expirationDate = expirationDate;
   }
 
