@@ -12,9 +12,9 @@
   <div>
     <h4>Item Actions</h4>
     <ol class="list-unstyled">
-      <li><a href="#">Add to cart</a></li>
-      <li><a href="#">Add to wishlist</a></li>
+      <li><form action="product?a=1&p=${requestScope.bean.item.id}" method="post">
+          <button type="submit">Add to Cart</button>
+        </form></li>
     </ol>
   </div>
 </div>
-

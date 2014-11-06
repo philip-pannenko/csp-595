@@ -12,6 +12,14 @@ public class Message implements Serializable {
     this.error = error;
     this.content = content;
   }
+  
+  public static Message createMessage(String content) {
+    return new Message(false, content);
+  }
+  
+  public static Message createError(String content) {
+    return new Message(true, content);
+  }
 
   public boolean isError() {
     return error;

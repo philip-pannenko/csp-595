@@ -11,3 +11,16 @@
     </ol>
   </nav>
 </div>
+
+<div class="col-10">
+
+  <h3>Orders</h3>
+  <p>Click here to view your recent orders.</p>
+
+  <h3>Settings</h3>
+  <p>Click here to view your account settings</p>
+
+  <h3>Account</h3>
+  <p>Click here to delete your account</p>
+
+</div>

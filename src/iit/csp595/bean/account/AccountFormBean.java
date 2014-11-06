@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class AccountFormBean extends GenericFormPageBean<User> implements Serializable {
 
   public AccountFormBean(User bean) {
-    super("pages/account/settings-form.jsp", bean);
+    super("pages/settings-form.jsp", bean);
     super.setBrowserPageTitle("Settings Page");
     super.getBreadcrumb().put("Home", "");
     super.getBreadcrumb().put("Account", "account");

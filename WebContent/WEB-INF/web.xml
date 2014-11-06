@@ -57,6 +57,15 @@
     <servlet-name>logoutServlet</servlet-name>
     <url-pattern>/logout</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>cartServlet</servlet-name>
+    <servlet-class>iit.csp595.servlet.CartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>cartServlet</servlet-name>
+    <url-pattern>/cart</url-pattern>
+  </servlet-mapping>
 
   <listener>
     <listener-class>iit.csp595.listener.DBInitializer</listener-class>

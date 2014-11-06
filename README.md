@@ -2,9 +2,14 @@ csp-595
 =======
 
 ## Philip - TODO
-* Add sort button
-* Add multiple flavors
+* Add sort button dropdown
+* Add multiple flavors (categories)
 * Replace comparable ints/doubles/longs with BigDecimal
+* Add custom items per page
+* Add constants directory
+* Tie form page bean to servlet
+* Add ant script to update live / copy WEB-INF back to src.
+* Add synchronized to all DAO methods
 
 ## Examples Shopping Cart Pages
 * http://www.amazon.com/ref=nav_logo

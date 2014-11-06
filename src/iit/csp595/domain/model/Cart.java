@@ -9,6 +9,8 @@ public class Cart implements Serializable {
   private Long id;
   private User user;
   private Map<Long, Integer> products = new HashMap<Long, Integer>();
+  private Double totalCost;
+  private Integer totalProducts;
 
   public Cart() {
   }
@@ -40,6 +42,22 @@ public class Cart implements Serializable {
 
   public void setId(Long id) {
     this.id = id;
+  }
+
+  public Double getTotalCost() {
+    return totalCost;
+  }
+
+  public void setTotalCost(Double totalCost) {
+    this.totalCost = totalCost;
+  }
+
+  public Integer getTotalProducts() {
+    return totalProducts;
+  }
+
+  public void setTotalProducts(Integer totalProducts) {
+    this.totalProducts = totalProducts;
   }
 
 }

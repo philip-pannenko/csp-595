@@ -2,7 +2,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<jsp:include page="/WEB-INF/pages/account/account-sidebar.jsp" />
+<div class="col-2 sidebar">
+  <div>
+    <h4>Order Actions</h4>
+    <ol class="list-unstyled">
+      <li><a href="#">Recent Orders</a></li>
+      <li><a href="#">Delivered Orders</a></li>
+    </ol>
+  </div>
+</div>
 
 <div class="col-10">
 <h3>Your Orders</h3>

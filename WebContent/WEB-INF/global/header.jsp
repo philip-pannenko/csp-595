@@ -5,6 +5,7 @@
   <nav class="float-right">
     <ul>
       <li><a href="">Home</a></li>
+      <li><a href="cart">Cart</a></li>
       <c:choose>
         <c:when test="${sessionScope.user != null}">
           <li><a href="account">Account</a>

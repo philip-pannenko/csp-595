@@ -21,7 +21,7 @@ public class OrderServlet extends HttpServlet {
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     long productId = Utils.toLong(request.getParameter("id"));
-    int nextPage = Utils.toInt(request.getParameter("p"));
+    int nextPage = Utils.toInt(request.getParameter("p"), 1);
     int sortTypeId = Utils.toInt(request.getParameter("s"));
 
     OrderDao dao = new OrderDao();
@@ -39,7 +39,7 @@ public class OrderServlet extends HttpServlet {
       OrderIndividualBean bean = new OrderIndividualBean(p);
 
       if (p == null) {
-        bean.setMessage(new Message(true, Constants.ERROR_ORDER_NOT_FOUND));
+        bean.setMessage(Message.createError(Constants.ERROR_ORDER_NOT_FOUND));
         response.sendRedirect("order");
       }
       request.setAttribute("bean", bean);

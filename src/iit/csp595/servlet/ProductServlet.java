@@ -1,10 +1,12 @@
 package iit.csp595.servlet;
 
+import iit.csp595.Actions;
 import iit.csp595.Constants;
 import iit.csp595.Utils;
 import iit.csp595.bean.product.ProductIndividualBean;
 import iit.csp595.bean.product.ProductListingBean;
 import iit.csp595.domain.dao.ProductDao;
+import iit.csp595.domain.model.Cart;
 import iit.csp595.domain.model.Product;
 
 import java.io.IOException;
@@ -21,7 +23,7 @@ public class ProductServlet extends HttpServlet {
 
     long productId = Utils.toLong(request.getParameter("id"));
     long[] categoryTypeId = Utils.toLongArray(request.getParameter("c"));
-    int nextPage = Utils.toInt(request.getParameter("p"));
+    int nextPage = Utils.toInt(request.getParameter("p"), 1);
     int sortTypeId = Utils.toInt(request.getParameter("s"));
 
     ProductDao dao = new ProductDao();
@@ -43,12 +45,35 @@ public class ProductServlet extends HttpServlet {
 
       Product p = dao.get(productId);
       if (p == null) {
-        response.sendRedirect("product?error=" + Utils.showMessage(Constants.ERROR_ORDER_NOT_FOUND, request.getParameter("id")));
+        response.sendRedirect("product?" + Utils.generateErrorMsg(Constants.ERROR_ORDER_NOT_FOUND, request.getParameter("id")));
       } else {
         request.setAttribute("bean", new ProductIndividualBean(p));
         request.getRequestDispatcher("/WEB-INF/template.jsp").forward(request, response);
       }
     }
+  }
 
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    int action = Utils.toInt(request.getParameter("a"));
+    long p = Utils.toLong(request.getParameter("p"));
+    switch (Actions.getAction(action)) {
+    case ADD_TO_CART:
+      if (p != -1) {
+        Cart cart = Utils.getCart(request);
+        if (!cart.getProducts().containsKey(p)) {
+          cart.getProducts().put(p, 1);
+        } else {
+          int counter = cart.getProducts().get(p);
+          cart.getProducts().put(p, ++counter);
+        }
+        response.sendRedirect("cart?" + Utils.generateInfoMsg(Constants.MSG_PRODUCT_ADDED_TO_CART));
+      } else {
+        response.sendRedirect("product?" + Utils.generateErrorMsg(Constants.ERROR_PRODUCT_NOT_FOUND, request.getParameter("p")));
+      }
+      break;
+    default:
+      response.sendRedirect("product?" + Utils.generateErrorMsg(Constants.ERROR_INVALID_ACTION));
+      break;
+    }
   }
 }

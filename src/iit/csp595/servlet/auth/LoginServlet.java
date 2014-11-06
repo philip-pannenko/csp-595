@@ -1,7 +1,7 @@
 package iit.csp595.servlet.auth;
 
 import iit.csp595.Constants;
-import iit.csp595.bean.Message;
+import iit.csp595.Utils;
 import iit.csp595.bean.auth.LoginPageBean;
 import iit.csp595.domain.dao.UserDao;
 import iit.csp595.domain.model.User;
@@ -28,11 +28,10 @@ public class LoginServlet extends HttpServlet {
     User user = dao.login(username, password.toCharArray());
 
     if (user != null) {
-      request.getSession().setAttribute("user", user);
-      response.sendRedirect("product");
+      Utils.setAuthUser(request, user);
+      response.sendRedirect("product?" + Utils.generateInfoMsg(Constants.MSG_LOGGED_IN));
     } else {
-      request.setAttribute("bean", new LoginPageBean(new Message(true, Constants.ERROR_INVALID_CREDENTIALS)));
-      request.getRequestDispatcher("WEB-INF/template.jsp").forward(request, response);
+      response.sendRedirect("login?" + Utils.generateErrorMsg(Constants.ERROR_INVALID_CREDENTIALS));
     }
   }
 
