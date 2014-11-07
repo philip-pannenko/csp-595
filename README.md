@@ -1,27 +1,40 @@
 csp-595
 =======
 
-## Philip - TODO
-* Add sort button dropdown
+## Todo - Baseline
+* Add sort (products)
+* Add search (products)
 * Add multiple flavors (categories)
-* Replace comparable ints/doubles/longs with BigDecimal
-* Add custom items per page
-* Add constants directory
-* Tie form page bean to servlet
-* Add ant script to update live / copy WEB-INF back to src.
-* Add synchronized to all DAO methods
+* Lock down account page to user (authorization)
+* Add ability to update, delete, user info
+* Add ability to create new user
+* Serialize users (not currently doing this, only serializing orders)
+* Clear Cart
+* Orders - Recent orders, show orders < 1 week old
+* Orders - Delivered, show orders where delivered date is past current date
+* Orders - Cancel Orders that are not delivered
+* Only logged in user may be allowed to submit order (like amazon)
+* Fix up inline css
+* Make many more items and flavors including images
+
+## Todo - New future Stuff
+* During checkout, have option for shipping speed
+* During checkout, show taxes
+* During checkout, have coupon
+* During checkout, show read only summary screen of cart items + shipping info + cost and everything else 
+* Homepage show random promotional discounted items
+* Homepage return user use cookies to recommend recently viewed things
+* Save wishlist
+* Wishlist can be public or private
 
 ## Examples Shopping Cart Pages
-* http://www.amazon.com/ref=nav_logo
-* http://www.bestbuy.com/site/index.jsp
+* http://www.amazon.com/
+* http://www.bestbuy.com/
 * http://www.newegg.com/
 
 ## Coffee Data Page
 Ok, coffee! Let's make a page like this
 * http://www.mistobox.com/mistobox-shop-s/1477.htm
-
-## Scrapping Tool
-* Import.IO
 
 ## How to build and deploy the project
 * Use Git to clone my repo into any one of your own directories on your computer. Here is the URL you use to perform the clone,(https://github.com/philippannenko/csp-595.git).
@@ -45,16 +58,10 @@ After a successful ant compile, the executable ouput appears here. You can effec
 A batch file that will format your code according to the checkstyle provided.
 
 ### reports
-Unit test and checkstyle reports will appear hear after a compile (for checkstyle) or junit tests.
+Unit test and checkstyle reports will appear hear after a compile (for checkstyle)
 
 ### src
 All of the java related source code for this project.
-
-### sql
-Future sql queries and ddls will be here.
-
-### test
-All of the unit test source code for this project.
 
 ### WebContent
 All of the jsp, css and libs for this project

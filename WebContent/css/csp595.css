@@ -370,6 +370,10 @@ tfoot {
   list-style: none;
 }
 
+.sidebar fieldset {
+  margin-bottom:0px;
+}
+
 .pagination ul li {
   margin-right: 10px;
 }
@@ -454,7 +458,7 @@ ul.tree ul {
 
 ul.tree li {
   margin: 0;
-  padding: 0 10px;
+  padding-left: 10px;
   line-height: 20px;
   background: url(../images/node.png) no-repeat;
   color: #333;

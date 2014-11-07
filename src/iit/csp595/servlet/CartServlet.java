@@ -113,29 +113,33 @@ public class CartServlet extends HttpServlet {
       Cart cart = Utils.getCart(request);
       User user = new User();
 
-      try {
-        BeanUtils.populate(user, request.getParameterMap());
-      } catch (IllegalAccessException | InvocationTargetException e) {
-        e.printStackTrace();
-      }
-
-      boolean isValid = Utils.validateUserForm(user);
-
-      if (!isValid) {
-        CheckoutPageBean checkoutBean = new CheckoutPageBean(user);
-        checkoutBean.setMessage(new Message(true, Constants.ERROR_VALIDATION_FAILED));
-        request.setAttribute("bean", checkoutBean);
-        request.getRequestDispatcher("/WEB-INF/template.jsp").forward(request, response);
+      if (cart.getProducts().isEmpty()) {
+        response.sendRedirect("cart?" + Utils.generateErrorMsg(Constants.ERROR_CART_IS_EMPTY));
       } else {
+        try {
+          BeanUtils.populate(user, request.getParameterMap());
+        } catch (IllegalAccessException | InvocationTargetException e) {
+          e.printStackTrace();
+        }
 
-        OrderDao dao = new OrderDao();
-        Calendar deliveryDate = Calendar.getInstance();
-        deliveryDate.add(Calendar.WEEK_OF_YEAR, 2);
+        boolean isValid = Utils.validateUserForm(user);
 
-        Order order = new Order(++Database.ORDER_SEQ_ID, "", Calendar.getInstance().getTime(), deliveryDate.getTime(), cart.getTotalCost(), cart.getProducts(), user);
-        dao.createOrder(order);
-        Utils.clearCart(request);
-        response.sendRedirect("account/order?id=" + order.getId() + "&" + Utils.generateInfoMsg(Constants.MSG_ORDER_COMPLETE));
+        if (!isValid) {
+          CheckoutPageBean checkoutBean = new CheckoutPageBean(user);
+          checkoutBean.setMessage(new Message(true, Constants.ERROR_VALIDATION_FAILED));
+          request.setAttribute("bean", checkoutBean);
+          request.getRequestDispatcher("/WEB-INF/template.jsp").forward(request, response);
+        } else {
+
+          OrderDao dao = new OrderDao();
+          Calendar deliveryDate = Calendar.getInstance();
+          deliveryDate.add(Calendar.WEEK_OF_YEAR, 2);
+
+          Order order = new Order(++Database.ORDER_SEQ_ID, "", Calendar.getInstance().getTime(), deliveryDate.getTime(), cart.getTotalCost(), cart.getProducts(), user);
+          dao.createOrder(order);
+          Utils.clearCart(request);
+          response.sendRedirect("account/order?id=" + order.getId() + "&" + Utils.generateInfoMsg(Constants.MSG_ORDER_COMPLETE));
+        }
       }
       break;
     default:
