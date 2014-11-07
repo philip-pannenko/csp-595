@@ -19,19 +19,25 @@
   <table class="table">
     <tbody>
       <tr>
-        <th scope="col">Id</th>
-        <th scope="col">Order Date</th>
-        <th scope="col">Items Purchased</th>
+        <th scope="col">Image</th>
+        <th scope="col">Name / Link</th>
         <th scope="col">Price</th>
+        <th scope="col">Count</th>
       </tr>
-      <c:forEach items="${requestScope.bean.item.products}" var="product">
+      <c:forEach items="${requestScope.bean.item.products}" var="productId">
+        <c:set var="product" value="${requestScope.bean.products[productId.key]}" />
         <tr>
           <td><img src="images/product/${product.id}.jpg"></td>
           <td><a href="product?id=${product.id}"> ${product.name}</a></td>
-          <td><p>${product.description}</p></td>
-          <td><p>${product.price}</p></td>
+          <td><fmt:formatNumber value="${product.price * productId.value}" type="currency" /></td>
+          <td>${productId.value}</td>
         </tr>
       </c:forEach>
+      <tr>
+        <th scope="col">Totals</th>
+        <th />
+        <th scope="col"><fmt:formatNumber value="${requestScope.bean.item.totalPrice}" type="currency" /></th>
+      </tr>
     </tbody>
   </table>
 

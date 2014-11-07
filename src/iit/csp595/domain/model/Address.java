@@ -6,13 +6,13 @@ public class Address implements Serializable {
 
   private String street;
   private String city;
-  private Integer zip;
+  private String zip;
   private String state;
 
   public Address() {
   }
 
-  public Address(String street, String city, Integer zip, String state) {
+  public Address(String street, String city, String zip, String state) {
     this.street = street;
     this.city = city;
     this.zip = zip;
@@ -35,11 +35,11 @@ public class Address implements Serializable {
     this.city = city;
   }
 
-  public Integer getZip() {
+  public String getZip() {
     return zip;
   }
 
-  public void setZip(Integer zip) {
+  public void setZip(String zip) {
     this.zip = zip;
   }
 
