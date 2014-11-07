@@ -135,7 +135,7 @@ public class CartServlet extends HttpServlet {
         Order order = new Order(++Database.ORDER_SEQ_ID, "", Calendar.getInstance().getTime(), deliveryDate.getTime(), cart.getTotalCost(), cart.getProducts(), user);
         dao.createOrder(order);
         Utils.clearCart(request);
-        response.sendRedirect("cart?a=?o=" + order.getId() + "&" + Utils.generateInfoMsg(Constants.MSG_ORDER_COMPLETE));
+        response.sendRedirect("account/order?id=" + order.getId() + "&" + Utils.generateInfoMsg(Constants.MSG_ORDER_COMPLETE));
       }
       break;
     default:

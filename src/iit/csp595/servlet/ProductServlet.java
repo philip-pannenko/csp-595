@@ -32,7 +32,7 @@ public class ProductServlet extends HttpServlet {
 
       int offset = nextPage - 1;
       int totalProductsCount = dao.getCount(categoryTypeId, sortTypeId);
-      List<Product> products = dao.getAll(offset * 2, 2, categoryTypeId, sortTypeId);
+      List<Product> products = dao.getAll(offset * Constants.ITEMS_PER_PAGE, Constants.ITEMS_PER_PAGE, categoryTypeId, sortTypeId);
       ProductListingBean bean = new ProductListingBean(products, null, totalProductsCount);
 
       bean.setCurrentPage(nextPage);

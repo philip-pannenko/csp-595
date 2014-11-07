@@ -13,8 +13,8 @@
     <jsp:include page="/WEB-INF/global/header.jsp" />
 
     <div class="row">
-      <jsp:include page="/WEB-INF/global/errors.jsp" />
       <jsp:include page="/WEB-INF/global/breadcrumb.jsp" />
+      <jsp:include page="/WEB-INF/global/errors.jsp" />
       <jsp:include page="${requestScope.bean.pageDirFileName}" />
     </div>
 

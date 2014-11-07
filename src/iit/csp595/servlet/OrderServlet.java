@@ -28,7 +28,7 @@ public class OrderServlet extends HttpServlet {
     if (orderId == -1) {
       int offset = nextPage - 1;
       int totalProductsCount = dao.getCount(sortTypeId);
-      List<Order> products = dao.getAll(offset * 2, 2, sortTypeId);
+      List<Order> products = dao.getAll(offset * Constants.ITEMS_PER_PAGE, Constants.ITEMS_PER_PAGE, sortTypeId);
       OrderListingBean bean = new OrderListingBean(products, totalProductsCount);
       bean.setCurrentPage(nextPage);
       request.setAttribute("bean", bean);

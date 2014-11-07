@@ -20,7 +20,7 @@ header {
   position: relative;
   padding: 20px 0;
   border-bottom: 1px solid #ddd;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   height: 60px;
 }
 
@@ -362,8 +362,8 @@ tfoot {
   text-decoration: none;
 }
 
-.sidebar h5 a, h4 a {
-  color: #333;
+.sidebar h5, h4 {
+  margin-bottom: 0;
 }
 
 .sidebar ol {
@@ -388,6 +388,10 @@ tfoot {
 
 .breadcrumb ul li a {
   text-decoration: underline;
+}
+
+.breadcrumb {
+  margin-bottom: 10px;
 }
 
 .error ul {
@@ -424,7 +428,6 @@ a:active {
   color: #105CB6;
 }
 
-
 button {
   background: none !important;
   border: none;
@@ -436,6 +439,33 @@ button {
 button:hover {
   text-decoration: underline;
   color: #105CB6;
+}
+
+ul.tree, ul.tree ul {
+  list-style-type: none;
+  background: url(../images/vline.png) repeat-y;
+  margin: 0;
+  padding: 0;
+}
+
+ul.tree ul {
+  margin-left: 8px;
+}
+
+ul.tree li {
+  margin: 0;
+  padding: 0 10px;
+  line-height: 20px;
+  background: url(../images/node.png) no-repeat;
+  color: #333;
+}
+
+ul.tree li a {
+  color: #333;
+}
+
+ul.tree li:last-child {
+  background: #f9f9f9 url(../images/lastnode.png) no-repeat;
 }
 
 /* Print */

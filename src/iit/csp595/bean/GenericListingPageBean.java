@@ -1,5 +1,6 @@
 package iit.csp595.bean;
 
+import iit.csp595.Constants;
 import iit.csp595.domain.model.type.CategoryType;
 
 import java.io.Serializable;
@@ -16,13 +17,12 @@ public abstract class GenericListingPageBean<T> extends GenericPageBean implemen
   private int currentPage = 1;
   private long[] currentCategories = {-1L};
   private int totalPages = 0;
-  private int itemsPerPage = 2;
 
   protected GenericListingPageBean(List<T> items, List<CategoryType> categoryTypes, int totalItems, String pageFileName) {
     super(pageFileName);
     this.items = items;
     this.categoryTypes = categoryTypes;
-    this.totalPages = (int) Math.ceil(totalItems / itemsPerPage);
+    this.totalPages = (int) Math.ceil((double)totalItems / Constants.ITEMS_PER_PAGE);
   }
 
   public String getParsedCurrentCategories() {
@@ -51,14 +51,6 @@ public abstract class GenericListingPageBean<T> extends GenericPageBean implemen
 
   public void setItems(List<T> items) {
     this.items = items;
-  }
-
-  public int getItemsPerPage() {
-    return itemsPerPage;
-  }
-
-  public void setItemsPerPage(int itemsPerPage) {
-    this.itemsPerPage = itemsPerPage;
   }
 
   public int getCurrentPage() {
