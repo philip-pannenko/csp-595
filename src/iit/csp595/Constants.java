@@ -26,5 +26,6 @@ public class Constants {
 
   public static final String IO_FILEPATH = "c:/csp-595/";
   public static final String IO_FILEPATH_ORDERS = IO_FILEPATH + "orders/";
+  public static final String IO_FILEPATH_USERS = IO_FILEPATH + "users/";
  
 }

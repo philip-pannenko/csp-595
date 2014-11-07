@@ -6,6 +6,7 @@ import iit.csp595.Utils;
 import iit.csp595.bean.CartIndividualBean;
 import iit.csp595.bean.CheckoutPageBean;
 import iit.csp595.bean.Message;
+import iit.csp595.domain.Database;
 import iit.csp595.domain.dao.OrderDao;
 import iit.csp595.domain.model.Cart;
 import iit.csp595.domain.model.Order;
@@ -131,7 +132,7 @@ public class CartServlet extends HttpServlet {
         Calendar deliveryDate = Calendar.getInstance();
         deliveryDate.add(Calendar.WEEK_OF_YEAR, 2);
 
-        Order order = new Order(-1L, "", Calendar.getInstance().getTime(), deliveryDate.getTime(), cart.getTotalCost(), cart.getProducts(), user);
+        Order order = new Order(++Database.ORDER_SEQ_ID, "", Calendar.getInstance().getTime(), deliveryDate.getTime(), cart.getTotalCost(), cart.getProducts(), user);
         dao.createOrder(order);
         Utils.clearCart(request);
         response.sendRedirect("cart?a=?o=" + order.getId() + "&" + Utils.generateInfoMsg(Constants.MSG_ORDER_COMPLETE));

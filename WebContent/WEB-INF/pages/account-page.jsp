@@ -6,7 +6,7 @@
     <ol>
 
       <li><a href="account/order">Recent Orders</a></li>
-      <li><a href="account/settings">Account Settings</a></li>
+      <li><a href="account/setting">Account Settings</a></li>
 
     </ol>
   </nav>
