@@ -2,14 +2,6 @@
 <project name="csp-595" default="deploy" basedir="../">
   <property environment="env" />
 
-  <target name="clean-deploy" depends="clean, deploy" description="Combination of clean and deploy tasks."/>
-
-  <path id="classpath-ant">
-    <fileset dir="ant\lib\">
-      <include name="*.jar" />
-    </fileset>
-  </path>
-
   <path id="classpath">
     <fileset dir="${env.TOMCAT_HOME}\lib\">
       <include name="*.jar" />
@@ -19,53 +11,12 @@
     </fileset>
   </path>
 
-  <path id="classpath-tomcat">
-    <fileset dir="${env.TOMCAT_HOME}/bin/">
-      <include name="tomcat-juli.jar" />
-      <include name="bootstrap.jar" />
-    </fileset>
-  </path>
-
-  <path id="classpath-test-cases">
-    <path refid="classpath" />
-
-    <fileset dir="test\lib">
-      <include name="*.jar" />
-    </fileset>
-
-    <pathelement path="bin\test" />
-    <pathelement path="bin\csp595\WEB-INF\classes\" />
-  </path>
-
-  <taskdef resource="checkstyletask.properties" classpathref="classpath-ant" />
-
-  <target name="checkstyle">
-    <mkdir dir="reports\checkstyle" />
-    <checkstyle config="ant/sun_checks.xml" failureProperty="checkstyle.failure" failOnViolation="false">
-      <fileset dir="src/" includes="**/*.java" />
-      <fileset dir="test/src/" includes="**/*.java" />
-      <fileset dir="WebContent/WEB-INF/" includes="**/*.jsp" />
-      <formatter type="plain" toFile="reports\checkstyle\report.txt" />
-      <fileset dir="WebContent/" includes="index.jsp" />
-    </checkstyle>
-
-  </target>
-
   <target name="clean" description="Clean your project from any previous builds.">
     <delete dir="bin" />
-    <delete dir="reports" />
-  </target>
-
-  <target name="checkstyle-status" if="checkstyle.failure" depends="checkstyle" description="See if your code is following Java Sun convention.">
-    <fail>
-      Whooa!
-      Checkstyle violation, check reports ${basedir}/reports/checkstyle/report.txt
-      Run the formatter or make the changes manually.
-      </fail>
+    <delete dir="${env.TOMCAT_HOME}/webapps/${ant.project.name}" />
   </target>
 
   <target name="deploy" depends="compile" description="Compile and push the code to tomcat directory.">
-    <delete dir="${env.TOMCAT_HOME}/webapps/${ant.project.name}" />
     <copy todir="${env.TOMCAT_HOME}/webapps/${ant.project.name}">
       <fileset dir="bin/${ant.project.name}">
         <include name="**/*.*" />
@@ -114,37 +65,6 @@
         <include name="**/*.*" />
       </fileset>
     </copy>
-
-  </target>
-
-  <target name="unit-test" depends="clean, compile" description="Compile and execute jUnit tests.">
-
-    <mkdir dir="reports\test" />
-    <mkdir dir="bin\test" />
-
-    <javac includeantruntime="false" srcdir="test\src" destdir="bin/test">
-      <classpath refid="classpath-test-cases" />
-    </javac>
-
-    <junit printsummary="yes" showoutput="true" haltonfailure="yes">
-      <classpath refid="classpath-test-cases" />
-
-      <formatter type="plain" />
-
-      <batchtest fork="yes" todir="reports\test">
-        <fileset dir="test\src">
-          <include name="**/*Test*.java" />
-        </fileset>
-      </batchtest>
-
-    </junit>
-  </target>
-
-  <target name="tomcat-start" description="Start tomcat from Ant.">
-    <java classname="org.apache.catalina.startup.Bootstrap" fork="true">
-      <classpath refid="classpath-tomcat" />
-      <jvmarg value="-Dcatalina.home=${env.TOMCAT_HOME}" />
-    </java>
   </target>
 
 </project>
