@@ -1,6 +1,7 @@
 package iit.csp595.domain.dao;
 
 import iit.csp595.SortType;
+import iit.csp595.Utils;
 import iit.csp595.domain.Database;
 import iit.csp595.domain.model.Order;
 
@@ -63,6 +64,21 @@ public class OrderDao {
 
   public int getCount(int sortTypeId) {
     return getSortedOrders(sortTypeId).size();
+  }
+  
+  public void createOrder(Order order) {
+    Database.ORDERS.put(order.getId(), order);
+    if (!Database.USER_ORDERS.containsKey(order.getUser().getId())) {
+      Database.USER_ORDERS.put(order.getUser().getId(), new ArrayList<Order>());
+    }
+    Database.USER_ORDERS.get(order.getUser().getId()).add(order);
+    Utils.writeOrderToFile(order);
+  }
+
+  public void cancelOrder(Long id) {
+    Order order = Database.ORDERS.get(id);
+    order.setActive(false);
+    Utils.writeOrderToFile(order);
   }
 
 }

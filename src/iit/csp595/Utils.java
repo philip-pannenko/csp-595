@@ -10,12 +10,16 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import org.apache.commons.beanutils.BeanUtils;
 
 public final class Utils {
 
@@ -163,6 +167,46 @@ public final class Utils {
 
   public static String generateInfoMsg(String msg, Object val) throws UnsupportedEncodingException {
     return "info=" + URLEncoder.encode(msg + ':' + val.toString(), "UTF-8");
+  }
+
+  public static boolean validateUserForm(User user) {
+
+    if (user == null) {
+      return false;
+    }
+
+    try {
+      Map<String, String> result = BeanUtils.describe(user);
+
+      if (result.get("lname") == null || result.get("lname").trim().isEmpty() || result.get("fname") == null || result.get("fname").trim().isEmpty()) {
+        return false;
+      }
+
+      result = BeanUtils.describe(user.getBillingAddress());
+      for (String key : result.keySet()) {
+        if (result.get(key) == null || result.get(key).trim().isEmpty()) {
+          return false;
+        }
+      }
+
+      result = BeanUtils.describe(user.getShippingAddress());
+      for (String key : result.keySet()) {
+        if (result.get(key) == null || result.get(key).trim().isEmpty()) {
+          return false;
+        }
+      }
+
+      result = BeanUtils.describe(user.getPaymentMethod());
+      for (String key : result.keySet()) {
+        if (result.get(key) == null || result.get(key).trim().isEmpty()) {
+          return false;
+        }
+      }
+    } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+      e.printStackTrace();
+      return false;
+    }
+    return true;
   }
 
 }

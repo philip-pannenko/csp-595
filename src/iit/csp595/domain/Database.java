@@ -1,6 +1,5 @@
 package iit.csp595.domain;
 
-//import homework.Utils;
 import iit.csp595.Utils;
 import iit.csp595.domain.model.Accessory;
 import iit.csp595.domain.model.Address;
@@ -12,13 +11,10 @@ import iit.csp595.domain.model.Product;
 import iit.csp595.domain.model.User;
 import iit.csp595.domain.model.type.CategoryType;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
@@ -32,6 +28,7 @@ public final class Database {
   public static final SortedMap<Long, Accessory> ACCESSORIES = new TreeMap<Long, Accessory>();
   public static final SortedMap<Long, List<Product>> CATEGORY_PRODUCT = new TreeMap<Long, List<Product>>();
   public static final SortedMap<String, User> USERS_USERNAME = new TreeMap<String, User>();
+  public static final SortedMap<Long, List<Order>> USER_ORDERS = initUserOrders();
 
   private static Category dd, sb, filter, grinder, african, local, blend, decaf;
 
@@ -83,24 +80,24 @@ public final class Database {
 
     resetSeq();
     USERS.clear();
-    
+
     Address shippingAddress;
     Address billingAddress;
     CreditCard paymentMethod;
-    
-    shippingAddress = new Address("1st Main St.","Mystic",06355,"CT");
-    billingAddress = new Address("1st Main St.","Mystic",06355,"CT");
-    paymentMethod = new CreditCard("1234123412341234","Philip Pannenko","01/20","VISA");
+
+    shippingAddress = new Address("1st Main St.", "Mystic", 06355, "CT");
+    billingAddress = new Address("1st Main St.", "Mystic", 06355, "CT");
+    paymentMethod = new CreditCard("1234123412341234", "Philip Pannenko", "01/20", "VISA");
     USERS.put(nextSeq(), new User(getSeq(), "Philip", "Pannenko", "ppannenk", "password".toCharArray(), billingAddress, shippingAddress, paymentMethod));
-    
-    shippingAddress = new Address("1st Main St.","Chicago",60616,"IL");
-    billingAddress = new Address("1st Main St.","Chicago",60616,"IL");
-    paymentMethod = new CreditCard("1234123412341234","Zaharadeen Garuba","01/20","VISA");
+
+    shippingAddress = new Address("1st Main St.", "Chicago", 60616, "IL");
+    billingAddress = new Address("1st Main St.", "Chicago", 60616, "IL");
+    paymentMethod = new CreditCard("1234123412341234", "Zaharadeen Garuba", "01/20", "VISA");
     USERS.put(nextSeq(), new User(getSeq(), "Zaharadeen", "Garuba", "zgaruba", "password".toCharArray(), billingAddress, shippingAddress, paymentMethod));
-    
-    shippingAddress = new Address("1st Main St.","Chicago",60616,"IL");
-    billingAddress = new Address("1st Main St.","Chicago",60616,"IL");
-    paymentMethod = new CreditCard("1234123412341234","James Murnane","01/20","VISA");
+
+    shippingAddress = new Address("1st Main St.", "Chicago", 60616, "IL");
+    billingAddress = new Address("1st Main St.", "Chicago", 60616, "IL");
+    paymentMethod = new CreditCard("1234123412341234", "James Murnane", "01/20", "VISA");
     USERS.put(nextSeq(), new User(getSeq(), "James", "Murnane", "jmurnane", "password".toCharArray(), billingAddress, shippingAddress, paymentMethod));
 
     for (User u : USERS.values()) {
@@ -178,11 +175,11 @@ public final class Database {
       Map<Long, Order> result = new TreeMap<Long, Order>();
       resetSeq();
       result.clear();
-      result.put(nextSeq(), new Order(getSeq(), "Some type of purchase " + getSeq(), Calendar.getInstance().getTime(), new BigDecimal(4.10), getRandomListOfProducts()));
-      result.put(nextSeq(), new Order(getSeq(), "Some type of purchase " + getSeq(), Calendar.getInstance().getTime(), new BigDecimal(44.12), getRandomListOfProducts()));
-      result.put(nextSeq(), new Order(getSeq(), "Some type of purchase " + getSeq(), Calendar.getInstance().getTime(), new BigDecimal(67.59), getRandomListOfProducts()));
-      result.put(nextSeq(), new Order(getSeq(), "Some type of purchase " + getSeq(), Calendar.getInstance().getTime(), new BigDecimal(61.32), getRandomListOfProducts()));
-      result.put(nextSeq(), new Order(getSeq(), "Some type of purchase " + getSeq(), Calendar.getInstance().getTime(), new BigDecimal(178.76), getRandomListOfProducts()));
+      // result.put(nextSeq(), new Order(getSeq(), "Some type of purchase " + getSeq(), Calendar.getInstance().getTime(), new BigDecimal(4.10), getRandomListOfProducts()));
+      // result.put(nextSeq(), new Order(getSeq(), "Some type of purchase " + getSeq(), Calendar.getInstance().getTime(), new BigDecimal(44.12), getRandomListOfProducts()));
+      // result.put(nextSeq(), new Order(getSeq(), "Some type of purchase " + getSeq(), Calendar.getInstance().getTime(), new BigDecimal(67.59), getRandomListOfProducts()));
+      // result.put(nextSeq(), new Order(getSeq(), "Some type of purchase " + getSeq(), Calendar.getInstance().getTime(), new BigDecimal(61.32), getRandomListOfProducts()));
+      // result.put(nextSeq(), new Order(getSeq(), "Some type of purchase " + getSeq(), Calendar.getInstance().getTime(), new BigDecimal(178.76), getRandomListOfProducts()));
       return result;
     }
   }
@@ -199,15 +196,33 @@ public final class Database {
     return dbId;
   }
 
-  private static List<Product> getRandomListOfProducts() {
-    Random r = new Random();
-    int i = r.nextInt(PRODUCTS.size());
-    List<Product> result = new ArrayList<Product>(i);
-    for (int j = 0; j < i; j++) {
-      long id = r.nextInt(PRODUCTS.size());
-      result.add(PRODUCTS.get(id));
+  // private static List<Product> getRandomListOfProducts() {
+  // Random r = new Random();
+  // int i = r.nextInt(PRODUCTS.size());
+  // List<Product> result = new ArrayList<Product>(i);
+  // for (int j = 0; j < i; j++) {
+  // long id = r.nextInt(PRODUCTS.size());
+  // result.add(PRODUCTS.get(id));
+  // }
+  // return result;
+  // }
+
+  private static TreeMap<Long, List<Order>> initUserOrders() {
+    if (ORDERS != null && !ORDERS.isEmpty()) {
+      System.out.println("Loading User-Order");
+      TreeMap<Long, List<Order>> result = new TreeMap<Long, List<Order>>();
+      for (Order order : ORDERS.values()) {
+        Long id = order.getUser().getId();
+        if (!result.containsKey(id)) {
+          result.put(id, new ArrayList<Order>());
+        }
+        result.get(id).add(order);
+      }
+      return result;
+    } else {
+      System.out.println("Initializing User-Order");
+      return new TreeMap<Long, List<Order>>();
     }
-    return result;
   }
 
 }

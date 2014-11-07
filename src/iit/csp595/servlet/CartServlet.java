@@ -4,24 +4,52 @@ import iit.csp595.Actions;
 import iit.csp595.Constants;
 import iit.csp595.Utils;
 import iit.csp595.bean.CartIndividualBean;
+import iit.csp595.bean.CheckoutPageBean;
+import iit.csp595.bean.Message;
+import iit.csp595.domain.dao.OrderDao;
 import iit.csp595.domain.model.Cart;
+import iit.csp595.domain.model.Order;
+import iit.csp595.domain.model.User;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Calendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.beanutils.BeanUtils;
+
 public class CartServlet extends HttpServlet {
 
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     int action = Utils.toInt(request.getParameter("a"));
+
     switch (Actions.getAction(action)) {
     case CONFIRM_ORDER:
-      Utils.setAuthUser(request, null);
-      response.sendRedirect("?" + Utils.generateInfoMsg(Constants.MSG_LOGGED_OUT));
+      User user = new User();
+
+      String useFormData = request.getParameter("useFormData");
+
+      // If this is a first attempt, we will be grabbing values from the session
+      // on a revalidation we grab values from the form.
+      if (Boolean.valueOf(useFormData)) {
+        try {
+          BeanUtils.populate(user, request.getParameterMap());
+        } catch (IllegalAccessException | InvocationTargetException e) {
+          e.printStackTrace();
+        }
+      } else {
+        user = Utils.getAuthUser(request);
+      }
+
+      CheckoutPageBean checkoutBean = new CheckoutPageBean(user);
+      request.setAttribute("bean", checkoutBean);
+      request.getRequestDispatcher("/WEB-INF/template.jsp").forward(request, response);
+
       break;
     default:
       Cart cart = Utils.getCart(request);
@@ -81,71 +109,34 @@ public class CartServlet extends HttpServlet {
 
       break;
     case SUBMIT_ORDER:
-      // Cart cart = Utils.getCart(request);
-      // User user = Utils.getAuthUser(request);
-      //
-      // String name = request.getParameter("name");
-      // String street = request.getParameter("street");
-      // String city = request.getParameter("city");
-      // String state = request.getParameter("state");
-      // String zip = request.getParameter("zip");
-      // String creditCardExpirationDate = request.getParameter("creditCardExpirationDate");
-      // String creditCardNumber = request.getParameter("creditCardNumber");
-      //
-      // if (Utils.isNullOrEmpty(name, street, city, zip, creditCardExpirationDate, creditCardNumber)) {
-      // response.sendRedirect("cart?" + Constants.ERROR_MISSING_FORM_DATA);
-      // } else if (cart.getProducts().isEmpty()) {
-      // response.sendRedirect("cart?" + Constants.ERROR_CART_EMPTY);
-      // } else if (user == null) {
-      // response.sendRedirect("cart?" + Constants.ERROR_NOT_LOGGED_IN);
-      // } else {
-      // OrderDao dao = new OrderDao();
-      //
-      // Calendar deliveryDate = Calendar.getInstance();
-      // deliveryDate.add(Calendar.WEEK_OF_YEAR, 2);
-      //
-      // Order order = new Order(Database.ORDER_SEQ_ID++, cart.getProducts(), Calendar.getInstance().getTime(), deliveryDate.getTime(), user, name, street, city, state, zip,
-      // creditCardExpirationDate, creditCardNumber);
-      // dao.createOrder(order);
-      // Utils.clearCart(request);
-      // response.sendRedirect("order?o=" + order.getId() + "&" + Constants.MSG_ORDER_COMPLETE);
-      // }
+      Cart cart = Utils.getCart(request);
+      User user = new User();
+
+      try {
+        BeanUtils.populate(user, request.getParameterMap());
+      } catch (IllegalAccessException | InvocationTargetException e) {
+        e.printStackTrace();
+      }
+
+      boolean isValid = Utils.validateUserForm(user);
+
+      if (!isValid) {
+        CheckoutPageBean checkoutBean = new CheckoutPageBean(user);
+        checkoutBean.setMessage(new Message(true, Constants.ERROR_VALIDATION_FAILED));
+        request.setAttribute("bean", checkoutBean);
+        request.getRequestDispatcher("/WEB-INF/template.jsp").forward(request, response);
+      } else {
+
+        OrderDao dao = new OrderDao();
+        Calendar deliveryDate = Calendar.getInstance();
+        deliveryDate.add(Calendar.WEEK_OF_YEAR, 2);
+
+        Order order = new Order(-1L, "", Calendar.getInstance().getTime(), deliveryDate.getTime(), cart.getTotalCost(), cart.getProducts(), user);
+        dao.createOrder(order);
+        Utils.clearCart(request);
+        response.sendRedirect("cart?a=?o=" + order.getId() + "&" + Utils.generateInfoMsg(Constants.MSG_ORDER_COMPLETE));
+      }
       break;
-
-    case CONFIRM_ORDER:
-
-      // Cart cart1 = Utils.getCart(request);
-      // User user1 = Utils.getAuthUser(request);
-      //
-      // if (cart1.getProducts().isEmpty()) {
-      // response.sendRedirect("cart?" + Constants.ERROR_CART_EMPTY);
-      // } else if (user1 == null) {
-      // response.sendRedirect("cart?" + Constants.ERROR_NOT_LOGGED_IN);
-      // }
-      //
-      // response.setContentType("text/html");
-      //
-      // PrintWriter out = response.getWriter();
-      //
-      // out.println(Utils.getHeader());
-      // out.println(Utils.getNav(request));
-      // out.println(Utils.openAndCreateForm("cart?a=8"));
-      // out.println(Utils.opeanAndCreateTableHeader());
-      // out.println(Utils.createTableData("Name", "<input name='name'/>"));
-      // out.println(Utils.createTableData("Street", "<input name='street'/>"));
-      // out.println(Utils.createTableData("City", "<input name='city'/>"));
-      // out.println(Utils.createTableData("State", "<input name='state'/>"));
-      // out.println(Utils.createTableData("Zip", "<input name='zip'/>"));
-      // out.println(Utils.createTableData("Credit Card Number", "<input name='creditCardNumber'/>"));
-      // out.println(Utils.createTableData("Credit Card Expiration Date", "<input name='creditCardExpirationDate'/>"));
-      //
-      // out.println(Utils.createTableData("<input type='submit' value='Submit Order'/>"));
-      // out.println(Utils.closeTable());
-      // out.println(Utils.closeForm());
-      // out.println(Utils.getFooter());
-      //
-      break;
-
     default:
       response.sendRedirect("cart?" + Utils.generateErrorMsg(Constants.ERROR_INVALID_ACTION));
       break;

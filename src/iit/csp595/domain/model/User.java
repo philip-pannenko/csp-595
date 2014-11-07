@@ -10,9 +10,9 @@ public class User implements Serializable {
   private String username;
   private char[] password;
 
-  private Address billingAddress;
-  private Address shippingAddress;
-  private CreditCard paymentMethod;
+  private Address billingAddress = new Address();
+  private Address shippingAddress = new Address();
+  private CreditCard paymentMethod = new CreditCard();
 
   public User() {
   }

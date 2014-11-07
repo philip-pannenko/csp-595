@@ -1,27 +1,32 @@
 package iit.csp595.domain.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Order implements Serializable {
 
   private Long id;
   private String description;
   private Date orderDate;
-  private BigDecimal totalPrice;
-  private List<Product> products;
+  private Double totalPrice;
+  private Map<Long, Integer> products = new HashMap<Long, Integer>();
+  private User user;
+  private Boolean active = true;
+  private Date deliveryDate;
 
   public Order() {
   }
 
-  public Order(Long id, String description, Date orderDate, BigDecimal totalPrice, List<Product> products) {
+  public Order(Long id, String description, Date orderDate, Date deliveryDate, Double totalPrice, Map<Long, Integer> products, User user) {
     this.id = id;
     this.description = description;
     this.orderDate = orderDate;
+    this.deliveryDate = deliveryDate;
     this.totalPrice = totalPrice;
     this.products = products;
+    this.user = user;
   }
 
   public Long getId() {
@@ -48,20 +53,44 @@ public class Order implements Serializable {
     this.orderDate = orderDate;
   }
 
-  public BigDecimal getTotalPrice() {
+  public Double getTotalPrice() {
     return totalPrice;
   }
 
-  public void setTotalPrice(BigDecimal totalPrice) {
+  public void setTotalPrice(Double totalPrice) {
     this.totalPrice = totalPrice;
   }
 
-  public List<Product> getProducts() {
+  public Map<Long, Integer> getProducts() {
     return products;
   }
 
-  public void setProducts(List<Product> products) {
+  public void setProducts(Map<Long, Integer> products) {
     this.products = products;
+  }
+
+  public User getUser() {
+    return user;
+  }
+
+  public void setUser(User user) {
+    this.user = user;
+  }
+
+  public Boolean getActive() {
+    return active;
+  }
+
+  public void setActive(Boolean active) {
+    this.active = active;
+  }
+
+  public Date getDeliveryDate() {
+    return deliveryDate;
+  }
+
+  public void setDeliveryDate(Date deliveryDate) {
+    this.deliveryDate = deliveryDate;
   }
 
 }

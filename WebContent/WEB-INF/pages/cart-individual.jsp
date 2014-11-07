@@ -45,10 +45,12 @@
   <div>
     <h4>Cart Actions</h4>
     <ol class="list-unstyled">
-      <li><a href="#">Checkout</a></li>
+      <li><a href="cart?a=9">Checkout</a></li>
       <li><a href="#">Clear Cart</a></li>
     </ol>
   </div>
 </div>
+
+
 
 
