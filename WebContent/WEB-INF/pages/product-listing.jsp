@@ -65,8 +65,8 @@
   <table class="table">
     <tbody>
       <tr>
-        <th scope="col">Image</th>
-        <th scope="col">Name / Link</th>
+        <th scope="col"> </th>
+        <th scope="col">Item</th>
         <th class="col_descrip_list" scope="col">Description</th>
         <th class="col_price_list" scope="col">Price</th>
       </tr>
