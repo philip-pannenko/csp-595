@@ -8,11 +8,11 @@
   <table class="table">
     <tbody>
       <tr>
-        <th scope="col">Image</th>
-        <th scope="col">Name / Link</th>
+        <th scope="col"> </th>
+        <th scope="col">Item</th>
         <th scope="col">Price</th>
         <th scope="col">Count</th>
-        <th scope="col">Action</th>
+        <th scope="col"> </th>
       </tr>
       <c:forEach items="${requestScope.bean.item.products}" var="productId">
         <c:set var="product" value="${requestScope.bean.products[productId.key]}" />
