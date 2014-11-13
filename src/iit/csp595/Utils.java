@@ -213,16 +213,8 @@ public final class Utils {
     return "error=" + URLEncoder.encode(msg, "UTF-8");
   }
 
-  public static String generateErrorMsg(String msg, Object val) throws UnsupportedEncodingException {
-    return "error=" + URLEncoder.encode(msg + ':' + val.toString(), "UTF-8");
-  }
-
   public static String generateInfoMsg(String msg) throws UnsupportedEncodingException {
     return "info=" + URLEncoder.encode(msg, "UTF-8");
-  }
-
-  public static String generateInfoMsg(String msg, Object val) throws UnsupportedEncodingException {
-    return "info=" + URLEncoder.encode(msg + ':' + val.toString(), "UTF-8");
   }
 
   public static boolean validateUserForm(User user) {

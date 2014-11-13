@@ -45,7 +45,7 @@ public class OrderServlet extends HttpServlet {
     } else {
       Order p = dao.get(orderId);
       if (p == null) {
-        response.sendRedirect("order?" + Utils.generateErrorMsg(Constants.ERROR_ORDER_NOT_FOUND, request.getParameter("id")));
+        response.sendRedirect("order?" + Utils.generateErrorMsg(Constants.ERROR_ORDER_NOT_FOUND));
       } else {
         if(Utils.isUsersEqual(p.getUser(), user)) { 
           request.setAttribute("bean", new OrderIndividualBean(p));
@@ -68,7 +68,7 @@ public class OrderServlet extends HttpServlet {
         response.sendRedirect("order?" + Utils.generateErrorMsg(Constants.ERROR_ORDER_NOT_FOUND));
       } else {
         if(!Utils.isOrderCancelable(order.getDeliveryDate())) {
-          response.sendRedirect("order?" + Utils.generateErrorMsg(Constants.ERROR_ORDER_CANNOT_BE_CANCELLED, request.getParameter("id")));
+          response.sendRedirect("order?" + Utils.generateErrorMsg(Constants.ERROR_ORDER_CANNOT_BE_CANCELLED));
         } else {
           dao.cancelOrder(orderId);
           response.sendRedirect("order?" + Utils.generateInfoMsg(Constants.MSG_ORDER_CANCELLED));

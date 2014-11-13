@@ -52,7 +52,7 @@ public class CartServlet extends HttpServlet {
         }
         response.sendRedirect("cart?" + Utils.generateInfoMsg(Constants.MSG_CART_PRODUCT_DECREMENTED));
       } else {
-        response.sendRedirect("cart?" + Utils.generateErrorMsg(Constants.ERROR_PRODUCT_NOT_FOUND, request.getParameter("p")));
+        response.sendRedirect("cart?" + Utils.generateErrorMsg(Constants.ERROR_PRODUCT_NOT_FOUND));
       }
       break;
     case INCREASE_COUNT:
@@ -66,7 +66,7 @@ public class CartServlet extends HttpServlet {
         }
         response.sendRedirect("cart?" + Utils.generateInfoMsg(Constants.MSG_CART_PRODUCT_INCREMENTED));
       } else {
-        response.sendRedirect("cart?" + Utils.generateErrorMsg(Constants.ERROR_PRODUCT_NOT_FOUND, request.getParameter("p")));
+        response.sendRedirect("cart?" + Utils.generateErrorMsg(Constants.ERROR_PRODUCT_NOT_FOUND));
       }
       break;
     case REMOVE_FROM_CART:
@@ -77,7 +77,7 @@ public class CartServlet extends HttpServlet {
         }
         response.sendRedirect("cart?" + Utils.generateInfoMsg(Constants.MSG_PRODUCT_REMOVED_FROM_CART));
       } else {
-        response.sendRedirect("cart?" + Utils.generateErrorMsg(Constants.ERROR_PRODUCT_NOT_FOUND, request.getParameter("p")));
+        response.sendRedirect("cart?" + Utils.generateErrorMsg(Constants.ERROR_PRODUCT_NOT_FOUND));
       }
 
       break;

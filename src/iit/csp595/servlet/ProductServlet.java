@@ -45,7 +45,7 @@ public class ProductServlet extends HttpServlet {
 
       Product p = dao.get(productId);
       if (p == null) {
-        response.sendRedirect("product?" + Utils.generateErrorMsg(Constants.ERROR_ORDER_NOT_FOUND, request.getParameter("id")));
+        response.sendRedirect("product?" + Utils.generateErrorMsg(Constants.ERROR_ORDER_NOT_FOUND));
       } else {
         request.setAttribute("bean", new ProductIndividualBean(p));
         request.getRequestDispatcher("/WEB-INF/template.jsp").forward(request, response);
@@ -68,7 +68,7 @@ public class ProductServlet extends HttpServlet {
         }
         response.sendRedirect("cart?" + Utils.generateInfoMsg(Constants.MSG_PRODUCT_ADDED_TO_CART));
       } else {
-        response.sendRedirect("product?" + Utils.generateErrorMsg(Constants.ERROR_PRODUCT_NOT_FOUND, request.getParameter("p")));
+        response.sendRedirect("product?" + Utils.generateErrorMsg(Constants.ERROR_PRODUCT_NOT_FOUND));
       }
       break;
     default:
