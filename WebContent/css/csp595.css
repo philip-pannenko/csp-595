@@ -230,6 +230,16 @@ img.center {
   display: block;
 }
 
+img.group {
+   height: 75px;
+   width: auto;
+}
+
+img.individual {
+   height: 125px;
+   width: auto;
+}
+
 .text-left {
   text-align: left;
 }

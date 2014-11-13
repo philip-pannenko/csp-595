@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <header>
-  <a class="logo" href="">CSP-595 Java Bean Shop</a>
+  <img src='images/layout/store_header.jpg' />
   <nav class="float-right">
     <ul>
       <li><a href="">Products</a></li>

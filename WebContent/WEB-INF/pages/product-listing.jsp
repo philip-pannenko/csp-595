@@ -72,7 +72,7 @@
       </tr>
       <c:forEach items="${requestScope.bean.items}" var="item">
         <tr>
-          <td><img src="images/product/${item.id}.jpg"></td>
+          <td><img class="group" src="images/product/${item.id}.jpg"></td>
           <td><a href="product?id=${item.id}"> ${item.name}</a></td>
           <td><p>${fn:substring(item.description, 0, 500)}...</p></td>
           <td><p>${item.price}</p></td>

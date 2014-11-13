@@ -2,7 +2,7 @@
 
 <div class="col-10">
 
-  <img src="images/product/${requestScope.bean.item.id}.jpg">
+  <img class="individual" src="images/product/${requestScope.bean.item.id}.jpg">
   <h3>${requestScope.bean.item.name}</h3>
   <p>${requestScope.bean.item.description}</p>
   <p>Price - ${requestScope.bean.item.price}</p>

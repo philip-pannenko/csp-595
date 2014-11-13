@@ -17,7 +17,7 @@
       <c:forEach items="${requestScope.bean.item.products}" var="productId">
         <c:set var="product" value="${requestScope.bean.products[productId.key]}" />
         <tr>
-          <td><img src="images/product/${product.id}.jpg"></td>
+          <td><img class="group" src="images/product/${product.id}.jpg"></td>
           <td><a href="product?id=${product.id}"> ${product.name}</a></td>
           <td><fmt:formatNumber value="${product.price * productId.value}" type="currency" /></td>
           <td>${productId.value}</td>
