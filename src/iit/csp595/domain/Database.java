@@ -48,11 +48,12 @@ public final class Database {
 
     long productSeqId = -1l;
 
-    result.put(++productSeqId, new Accessory(productSeqId, "Cuisinart Grind Central Coffee Grinder", "The Grind Central™ Coffee Grinder features a brushed stainless steel housing, and removable stainless bowl and blade assembly. With a 90-gram capacity and Measurement Markings, you can efficiently measure and grind the exact quantity of coffee beans you need - for up to 18 cups at once!", 30.00D, grinder));
+    result.put(++productSeqId, new Accessory(productSeqId, "Cuisinart Grind Central Coffee Grinder", "The Grind Central Coffee Grinder features a brushed stainless steel housing, and removable stainless bowl and blade assembly. With a 90-gram capacity and Measurement Markings, you can efficiently measure and grind the exact quantity of coffee beans you need - for up to 18 cups at once!", 30.00D, grinder));
 
-    result.put(++productSeqId, new Accessory(productSeqId, "Able Brewing: Kone Coffee Filter", "some desc", 60.00D, filter));
+    result.put(++productSeqId, new Accessory(productSeqId, "Able Brewing: Kone Coffee Filter", "Stainless steel reusable filter that allows for more oils and a fuller bodied cup of coffee than paper. Designated to create the best coffee possible for those seeking a sustainable alternative to paper filter. Fits KONE Brewing System and standard 6, 8 and 10 cup Chemex Coffee Makers. Food safe plastic structure support ring.", 60.00D, filter));
 
-    result.put(++productSeqId, new Coffee(productSeqId, "Original Blend", "some desc", 8.99D, 16, dd, blend, local));
+    result.put(++productSeqId, new Coffee(productSeqId, "Original Blend", "The Original Blend, the blend that made Dunkin’ Donuts® famous, features 100% Arabica beans, from Central and South America. We have been keeping America running with this great coffee for over 60 years. These 1 pound packages, which include approximately 2,000 beans, allow you to brew the delicious flavor you love from the convenience of your own kitchen.", 8.99D, 16, dd, blend, local));
+
     result.put(++productSeqId, new Coffee(productSeqId, "Dunkin' Decaf", "some desc", 8.99D, 16, dd, decaf, african));
     result.put(++productSeqId, new Coffee(productSeqId, "French Vanilla", "some desc", 8.99D, 16, dd, blend, african));
     result.put(++productSeqId, new Coffee(productSeqId, "Dark Roast", "some desc", 8.99D, 16, dd, blend, local));
