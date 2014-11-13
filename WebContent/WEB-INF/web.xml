@@ -30,15 +30,6 @@
   </servlet-mapping>
 
   <servlet>
-    <servlet-name>SettingServlet</servlet-name>
-    <servlet-class>iit.csp595.servlet.SettingServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>SettingServlet</servlet-name>
-    <url-pattern>/account/setting</url-pattern>
-  </servlet-mapping>
-
-  <servlet>
     <servlet-name>AuthServlet</servlet-name>
     <servlet-class>iit.csp595.servlet.AuthServlet</servlet-class>
   </servlet>

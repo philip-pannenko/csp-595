@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class User implements Serializable {
 
-  private Long id;
+  private Long id = -1L;
   private String fname;
   private String lname;
   private String username;

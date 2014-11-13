@@ -10,7 +10,13 @@ public enum Actions {
   LOGOUT(6),
   CANCEL_ORDER(7),
   SUBMIT_ORDER(8),
-  CONFIRM_ORDER(9);
+  CONFIRM_ORDER(9),
+  MODIFY_ACCOUNT(10),
+  DELETE_ACCOUNT(11),
+  CLEAR_CART(12),
+  SAVE_ACCOUNT(13),
+  VIEW_ORDER(14),
+  NEW_ACCOUNT(15);
 
   private final int id;
 
@@ -44,6 +50,18 @@ public enum Actions {
       return SUBMIT_ORDER;
     case 9:
       return CONFIRM_ORDER;
+    case 10:
+      return MODIFY_ACCOUNT;
+    case 11:
+      return DELETE_ACCOUNT;
+    case 12:
+      return CLEAR_CART;
+    case 13:
+      return SAVE_ACCOUNT;
+    case 14:
+      return VIEW_ORDER;
+    case 15:
+      return NEW_ACCOUNT;
     default:
       return INVALID;
     }

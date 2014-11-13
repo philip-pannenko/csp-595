@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class Order implements Serializable {
 
-  private Long id;
+  private Long id =-1l;
   private String description;
   private Date orderDate;
   private Double totalPrice;
@@ -16,7 +16,7 @@ public class Order implements Serializable {
   private Boolean active = true;
   private Date deliveryDate;
 
-  public Order() {
+  public Order() {  
   }
 
   public Order(Long id, String description, Date orderDate, Date deliveryDate, Double totalPrice, Map<Long, Integer> products, User user) {

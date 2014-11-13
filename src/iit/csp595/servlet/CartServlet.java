@@ -27,38 +27,10 @@ public class CartServlet extends HttpServlet {
 
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    int action = Utils.toInt(request.getParameter("a"));
-
-    switch (Actions.getAction(action)) {
-    case CONFIRM_ORDER:
-      User user = new User();
-
-      String useFormData = request.getParameter("useFormData");
-
-      // If this is a first attempt, we will be grabbing values from the session
-      // on a revalidation we grab values from the form.
-      if (Boolean.valueOf(useFormData)) {
-        try {
-          BeanUtils.populate(user, request.getParameterMap());
-        } catch (IllegalAccessException | InvocationTargetException e) {
-          e.printStackTrace();
-        }
-      } else {
-        user = Utils.getAuthUser(request);
-      }
-
-      CheckoutPageBean checkoutBean = new CheckoutPageBean(user);
-      request.setAttribute("bean", checkoutBean);
-      request.getRequestDispatcher("/WEB-INF/template.jsp").forward(request, response);
-
-      break;
-    default:
-      Cart cart = Utils.getCart(request);
-      CartIndividualBean bean = new CartIndividualBean(cart);
-      request.setAttribute("bean", bean);
-      request.getRequestDispatcher("/WEB-INF/template.jsp").forward(request, response);
-      break;
-    }
+    Cart cart = Utils.getCart(request);
+    CartIndividualBean bean = new CartIndividualBean(cart);
+    request.setAttribute("bean", bean);
+    request.getRequestDispatcher("/WEB-INF/template.jsp").forward(request, response);
   }
 
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -118,13 +90,15 @@ public class CartServlet extends HttpServlet {
       } else {
         try {
           BeanUtils.populate(user, request.getParameterMap());
+          User authUser = Utils.getAuthUser(request);
+          user.setId(authUser == null ? -1L : authUser.getId());
         } catch (IllegalAccessException | InvocationTargetException e) {
           e.printStackTrace();
         }
+        
+        
 
-        boolean isValid = Utils.validateUserForm(user);
-
-        if (!isValid) {
+        if (!Utils.validateUserForm(user)) {
           CheckoutPageBean checkoutBean = new CheckoutPageBean(user);
           checkoutBean.setMessage(new Message(true, Constants.ERROR_VALIDATION_FAILED));
           request.setAttribute("bean", checkoutBean);
@@ -140,6 +114,19 @@ public class CartServlet extends HttpServlet {
           Utils.clearCart(request);
           response.sendRedirect("account/order?id=" + order.getId() + "&" + Utils.generateInfoMsg(Constants.MSG_ORDER_COMPLETE));
         }
+      }
+      break;
+    case CLEAR_CART:
+      Utils.clearCart(request);
+      response.sendRedirect("cart?" + Utils.generateInfoMsg(Constants.MSG_CART_CLEARED));
+      break;
+    case CONFIRM_ORDER:
+      if (Utils.getCart(request).getProducts().isEmpty()) {
+        response.sendRedirect("cart?" + Utils.generateErrorMsg(Constants.ERROR_CART_IS_EMPTY));
+      } else {
+        CheckoutPageBean checkoutBean = new CheckoutPageBean(Utils.getAuthUser(request));
+        request.setAttribute("bean", checkoutBean);
+        request.getRequestDispatcher("/WEB-INF/template.jsp").forward(request, response);
       }
       break;
     default:

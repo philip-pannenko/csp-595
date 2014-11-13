@@ -1,5 +1,6 @@
 package iit.csp595;
 
+import iit.csp595.domain.dao.UserDao;
 import iit.csp595.domain.model.Cart;
 import iit.csp595.domain.model.Order;
 import iit.csp595.domain.model.User;
@@ -13,6 +14,7 @@ import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -126,6 +128,31 @@ public final class Utils {
     return order;
   }
 
+  public static final void writeUserToFile(User user) {
+    try (FileOutputStream fout = new FileOutputStream(Constants.IO_FILEPATH_USERS + "user_" + user.getId() + ".ser"); ObjectOutputStream oos = new ObjectOutputStream(fout);) {
+      oos.writeObject(user);
+    } catch (Exception ex) {
+      ex.printStackTrace();
+    }
+  }
+
+  public static final void deleteUserFromFile(User user) {
+    File f = new File(Constants.IO_FILEPATH_USERS + "user_" + user.getId() + ".ser");
+    if (f.exists()) {
+      f.delete();
+    }
+  }
+
+  public static final User readUserFromFile(String name) {
+    User user = null;
+    try (FileInputStream streamIn = new FileInputStream(Constants.IO_FILEPATH_USERS + name); ObjectInputStream objectinputstream = new ObjectInputStream(streamIn);) {
+      user = (User) objectinputstream.readObject();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return user;
+  }
+
   public static final List<Order> readOrdersFromFile() {
     List<Order> result = new ArrayList<Order>();
     File folder = new File(Constants.IO_FILEPATH);
@@ -147,6 +174,33 @@ public final class Utils {
         Order order = readOrderFromFile(file.getName());
         if (order != null) {
           result.add(order);
+        }
+      }
+    }
+    return result;
+  }
+
+  public static final List<User> readUsersFromFile() {
+    List<User> result = new ArrayList<User>();
+    File folder = new File(Constants.IO_FILEPATH);
+    if (!folder.exists()) {
+      if (!folder.mkdir()) {
+        System.err.println("Cannot create file " + folder.getAbsolutePath() + ", shutting down app");
+        System.exit(0);
+      }
+    }
+    folder = new File(Constants.IO_FILEPATH_USERS);
+    if (!folder.exists()) {
+      if (!folder.mkdir()) {
+        System.err.println("Cannot create file " + folder.getAbsolutePath() + ", shutting down app");
+        System.exit(0);
+      }
+    }
+    for (final File file : folder.listFiles()) {
+      if (file.isFile()) {
+        User user = readUserFromFile(file.getName());
+        if (user != null) {
+          result.add(user);
         }
       }
     }
@@ -207,6 +261,56 @@ public final class Utils {
       return false;
     }
     return true;
+  }
+
+  public static boolean validateUserAccount(User user) {
+    if (user == null) {
+      return false;
+    }
+
+    if (user.getUsername() == null || user.getUsername().trim().isEmpty()) {
+      return false;
+    }
+
+    if (user.getPassword() == null || user.getPassword().toString().trim().isEmpty()) {
+      return false;
+    }
+
+    UserDao dao = new UserDao();
+    // If the user is new, double check that the username isn't used
+    if (user.getId() == null && user.getUsername() != null && user.getUsername().trim().isEmpty() && dao.getUserByUsername(user.getUsername()) != null) {
+      return false;
+    }
+
+    return true;
+  }
+
+  public static boolean validatePassword(User user, User authUser) {
+    if (user == null || authUser == null || user.getPassword() == null || String.valueOf(user.getPassword()).trim().isEmpty()) {
+      return false;
+    }
+
+    if (!Arrays.equals(user.getPassword(), authUser.getPassword())) {
+      return false;
+    }
+
+    return true;
+  }
+
+  public static boolean isUsersEqual(User user, User user2) {
+
+    boolean isUserEmpty = user == null || user.getId() == null || user.getId().longValue() == -1L;
+    boolean isUserEmpty2 = user2 == null || user2.getId() == null || user2.getId().longValue() == -1L;
+
+    if (isUserEmpty && isUserEmpty2) {
+      return true;
+    } else if (isUserEmpty && !isUserEmpty2 || !isUserEmpty && isUserEmpty2) {
+      return false;
+    } else if (user.getId().longValue() == user2.getId().longValue()) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 }

@@ -44,10 +44,12 @@
 <div class="col-2 sidebar">
   <div>
     <h4>Cart Actions</h4>
-    <ol class="list-unstyled">
-      <li><a href="cart?a=9">Checkout</a></li>
-      <li><a href="#">Clear Cart</a></li>
-    </ol>
+    <form action="cart?p=${product.id}" method="post">
+      <ol class="list-unstyled">
+        <li><button type="submit" name="a" value="9">Checkout</button></li>
+        <li><button type="submit" name="a" value="12">Clear Cart</button></li>
+      </ol>
+    </form>
   </div>
 </div>
 

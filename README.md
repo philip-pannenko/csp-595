@@ -5,15 +5,9 @@ csp-595
 * Add sort (products)
 * Add search (products)
 * Add multiple flavors (categories)
-* Lock down account page to user (authorization)
-* Add ability to update, delete, user info
-* Add ability to create new user
-* Serialize users (not currently doing this, only serializing orders)
-* Clear Cart
 * Orders - Recent orders, show orders < 1 week old
 * Orders - Delivered, show orders where delivered date is past current date
 * Orders - Cancel Orders that are not delivered
-* Only logged in user may be allowed to submit order (like amazon)
 * Fix up inline css
 * Make many more items and flavors including images
 
@@ -53,12 +47,6 @@ This has executable batch files. Currently only one for setting windows env.
 
 ### bin
 After a successful ant compile, the executable ouput appears here. You can effectively copy paste this directory into Tomcat.
-
-### formatter
-A batch file that will format your code according to the checkstyle provided.
-
-### reports
-Unit test and checkstyle reports will appear hear after a compile (for checkstyle)
 
 ### src
 All of the java related source code for this project.

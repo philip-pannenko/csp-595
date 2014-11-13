@@ -62,10 +62,30 @@ public class OrderDao {
     return result;
   }
 
+  public List<Order> getAllForUser(int offset, int max, int sortTypeId, long userId) {
+    List<Order> result = new ArrayList<Order>(max);
+    int counter = 0;
+
+    Collection<Order> products = getSortedOrders(sortTypeId);
+
+    for (Order p : products) {
+      if (p.getUser() != null && p.getUser().getId().longValue() == userId) {
+        if (counter >= offset) {
+          result.add(p);
+        }
+        counter++;
+        if (result.size() == max) {
+          break;
+        }
+      }
+    }
+    return result;
+  }
+
   public int getCount(int sortTypeId) {
     return getSortedOrders(sortTypeId).size();
   }
-  
+
   public void createOrder(Order order) {
     Database.ORDERS.put(order.getId(), order);
     if (!Database.USER_ORDERS.containsKey(order.getUser().getId())) {
