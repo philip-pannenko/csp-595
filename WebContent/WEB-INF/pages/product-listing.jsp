@@ -67,15 +67,15 @@
       <tr>
         <th scope="col">Image</th>
         <th scope="col">Name / Link</th>
-        <th scope="col">Description</th>
-        <th scope="col">Price</th>
+        <th class="col_descrip_list" scope="col">Description</th>
+        <th class="col_price_list" scope="col">Price</th>
       </tr>
       <c:forEach items="${requestScope.bean.items}" var="item">
         <tr>
           <td><img class="group" src="images/product/${item.id}.jpg"></td>
           <td><a href="product?id=${item.id}"> ${item.name}</a></td>
           <td><p>${fn:substring(item.description, 0, 500)}...</p></td>
-          <td><p>${item.price}</p></td>
+          <td class="cell_price"><p>${item.price}</p></td>
         </tr>
       </c:forEach>
     </tbody>

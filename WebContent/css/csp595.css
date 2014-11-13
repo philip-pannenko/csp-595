@@ -148,6 +148,19 @@ footer ul li {
   width: 100%;
 }
 
+.col_descrip_list {
+  width: 400px;
+}
+
+.col_price_list {
+  width: 75px;
+  text-align: right;
+}
+
+.cell_price {
+  text-align: right;
+}
+
 /* Typography */
 a {
   color: #105CB6;
