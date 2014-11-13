@@ -48,7 +48,7 @@ public final class Database {
 
     long productSeqId = -1l;
 
-    result.put(++productSeqId, new Accessory(productSeqId, "Cuisinart Grind Central™ Coffee Grinder", "The Grind Central™ Coffee Grinder features a brushed stainless steel housing, and removable stainless bowl and blade assembly. With a 90-gram capacity and Measurement Markings, you can efficiently measure and grind the exact quantity of coffee beans you need - for up to 18 cups at once! - See more at: http://www.cuisinart.com/products/coffee_makers/dcg-12bc.html#sthash.MK89xlzh.dpuf", 40.00D, grinder));
+    result.put(++productSeqId, new Accessory(productSeqId, "Cuisinart Grind Central Coffee Grinder", "The Grind Central™ Coffee Grinder features a brushed stainless steel housing, and removable stainless bowl and blade assembly. With a 90-gram capacity and Measurement Markings, you can efficiently measure and grind the exact quantity of coffee beans you need - for up to 18 cups at once!", 30.00D, grinder));
 
     result.put(++productSeqId, new Accessory(productSeqId, "Able Brewing: Kone Coffee Filter", "some desc", 60.00D, filter));
 
