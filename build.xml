@@ -1,5 +1,5 @@
 <!DOCTYPE project>
-<project name="csp-595" default="deploy" basedir="../">
+<project name="csp-595" default="deploy">
   <property environment="env" />
 
   <path id="classpath">
@@ -25,30 +25,6 @@
   </target>
 
   <target name="compile" description="Compile code">
-    <fail message="Tomcat home is not set.">
-      <condition>
-        <not>
-          <isset property="env.TOMCAT_HOME" />
-        </not>
-      </condition>
-    </fail>
-
-    <fail message="Java home is not set.">
-      <condition>
-        <not>
-          <isset property="env.JAVA_HOME" />
-        </not>
-      </condition>
-    </fail>
-
-    <fail message="Ant home is not set.">
-      <condition>
-        <not>
-          <isset property="env.ANT_HOME" />
-        </not>
-      </condition>
-    </fail>
-
     <mkdir dir="bin/${ant.project.name}/WEB-INF/classes" />
     <javac includeantruntime="false" srcdir="src" destdir="bin/${ant.project.name}/WEB-INF/classes">
       <classpath refid="classpath" />

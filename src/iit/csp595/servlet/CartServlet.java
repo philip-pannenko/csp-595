@@ -90,13 +90,17 @@ public class CartServlet extends HttpServlet {
       } else {
         try {
           BeanUtils.populate(user, request.getParameterMap());
+          
+          // Mini workaround. BeanUtils defaults a Long null value to 0 instead of -1L or null
+          // So we do it manually. If the user is authenticated, use that id 
+          // Or assign -1L if there is no logged in user
+          // This will be used to determine which orders are viewable
           User authUser = Utils.getAuthUser(request);
           user.setId(authUser == null ? -1L : authUser.getId());
+          
         } catch (IllegalAccessException | InvocationTargetException e) {
           e.printStackTrace();
         }
-        
-        
 
         if (!Utils.validateUserForm(user)) {
           CheckoutPageBean checkoutBean = new CheckoutPageBean(user);

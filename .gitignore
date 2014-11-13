@@ -4,10 +4,8 @@
 # But not these files...
 !.gitignore
 !.README.md
-!/ant
-!/bat
-!/formatter
-!/sql
+!build.xml
+!env-setup.bat
 !/src
 !/test
 !/WebContent

@@ -44,24 +44,6 @@ public class OrderDao {
 
   }
 
-  public List<Order> getAll(int offset, int max, int sortTypeId) {
-    List<Order> result = new ArrayList<Order>(max);
-    int counter = 0;
-
-    Collection<Order> products = getSortedOrders(sortTypeId);
-
-    for (Order p : products) {
-      if (counter >= offset) {
-        result.add(p);
-      }
-      counter++;
-      if (result.size() == max) {
-        break;
-      }
-    }
-    return result;
-  }
-
   public List<Order> getAllForUser(int offset, int max, int sortTypeId, long userId) {
     List<Order> result = new ArrayList<Order>(max);
     int counter = 0;
@@ -96,9 +78,8 @@ public class OrderDao {
   }
 
   public void cancelOrder(Long id) {
-    Order order = Database.ORDERS.get(id);
-    order.setActive(false);
-    Utils.writeOrderToFile(order);
+    Utils.deleteOrderFromFile(id);
+    Database.ORDERS.remove(id);
   }
 
 }

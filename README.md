@@ -2,14 +2,13 @@ csp-595
 =======
 
 ## Todo - Baseline
-* Add sort (products)
-* Add search (products)
-* Add multiple flavors (categories)
-* Orders - Recent orders, show orders < 1 week old
-* Orders - Delivered, show orders where delivered date is past current date
-* Orders - Cancel Orders that are not delivered
-* Fix up inline css
-* Make many more items and flavors including images
+* p, Add sort (products)
+* p, Add search (products)
+* p, Fix up inline css
+* j, Assign categories (flavors) to coffee products
+* j, Make many more items and flavors including images
+* j, Testing logged in user order creation & cancellation.
+* j, Testing non logged in user order creation & cancellation. (need to use URL to find order)
 
 ## Todo - New future Stuff
 * During checkout, have option for shipping speed
@@ -32,18 +31,11 @@ Ok, coffee! Let's make a page like this
 
 ## How to build and deploy the project
 * Use Git to clone my repo into any one of your own directories on your computer. Here is the URL you use to perform the clone,(https://github.com/philippannenko/csp-595.git).
-* In cmd, navigate to the {project}\bat directory and run the bat file that configures your env. (you may need to update this file to represent your directories. all of the env must be set)
-* Navigate to {project}\ant directory (in the same cmd prompt!)
-* Type the following command into cmd without the single quotes: 'ant'
+* In cmd, navigate to the {project} directory and run the env-setup.bat file that configures your env. (you may need to update this file to represent your directories. all of the env must be set)
+* In the same cmd prompt, now run the following without quotes, 'ant''
 * The project should compile and then deploy the necessary file to you tomcat directory for your viewing pleasures, (http://localhost/csp-595)
 
 ## Directory Structure
-
-### ant
-This builds, validates and depoys project to Tomcat.
-
-### bat
-This has executable batch files. Currently only one for setting windows env.
 
 ### bin
 After a successful ant compile, the executable ouput appears here. You can effectively copy paste this directory into Tomcat.

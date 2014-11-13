@@ -15,6 +15,7 @@
     <fmt:formatNumber value="${requestScope.bean.item.totalPrice}" type="currency" />
   </p>
 
+
   <h4>Products Associated w/ Order</h4>
   <table class="table">
     <tbody>
@@ -46,10 +47,13 @@
 <div class="col-2 sidebar">
   <div>
     <h4>Order Actions</h4>
-    <ol class="list-unstyled">
-      <li><a href="#">Track Package</a></li>
-      <li><a href="#">Cancel Order</a></li>
-    </ol>
+    <form action="account/order?a=7&o=${requestScope.bean.item.id}" method="POST">
+      <ol class="list-unstyled">
+        <c:if test="${requestScope.bean.orderCancelable}">
+          <li><button type="submit">Cancel Order</button></li>
+        </c:if>
+      </ol>
+    </form>
   </div>
 </div>
 

@@ -15,6 +15,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -310,6 +312,20 @@ public final class Utils {
       return true;
     } else {
       return false;
+    }
+  }
+
+  public static boolean isOrderCancelable(Date deliveryDate) {
+    Calendar now = Calendar.getInstance();
+    now.add(Calendar.DAY_OF_MONTH, 5);
+    return now.getTime().before(deliveryDate);
+  }
+
+  
+  public static final void deleteOrderFromFile(long id) {
+    File f = new File(Constants.IO_FILEPATH_ORDERS + "order_" + id + ".ser");
+    if (f.exists()) {
+      f.delete();
     }
   }
 

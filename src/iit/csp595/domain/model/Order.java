@@ -13,7 +13,6 @@ public class Order implements Serializable {
   private Double totalPrice;
   private Map<Long, Integer> products = new HashMap<Long, Integer>();
   private User user;
-  private Boolean active = true;
   private Date deliveryDate;
 
   public Order() {  
@@ -75,14 +74,6 @@ public class Order implements Serializable {
 
   public void setUser(User user) {
     this.user = user;
-  }
-
-  public Boolean getActive() {
-    return active;
-  }
-
-  public void setActive(Boolean active) {
-    this.active = active;
   }
 
   public Date getDeliveryDate() {

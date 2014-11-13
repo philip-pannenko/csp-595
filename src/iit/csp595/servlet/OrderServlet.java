@@ -65,10 +65,14 @@ public class OrderServlet extends HttpServlet {
       OrderDao dao = new OrderDao();
       Order order = dao.get(orderId);
       if (order == null) {
-        response.sendRedirect("order?" + Utils.generateErrorMsg(Constants.ERROR_ORDER_NOT_FOUND, request.getParameter("id")));
+        response.sendRedirect("order?" + Utils.generateErrorMsg(Constants.ERROR_ORDER_NOT_FOUND));
       } else {
-        request.setAttribute("bean", new OrderIndividualBean(order));
-        request.getRequestDispatcher("/WEB-INF/template.jsp").forward(request, response);
+        if(!Utils.isOrderCancelable(order.getDeliveryDate())) {
+          response.sendRedirect("order?" + Utils.generateErrorMsg(Constants.ERROR_ORDER_CANNOT_BE_CANCELLED, request.getParameter("id")));
+        } else {
+          dao.cancelOrder(orderId);
+          response.sendRedirect("order?" + Utils.generateInfoMsg(Constants.MSG_ORDER_CANCELLED));
+        }
       }
       break;
     default:

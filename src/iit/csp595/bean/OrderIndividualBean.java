@@ -1,10 +1,13 @@
 package iit.csp595.bean;
 
+import iit.csp595.Utils;
 import iit.csp595.domain.dao.ProductDao;
 import iit.csp595.domain.model.Order;
 import iit.csp595.domain.model.Product;
 
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,4 +44,7 @@ public class OrderIndividualBean extends GenericIndividualPageBean<Order> implem
     this.products = products;
   }
 
+  public boolean isOrderCancelable() {
+    return Utils.isOrderCancelable(getItem().getDeliveryDate());
+  }
 }
