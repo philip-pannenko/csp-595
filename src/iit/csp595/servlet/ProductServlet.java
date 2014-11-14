@@ -6,16 +6,16 @@ import iit.csp595.Utils;
 import iit.csp595.bean.ProductIndividualBean;
 import iit.csp595.bean.ProductListingBean;
 import iit.csp595.domain.dao.ProductDao;
+import iit.csp595.domain.dao.ProductDao.SearchResult;
 import iit.csp595.domain.model.Cart;
 import iit.csp595.domain.model.Product;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletResponse;  
 
 public class ProductServlet extends HttpServlet {
 
@@ -24,16 +24,17 @@ public class ProductServlet extends HttpServlet {
     long productId = Utils.toLong(request.getParameter("id"));
     long[] categoryTypeId = Utils.toLongArray(request.getParameter("c"));
     int nextPage = Utils.toInt(request.getParameter("p"), 1);
-    int sortTypeId = Utils.toInt(request.getParameter("s"));
-
+    int sortTypeId = Utils.toInt(request.getParameter("so"));
+    String search = Utils.trim(request.getParameter("se"));
+    
     ProductDao dao = new ProductDao();
 
+    // listing
     if (productId == -1) {
 
       int offset = nextPage - 1;
-      int totalProductsCount = dao.getCount(categoryTypeId, sortTypeId);
-      List<Product> products = dao.getAll(offset * Constants.ITEMS_PER_PAGE, Constants.ITEMS_PER_PAGE, categoryTypeId, sortTypeId);
-      ProductListingBean bean = new ProductListingBean(products, null, totalProductsCount);
+      SearchResult results = dao.getAll(offset * Constants.ITEMS_PER_PAGE, Constants.ITEMS_PER_PAGE, categoryTypeId, sortTypeId, search);
+      ProductListingBean bean = new ProductListingBean(results.items, null, results.count);
 
       bean.setCurrentPage(nextPage);
       bean.setCurrentCategories(categoryTypeId);
@@ -41,7 +42,10 @@ public class ProductServlet extends HttpServlet {
       request.setAttribute("bean", bean);
       request.getRequestDispatcher("/WEB-INF/template.jsp").forward(request, response);
 
-    } else {
+    }
+
+    // individual
+    else {
 
       Product p = dao.get(productId);
       if (p == null) {

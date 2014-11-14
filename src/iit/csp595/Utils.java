@@ -313,7 +313,6 @@ public final class Utils {
     return now.getTime().before(deliveryDate);
   }
 
-  
   public static final void deleteOrderFromFile(long id) {
     File f = new File(Constants.IO_FILEPATH_ORDERS + "order_" + id + ".ser");
     if (f.exists()) {
@@ -321,4 +320,19 @@ public final class Utils {
     }
   }
 
+  /**
+   * Safely trim a string and make it null if it's empty.
+   */
+  public static String trim(String s) {
+    if (s == null) {
+      return s;
+    } else {
+      String s2 = s.trim();
+      if (s2.isEmpty()) {
+        return null;
+      } else {
+        return s2;
+      }
+    }
+  }
 }

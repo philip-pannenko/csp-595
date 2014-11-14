@@ -2,10 +2,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <div class="col-2">
   <div class="sidebar">
-    <form method="POST">
+    <form action="product"method="GET">
       <fieldset>
         <legend>Search</legend>
-        <input style="width:100%" id="search">
+        <input style="width:100%" id="se" name="se">
         <button type="submit">Search</button>
       </fieldset>
     </form>

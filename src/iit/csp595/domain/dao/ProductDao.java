@@ -10,8 +10,11 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+
+import org.apache.commons.lang3.StringUtils;
 
 public class ProductDao {
 
@@ -19,7 +22,7 @@ public class ProductDao {
     return Database.PRODUCTS.get(id);
   }
 
-  public List<Product> getProductsForCategory(long[] categoryTypeIds, final int sortTypeId) {
+  private List<Product> getProductsForCategory(long[] categoryTypeIds, final int sortTypeId, String search) {
     List<Product> result;
     if (categoryTypeIds[0] == -1L) {
       result = new ArrayList<Product>(Database.PRODUCTS.values());
@@ -32,6 +35,7 @@ public class ProductDao {
       }
       result = new ArrayList<Product>(unique);
     }
+
     Collections.sort(result, new Comparator<Product>() {
 
       @Override
@@ -39,6 +43,17 @@ public class ProductDao {
         return sortUtil(o1, o2, sortTypeId);
       }
     });
+
+    if (search != null) {
+      Iterator<Product> it = result.iterator();
+      while (it.hasNext()) {
+        Product p = it.next();
+        if (!StringUtils.containsIgnoreCase(p.getDescription(), search) && !StringUtils.containsIgnoreCase(p.getName(), search)) {
+          it.remove();
+        }
+      }
+
+    }
 
     return result;
   }
@@ -55,26 +70,30 @@ public class ProductDao {
 
   }
 
-  public List<Product> getAll(int offset, int max, long[] categoryTypeIds, int sortTypeId) {
-    List<Product> result = new ArrayList<Product>(max);
+  public SearchResult getAll(int offset, int max, long[] categoryTypeIds, int sortTypeId, String search) {
+    SearchResult result = new SearchResult();
+    List<Product> items = new ArrayList<Product>(max);
     int counter = 0;
 
-    Collection<Product> products = getProductsForCategory(categoryTypeIds, sortTypeId);
-
+    Collection<Product> products = getProductsForCategory(categoryTypeIds, sortTypeId, search);
+    result.count = products.size();
     for (Product p : products) {
       if (counter >= offset) {
-        result.add(p);
+        items.add(p);
       }
       counter++;
-      if (result.size() == max) {
+      if (items.size() == max) {
         break;
       }
     }
+
+    result.items = items;
     return result;
   }
 
-  public int getCount(long[] categoryTypeId, int sortTypeId) {
-    return getProductsForCategory(categoryTypeId, sortTypeId).size();
+  public class SearchResult {
+    public List<Product> items;
+    public int count;
   }
 
 }
