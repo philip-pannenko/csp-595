@@ -2,12 +2,12 @@ csp-595
 =======
 
 ## Todo - Baseline
-* p, Add sort (products)
 * p, Fix up inline css
 * j, Assign categories (flavors) to coffee products
 * j, Make many more items and flavors including images (items from starbucks, dd && www.mistobox.com)
 * j, Testing logged in user order creation & cancellation.
 * j, Testing non logged in user order creation & cancellation. (need to use URL to find order)
+* j, Testing combinations of sort, categories, pagination, search on the products page. bound to have an error or two there
 
 ## Todo - New future Stuff
 * During checkout, have option for shipping speed
