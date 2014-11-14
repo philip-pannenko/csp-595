@@ -22,20 +22,13 @@ public class OrderServlet extends HttpServlet {
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     long orderId = Utils.toLong(request.getParameter("id"));
-    int nextPage = Utils.toInt(request.getParameter("p"), 1);
-    int sortTypeId = Utils.toInt(request.getParameter("s"));
 
     OrderDao dao = new OrderDao();
     User user = Utils.getAuthUser(request);
     if (orderId == -1) {
-
       if (user != null) {
-
-        int offset = nextPage - 1;
-        int totalProductsCount = dao.getCount(sortTypeId);
-        List<Order> products = dao.getAllForUser(offset * Constants.ITEMS_PER_PAGE, Constants.ITEMS_PER_PAGE, sortTypeId, user.getId());
-        OrderListingBean bean = new OrderListingBean(products, totalProductsCount);
-        bean.setCurrentPage(nextPage);
+        List<Order> products = dao.getAllForUser(user.getId());
+        OrderListingBean bean = new OrderListingBean(products, products.size());
         request.setAttribute("bean", bean);
         request.getRequestDispatcher("/WEB-INF/template.jsp").forward(request, response);
       } else {

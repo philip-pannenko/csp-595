@@ -33,8 +33,4 @@
     </tbody>
   </table>
 
-  <jsp:include page="/WEB-INF/global/pagination.jsp">
-    <jsp:param name="url" value="account/order" />
-  </jsp:include>
-
 </div>

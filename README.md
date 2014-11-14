@@ -3,7 +3,6 @@ csp-595
 
 ## Todo - Baseline
 * p, Add sort (products)
-* p, Add search (products)
 * p, Fix up inline css
 * j, Assign categories (flavors) to coffee products
 * j, Make many more items and flavors including images (items from starbucks, dd && www.mistobox.com)
