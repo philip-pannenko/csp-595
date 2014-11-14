@@ -366,6 +366,11 @@ th {
   font-weight: bold;
 }
 
+th.col a {
+  color: #333;
+  text-decoration: none;
+}
+
 td {
   text-align: left;
 }

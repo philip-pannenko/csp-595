@@ -30,7 +30,9 @@ public class ProductDao {
       Set<Product> unique = new HashSet<Product>();
       for (long categoryTypeId : categoryTypeIds) {
         if (categoryTypeId != -1) {
-          unique.addAll(Database.CATEGORY_PRODUCT.get(categoryTypeId));
+          if (Database.CATEGORY_PRODUCT.containsKey(categoryTypeId)) {
+            unique.addAll(Database.CATEGORY_PRODUCT.get(categoryTypeId));
+          }
         }
       }
       result = new ArrayList<Product>(unique);
@@ -64,6 +66,10 @@ public class ProductDao {
       return new BigDecimal(o1.getPrice()).compareTo(new BigDecimal(o2.getPrice()));
     case PRICE_DESC:
       return new BigDecimal(o2.getPrice()).compareTo(new BigDecimal(o1.getPrice()));
+    case NAME_ASC:
+      return o1.getName().compareTo(o2.getName());
+    case NAME_DESC:
+      return o2.getName().compareTo(o1.getName());
     default:
       return 0;
     }
