@@ -22,7 +22,7 @@
       </legend>
       <ul class="tree">
         <li><h5>
-            <a href="product?c=0,1,2,3,4,5">Coffee</a>
+            <a href="product?c=0,1,2,3,4,5,8">Coffee</a>
           </h5>
           <ul>
             <li><h5>
@@ -33,11 +33,12 @@
                 <li><a href="product?c=3">Dunkin Donuts</a></li>
               </ul></li>
             <li><h5>
-                <a href="product?c=0,1">Region</a>
+                <a href="product?c=0,1,8">Region</a>
               </h5>
               <ul>
-                <li><a href="product?c=0">African</a></li>
-                <li><a href="product?c=1">Local</a></li>
+                <li><a href="product?c=0">Africa</a></li>
+                <li><a href="product?c=1">Latin America</a></li>
+                <li><a href="product?c=8">Asia-Pacific</a></li>
               </ul></li>
             <li><h5>
                 <a href="product?c=4,5">Bean Type</a>
