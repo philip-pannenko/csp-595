@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <header>
-  <img src='images/layout/store_header.jpg' />
+  <img src='images/store_header.jpg' />
   <nav class="float-right">
     <ul>
       <li><a href="">Products</a></li>
