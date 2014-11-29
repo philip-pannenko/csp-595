@@ -45,15 +45,15 @@
 </div>
 
 <div class="col-2 sidebar">
-  <div>
-    <h4>Order Actions</h4>
-    <form action="account/order?a=7&o=${requestScope.bean.item.id}" method="POST">
+  <form action="account/order?a=7&o=${requestScope.bean.item.id}" method="POST">
+    <fieldset>
+      <legend>Orders</legend>
       <ol class="list-unstyled">
         <c:if test="${requestScope.bean.orderCancelable}">
-          <li><button type="submit">Cancel Order</button></li>
+          <li><button style="width: 100%" type="submit">Cancel Order</button></li>
         </c:if>
       </ol>
-    </form>
-  </div>
+    </fieldset>
+  </form>
 </div>
 

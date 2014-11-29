@@ -9,12 +9,14 @@
 </div>
 
 <div class="col-2 sidebar">
-  <div>
-    <h4>Item Actions</h4>
-    <ol class="list-unstyled">
-      <li><form action="product?a=1&p=${requestScope.bean.item.id}" method="post">
-          <button type="submit">Add to Cart</button>
-        </form></li>
-    </ol>
-  </div>
+  <form action="product?a=1&p=${requestScope.bean.item.id}" method="post">
+    <fieldset>
+      <legend>Product</legend>
+      <ol class="list-unstyled">
+        <li>
+          <button style="width: 100%;" type="submit">Add to Cart</button>
+        </li>
+      </ol>
+    </fieldset>
+  </form>
 </div>

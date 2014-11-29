@@ -3,17 +3,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <div class="col-2 sidebar">
-  <div>
-    <h4>Order Actions</h4>
+  <fieldset>
+    <legend>Orders</legend>
     <ol class="list-unstyled">
       <li><a href="#">Recent Orders</a></li>
       <li><a href="#">Delivered Orders</a></li>
     </ol>
-  </div>
+  </fieldset>
 </div>
 
 <div class="col-10">
-<h3>Your Orders</h3>
+  <h3>Your Orders</h3>
   <table class="table">
     <tbody>
       <tr>

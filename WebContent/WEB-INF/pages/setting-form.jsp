@@ -2,14 +2,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <div class="col-2 sidebar">
-  <div>
-    <h4>Settings Actions</h4>
-    <form action="account?a=11" method="POST">
+  <form action="account?a=11" method="POST">
+    <fieldset>
+      <legend>Settings</legend>
       <ol class="list-unstyled">
-        <li><button type="submit">Delete Account</button></li>
+        <li><button style="width: 100%;" type="submit">Delete Account</button></li>
       </ol>
-    </form>
-  </div>
+    </fieldset>
+  </form>
 </div>
 
 <div class="col-10">

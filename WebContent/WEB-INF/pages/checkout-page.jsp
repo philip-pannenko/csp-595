@@ -62,12 +62,12 @@
 
 
   <div class="col-2 sidebar">
-    <div>
-      <h4>Checkout Actions</h4>
+    <fieldset>
+      <legend>Checkout</legend>
       <ol class="list-unstyled">
-        <li><button type="submit">Confirm Order</button></li>
+        <li><button style="width: 100%;" type="submit">Confirm Order</button></li>
       </ol>
-    </div>
+    </fieldset>
   </div>
 </form>
 

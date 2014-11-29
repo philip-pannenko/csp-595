@@ -61,18 +61,6 @@
       </ul>
     </fieldset>
   </div>
-  <div>&nbsp;</div>
-  <div class="sidebar">
-    <fieldset>
-      <legend>Flavors</legend>
-      <ol style="margin-bottom: 0px;">
-        <li><a href="#">Flavor 1</a></li>
-        <li><a href="#">Flavor 2</a></li>
-        <li><a href="#">Flavor 3</a></li>
-        <li><a href="#">Flavor 4</a></li>
-      </ol>
-    </fieldset>
-  </div>
 </div>
 
 <div class="col-10">

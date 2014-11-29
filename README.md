@@ -2,7 +2,10 @@ csp-595
 =======
 
 ## Todo - Baseline
-* p, Fix up inline css
+* p, Add ajax pagination and sort.
+* p, Add ajax search to load the product listigs after user cliks search/clear
+* p, Add ajax to load product listing after user clicks on category.
+* p, Remove flavors
 * j, Assign categories (flavors) to coffee products
 * j, Make many more items and flavors including images (items from starbucks, dd && www.mistobox.com)
 * j, Testing logged in user order creation & cancellation.

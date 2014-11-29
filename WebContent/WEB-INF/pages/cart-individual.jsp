@@ -8,11 +8,11 @@
   <table class="table">
     <tbody>
       <tr>
-        <th scope="col"> </th>
+        <th scope="col"></th>
         <th scope="col">Item</th>
         <th scope="col">Price</th>
         <th scope="col">Count</th>
-        <th scope="col"> </th>
+        <th scope="col"></th>
       </tr>
       <c:forEach items="${requestScope.bean.item.products}" var="productId">
         <c:set var="product" value="${requestScope.bean.products[productId.key]}" />
@@ -42,15 +42,15 @@
 </div>
 
 <div class="col-2 sidebar">
-  <div>
-    <h4>Cart Actions</h4>
-    <form action="cart?p=${product.id}" method="post">
+  <form action="cart?p=${product.id}" method="post">
+    <fieldset>
+      <legend>Cart</legend>
       <ol class="list-unstyled">
-        <li><button type="submit" name="a" value="9">Checkout</button></li>
-        <li><button type="submit" name="a" value="12">Clear Cart</button></li>
+        <li><button style="width: 100%;" type="submit" name="a" value="9">Checkout</button></li>
+        <li><button style="width: 100%;" type="submit" name="a" value="12">Clear Cart</button></li>
       </ol>
-    </form>
-  </div>
+    </fieldset>
+  </form>
 </div>
 
 
