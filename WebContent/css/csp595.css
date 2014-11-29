@@ -44,6 +44,7 @@ nav ul li {
 
 nav ul li a {
   color: #333;
+  color: #105CB6;
 }
 
 .container {
@@ -244,13 +245,13 @@ img.center {
 }
 
 img.group {
-   height: 75px;
-   width: auto;
+  height: 75px;
+  width: auto;
 }
 
 img.individual {
-   height: 250px;
-   width: auto;
+  height: 250px;
+  width: auto;
 }
 
 .text-left {
@@ -399,7 +400,7 @@ tfoot {
 }
 
 .sidebar fieldset {
-  margin-bottom:0px;
+  margin-bottom: 0px;
 }
 
 .pagination ul li {
@@ -496,8 +497,28 @@ ul.tree li a {
   color: #333;
 }
 
+ul.tree li a.click {
+  color: #105CB6;
+}
+
+
+
 ul.tree li:last-child {
   background: #f9f9f9 url(../images/lastnode.png) no-repeat;
+}
+
+.search-result-form {
+  position: relative;
+}
+
+.search-result-items {
+  z-index: 999;
+  width: 300px;
+  float: left;
+  position: absolute;
+  left: 10px;
+  top: 25px;
+  background-color: white;
 }
 
 /* Print */

@@ -4,14 +4,17 @@
 
 <div class="col-2">
   <div class="sidebar">
-    <form action="product" method="GET">
+    <script src="scripts/ajax-utils.js" type="text/javascript"></script>
+    <form action="product" method='GET'>
       <fieldset>
         <legend>Search</legend>
-        <input style="width: 100%" id="se" name="se" value="${param.se}">
-        <button value="submit">Search</button>
-        <button value="submit" onclick="se.value=''" style="margin-right: 10px;">Clear</button>
+        <div class="search-result-form">
+          <input style="width: 100%" type="text" onkeyup='searchAutoComplete()' id="se" name="se" value="${param.se}" />
+          <button value="submit">Search</button>
+          <button value="submit" onclick="se.value=''" style="margin-right: 10px;">Clear</button>
+          <div id="search-results" class="search-result-items"></div>
+        </div>
       </fieldset>
-
     </form>
   </div>
   <div>&nbsp;</div>
@@ -29,31 +32,31 @@
                 <a href="product?c=2,3">Store</a>
               </h5>
               <ul>
-                <li><a href="product?c=2">Starbucks</a></li>
-                <li><a href="product?c=3">Dunkin Donuts</a></li>
+                <li><a class="click" href="product?c=2">Starbucks</a></li>
+                <li><a class="click" href="product?c=3">Dunkin Donuts</a></li>
               </ul></li>
             <li><h5>
                 <a href="product?c=0,1,8">Region</a>
               </h5>
               <ul>
-                <li><a href="product?c=0">Africa</a></li>
-                <li><a href="product?c=1">Latin America</a></li>
-                <li><a href="product?c=8">Asia-Pacific</a></li>
+                <li><a class="click" href="product?c=0">Africa</a></li>
+                <li><a class="click" href="product?c=1">Latin America</a></li>
+                <li><a class="click" href="product?c=8">Asia-Pacific</a></li>
               </ul></li>
             <li><h5>
                 <a href="product?c=4,5">Bean Type</a>
               </h5>
               <ul>
-                <li><a href="product?c=4">Blend</a></li>
-                <li><a href="product?c=5">Decaf</a></li>
+                <li><a class="click" href="product?c=4">Blend</a></li>
+                <li><a class="click" href="product?c=5">Decaf</a></li>
               </ul></li>
           </ul></li>
         <li><h5>
             <a href="product?c=6,7">Accessories</a>
           </h5>
           <ul>
-            <li><a href="product?c=6">Grinder</a></li>
-            <li><a href="product?c=7">Filter</a></li>
+            <li><a class="click" href="product?c=6">Grinder</a></li>
+            <li><a class="click" href="product?c=7">Filter</a></li>
           </ul></li>
       </ul>
     </fieldset>
@@ -96,7 +99,7 @@
         <th class="col col_descrip_list">Description</th>
         <th class="col col_price_list"><a href="product?c=${categories}${param.se == null ? '' : search}${s1}">Price &#x25B4;&#x25BE;</a></th>
       </tr>
-      
+
       <c:forEach items="${requestScope.bean.items}" var="item">
         <tr>
           <td><img class="group" src="images/product/${item.id}.jpg"></td>

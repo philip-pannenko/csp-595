@@ -335,4 +335,41 @@ public final class Utils {
       }
     }
   }
+  
+  public static String opeanAndCreateTableHeader(Object... tableHeader) {
+    StringBuilder sb = new StringBuilder();
+    sb.append("<table cellspacing='5' cellpadding='5' border='1px'>");
+    if (tableHeader != null) {
+      sb.append("<tr>");
+      for (Object header : tableHeader) {
+        if (header != null) {
+          sb.append("<th>" + header + "</th>");
+        }
+      }
+      sb.append("</tr>");
+    }
+    return sb.toString();
+  }
+  
+  public static String createTableData(Object... tableData) {
+    StringBuilder sb = new StringBuilder();
+    sb.append("<tr>");
+    for (Object data : tableData) {
+      if (data != null) {
+        sb.append("<td>" + data + "</td>");
+      }
+    }
+    sb.append("</tr>");
+
+    return sb.toString();
+  }
+  
+  public static String createAnchor(Object url, String value) {
+    return "<a href=" + url + ">" + value + "</a>";
+  }
+  
+  public static String closeTable() {
+    return "</table>";
+  }
+
 }

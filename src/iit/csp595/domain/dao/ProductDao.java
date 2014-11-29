@@ -97,7 +97,22 @@ public class ProductDao {
     return result;
   }
 
-  public class SearchResult {
+  public List<Product> findProducts(String search) {
+    List<Product> result = new ArrayList<Product>();
+
+    Collection<Product> products = Database.PRODUCTS.values();
+    for (Product p : products) {
+      if (p.getName().toLowerCase().startsWith(search.toLowerCase())) {
+        result.add(p);
+      } else if (p.getDescription().toLowerCase().contains(search.toLowerCase())) {
+        result.add(p);
+      }
+    }
+
+    return result;
+  }
+
+  public static class SearchResult {
     public List<Product> items;
     public int count;
   }
