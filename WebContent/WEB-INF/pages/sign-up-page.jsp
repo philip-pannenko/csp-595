@@ -70,7 +70,7 @@
     <div class="col-6">&nbsp;</div>
     <div class="col-6">
       <fieldset style="border-top:none;"> 
-        <input type="button" type="submit" value="Create Account" />
+        <input type="submit" value="Create Account" />
       </fieldset>
     </div>
   </form>

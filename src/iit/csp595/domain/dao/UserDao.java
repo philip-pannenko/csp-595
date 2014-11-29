@@ -5,6 +5,8 @@ import java.util.Collection;
 
 import iit.csp595.Utils;
 import iit.csp595.domain.Database;
+import iit.csp595.domain.model.Address;
+import iit.csp595.domain.model.CreditCard;
 import iit.csp595.domain.model.User;
 
 public class UserDao {
@@ -37,6 +39,38 @@ public class UserDao {
     Database.USERS.put(user.getId(), user);
     Database.USERS_USERNAME.put(user.getUsername(), user);
     Utils.writeUserToFile(user);
+  }
+  
+  /**
+   * Call this method to initalize the DB with some user login information
+   */
+  public void loadUsers() {
+    Address shippingAddress;
+    Address billingAddress;
+    CreditCard paymentMethod;
+    User user;
+    
+    shippingAddress = new Address("1st Main St.", "Mystic", "06355", "CT");
+    billingAddress = new Address("1st Main St.", "Mystic", "06355", "CT");
+    paymentMethod = new CreditCard("1234123412341234", "Philip Pannenko", "01/20", "VISA");
+    user = new User(++Database.USER_SEQ_ID, "Philip", "Pannenko", "ppannenk", "password".toCharArray(), billingAddress, shippingAddress, paymentMethod);
+
+    saveUser(user);
+    
+    shippingAddress = new Address("1st Main St.", "Chicago", "60616", "IL");
+    billingAddress = new Address("1st Main St.", "Chicago", "60616", "IL");
+    paymentMethod = new CreditCard("1234123412341234", "Zaharadeen Garuba", "01/20", "VISA");
+    user = new User(++Database.USER_SEQ_ID, "Zaharadeen", "Garuba", "zgaruba", "password".toCharArray(), billingAddress, shippingAddress, paymentMethod);
+
+    saveUser(user);
+    
+    shippingAddress = new Address("1st Main St.", "Chicago", "60616", "IL");
+    billingAddress = new Address("1st Main St.", "Chicago", "60616", "IL");
+    paymentMethod = new CreditCard("1234123412341234", "James Murnane", "01/20", "VISA");
+    user = new User(++Database.USER_SEQ_ID, "James", "Murnane", "jmurnane", "password".toCharArray(), billingAddress, shippingAddress, paymentMethod);
+
+    saveUser(user);
+    
   }
 
 }
