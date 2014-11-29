@@ -97,6 +97,7 @@ public final class Utils {
   public static void clearCart(HttpServletRequest request) {
     HttpSession s = request.getSession();
     s.removeAttribute("cart");
+    s.removeAttribute("cartCount");
   }
 
   public static String toString(Object o) {
@@ -335,7 +336,7 @@ public final class Utils {
       }
     }
   }
-  
+
   public static String opeanAndCreateTableHeader(Object... tableHeader) {
     StringBuilder sb = new StringBuilder();
     sb.append("<table cellspacing='5' cellpadding='5' border='1px'>");
@@ -350,7 +351,7 @@ public final class Utils {
     }
     return sb.toString();
   }
-  
+
   public static String createTableData(Object... tableData) {
     StringBuilder sb = new StringBuilder();
     sb.append("<tr>");
@@ -363,13 +364,43 @@ public final class Utils {
 
     return sb.toString();
   }
-  
+
   public static String createAnchor(Object url, String value) {
     return "<a href=" + url + ">" + value + "</a>";
   }
-  
+
   public static String closeTable() {
     return "</table>";
+  }
+
+  public static void decrementCartCount(HttpServletRequest request) {
+    decrementCartCount(request, 1);
+  }
+
+  public static void decrementCartCount(HttpServletRequest request, int count) {
+    HttpSession s = request.getSession();
+    Object o = s.getAttribute("cartCount");
+    if (o == null) {
+      s.setAttribute("cartCount", 0);
+    } else {
+      int cartCount = (int) o;
+      if (cartCount > 0) {
+        for (int i = 0; i < count; i++) {
+          s.setAttribute("cartCount", --cartCount);
+        }
+      }
+    }
+  }
+
+  public static void incrementCartCount(HttpServletRequest request) {
+    HttpSession s = request.getSession();
+    Object o = s.getAttribute("cartCount");
+    if (o == null) {
+      s.setAttribute("cartCount", 1);
+    } else {
+      int cartCount = (int) o;
+      s.setAttribute("cartCount", ++cartCount);
+    }
   }
 
 }

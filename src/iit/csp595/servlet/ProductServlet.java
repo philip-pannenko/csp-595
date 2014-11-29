@@ -64,6 +64,7 @@ public class ProductServlet extends HttpServlet {
     case ADD_TO_CART:
       if (p != -1) {
         Cart cart = Utils.getCart(request);
+        Utils.incrementCartCount(request);
         if (!cart.getProducts().containsKey(p)) {
           cart.getProducts().put(p, 1);
         } else {

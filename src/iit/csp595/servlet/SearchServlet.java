@@ -22,7 +22,6 @@ public class SearchServlet extends HttpServlet {
     PrintWriter out = response.getWriter();
 
     String search = request.getParameter("s");
-
     if (search != null && !search.trim().isEmpty()) {
       ProductDao dao = new ProductDao();
       List<Product> products = dao.findProducts(search.trim());
@@ -31,7 +30,7 @@ public class SearchServlet extends HttpServlet {
         out.println(Utils.createTableData("No Results Found!"));
       } else {
         for (Product p : products) {
-          out.println(Utils.createTableData(Utils.createAnchor("product?p=" + p.getId(), p.getName())));
+          out.println(Utils.createTableData(Utils.createAnchor("product?id=" + p.getId(), p.getName())));
         }
       }
       out.println(Utils.closeTable());

@@ -5,7 +5,8 @@
   <nav class="float-right">
     <ul>
       <li><a href="">Products</a></li>
-      <li><a href="cart">Cart</a></li>
+      <c:set var="concatCartCount" value="(${sessionScope.cartCount})" />
+      <li><a href="cart"> Cart ${ sessionScope.cartCount != null && sessionScope.cartCount > 0 ? concatCartCount : '' }</a></li>
       <c:choose>
         <c:when test="${sessionScope.user != null}">
           <li><a href="account">Account</a>
