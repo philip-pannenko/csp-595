@@ -370,6 +370,7 @@ th {
 th.col a {
   color: #333;
   text-decoration: none;
+  cursor: pointer;
 }
 
 td {

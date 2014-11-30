@@ -403,4 +403,26 @@ public final class Utils {
     }
   }
 
+  /**
+   * The following will return true: 1, t, true, True
+   * 
+   * @param b
+   * @return
+   */
+  public static boolean toBoolean(String b) {
+    try {
+      if (b == null) {
+        return false;
+      } else if (Boolean.parseBoolean(b)) {
+        return true;
+      } else if (b.length() == 1 && (b.charAt(0) == 't' || b.charAt(0) == '1')) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (Exception e) {
+      return false;
+    }
+  }
+
 }

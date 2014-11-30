@@ -65,42 +65,7 @@
 
 <div class="col-10">
   <h3>Products</h3>
-  <table class="table">
-    <tbody>
-      <tr>
-
-        <c:set value="${requestScope.bean.parsedCurrentCategories}" var="categories" />
-        <c:set value="&se=${param.se}" var="search" />
-
-        <!-- Clean this up? -->
-        <c:set value="&so=1" var="s1" />
-        <c:set value="&so=3" var="s2" />
-        <c:if test="${param.so == 1 || param.so == 2}">
-          <c:set value="&so=${param.so == 1 ? 2 : 1}" var="s1" />
-        </c:if>
-        <c:if test="${param.so == 3 || param.so == 4}">
-          <c:set value="&so=${param.so == 3 ? 4 : 3}" var="s2" />
-        </c:if>
-
-        <th class="col"></th>
-        <th class="col"><a href="product?c=${categories}${param.se == null ? '' : search}${s2}">Item &#x25B4;&#x25BE;</a></th>
-        <th class="col col_descrip_list">Description</th>
-        <th class="col col_price_list"><a href="product?c=${categories}${param.se == null ? '' : search}${s1}">Price &#x25B4;&#x25BE;</a></th>
-      </tr>
-
-      <c:forEach items="${requestScope.bean.items}" var="item">
-        <tr>
-          <td><img class="group" src="images/product/${item.id}.jpg"></td>
-          <td><a href="product?id=${item.id}"> ${item.name}</a></td>
-          <td><p>${fn:substring(item.description, 0, 500)}...</p></td>
-          <td class="cell_price"><fmt:formatNumber value="${item.price}" type="currency" /></td>
-        </tr>
-      </c:forEach>
-    </tbody>
-  </table>
-
-  <jsp:include page="/WEB-INF/global/pagination.jsp">
-    <jsp:param name="url" value="product" />
-  </jsp:include>
-
+  <div id="replaceMe">
+    <jsp:include page="/WEB-INF/pages/product-listing-fragment.jsp" />
+  </div>
 </div>
