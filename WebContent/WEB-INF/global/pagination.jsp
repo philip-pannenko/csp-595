@@ -12,7 +12,7 @@
         <c:set value="&a=1" var="ajax" />
         <c:set value="${param.url}" var="url" />
 
-        <li><a style="cursor:pointer;" onmouseup="doAjaxForPagination(${item})"> ${item}</a></li>
+        <li><a style="cursor:pointer;" onmouseup="doAjaxForPagination(${item})"> ${item} </a></li>
      </c:forEach>
     </ul>
   </nav>
