@@ -1,13 +1,20 @@
 CSP-595 Build Instructions
-=======
+==========================
 
-## Project Instruction
-* Use Apache Ant (http://ant.apache.org/)
-* Navigate to the directory that the build.xml file resides in.
-* Run the command 'ant' and the file will build
+
+Project Run Instruction:
+------------------------
+The directory 'csp-595' should be copied into 
+the apache-tomcat/webapps folder of the reviewer.  
+Source files are also contained within this directory.
+
+url: http://localhost/csp-595/
+
+
+
 
 Generated using LOCMetrics.exe
-
+------------------------------
 Overall
 Symbol			Count		Definition
 Source Files		64		Source Files
